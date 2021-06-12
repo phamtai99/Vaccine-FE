@@ -49,15 +49,15 @@
         <table class="table table-hover table-striped table-bordered" style="font-size: 14px">
           <thead style="background-color:rgb(158,207,251) !important;">
           <tr>
-            <th style="text-align: right">STT</th>
-            <th width="8%">Mã NV
+            <th style="text-align: center">STT</th>
+            <th width="8%" class="text-center">Mã NV
             </th>
-            <th width="12%">Họ và tên</th>
-            <th style="text-align: right">Ngày sinh</th>
-            <th style="text-align: right">CMND</th>
-            <th width="12%">Địa chỉ</th>
-            <th width="13%" style="text-align: right">Số điện thoại</th>
-            <th>Chức vụ</th>
+            <th width="12%" class="text-center">Họ và tên</th>
+            <th style="text-align: center" class="text-center">Ngày sinh</th>
+            <th style="text-align: center" class="text-center">CMND</th>
+            <th width="12%" class="text-center">Địa chỉ</th>
+            <th width="13%" style="text-align: center" class="text-center">Số điện thoại</th>
+            <th class="text-center">Chức vụ</th>
             <th width="12%">Quyền truy cập</th>
             <th class="text-center">Chức năng</th>
 
@@ -66,14 +66,14 @@
           <tbody>
           <tr *ngFor="let employee of employeeList| paginate: { itemsPerPage: 5, currentPage: p }, index as i">
             <td style="text-align: right">{{i+1}}</td>
-            <td>{{getEmployeeCode(employee.employeeId, 3)}}</td>
-            <td>{{employee.name}}</td>
-            <td style="text-align: right">{{employee.dateOfBirth}}</td>
-            <td style="text-align: right">{{employee.idCard}}</td>
-            <td>{{employee.address}}</td>
-            <td style="text-align: right">{{employee.phone}}</td>
-            <td>{{employee.position}}</td>
-            <td>{{employee.account}}</td>
+            <td class="text-center">{{getEmployeeCode(employee.employeeId, 3)}}</td>
+            <td class="text-center">{{employee.name}}</td>
+            <td style="text-align: center" class="text-center">{{employee.dateOfBirth}}</td>
+            <td style="text-align: center" class="text-center">{{employee.idCard}}</td>
+            <td >{{employee.address}}</td>
+            <td style="text-align: center" class="text-center">{{employee.phone}}</td>
+            <td class="text-center">{{employee.position}}</td>
+            <td class="text-center">{{employee.account}}</td>
             <td class="text-center" width="11%">
               <a class="btn btn-success mr-1" [routerLink]="['/employee/edit-employee', employee.employeeId]"><i class="fa fa-edit"></i></a>
               <button class="btn btn-danger ml-1" (click)="temp(employee.employeeId)" data-toggle="modal" data-target="#modelId"><i class="fa fa-trash"></i></button>
