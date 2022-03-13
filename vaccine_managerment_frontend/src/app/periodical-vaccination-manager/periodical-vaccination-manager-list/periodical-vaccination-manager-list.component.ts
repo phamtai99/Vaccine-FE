@@ -16,6 +16,7 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
   vaccineTypeName: string;
   vaccineName: string;
   dateVaccination: string;
+  page: any;
 
   formGroup: FormGroup;
   str = 'Ngày';

@@ -35,7 +35,7 @@ export class ImportAndExportComponent implements OnInit {
   validation_messages = {
     quantityExport: [
       {type: 'required', message: 'Vui lòng nhập số lượng cần xuất'},
-      {type: 'min', message: 'Số luọng cần xuất phải lớn hơn 0.'},
+      {type: 'min', message: 'Số luọng cần xuất phải lớn hơn 0'},
       {type: 'pattern', message: 'Không được nhập ký tự đặt biệt hoặc chữ'}
     ]
   }

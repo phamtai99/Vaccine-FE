@@ -8,6 +8,7 @@ import {PeriodicalVaccinationManagerListComponent} from './periodical-vaccinatio
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [PeriodicalVaccinationManagerCreateComponent, PeriodicalVaccinationManagerEditComponent, PeriodicalVaccinationManagerListComponent],
@@ -18,7 +19,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxPaginationModule
   ]
 })
 export class PeriodicalVaccinationManagerModule {

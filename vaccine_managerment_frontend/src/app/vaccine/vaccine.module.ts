@@ -8,7 +8,7 @@ import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -16,6 +16,7 @@ import {ToastrModule} from "ngx-toastr";
   declarations: [VaccineListComponent, VaccineCreateComponent],
   imports: [
     CommonModule,
+    NgxPaginationModule,
     HttpClientModule,
     VaccineRoutingModule,
     RouterModule,

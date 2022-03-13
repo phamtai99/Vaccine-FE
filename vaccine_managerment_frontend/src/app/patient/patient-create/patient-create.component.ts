@@ -7,9 +7,7 @@ import {checkDateOfBirth} from "../../validator/check-date-of-birth";
 import {checkGuardian} from "../../validator/check-guardian";
 import {AuthService} from "../../service/auth.service";
 
-/**
- * NhiTTY
- **/
+
 @Component({
   selector: 'app-patient-create',
   templateUrl: './patient-create.component.html',
@@ -95,6 +93,7 @@ export class PatientCreateComponent implements OnInit {
       this.isSubmited=true;
       this.authService.register(this.patientForm.value).subscribe(
         data => {
+          console.log("dữ liệu : "+ data);
           this.isSuccessful = true;
           this.isSignUpFailed = false;
           this.toastr.success(data.message,"Hoàn tất: ",{

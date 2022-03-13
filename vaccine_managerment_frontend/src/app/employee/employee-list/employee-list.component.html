@@ -49,7 +49,7 @@
         <table class="table table-hover table-striped table-bordered" style="font-size: 14px">
           <thead style="background-color:rgb(158,207,251) !important;">
           <tr>
-            <th style="text-align: center">STT</th>
+            <th style="text-align: center" >STT</th>
             <th width="8%" class="text-center">Mã NV
             </th>
             <th width="12%" class="text-center">Họ và tên</th>
@@ -60,17 +60,16 @@
             <th class="text-center">Chức vụ</th>
             <th width="12%">Quyền truy cập</th>
             <th class="text-center">Chức năng</th>
-
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let employee of employeeList| paginate: { itemsPerPage: 5, currentPage: p }, index as i">
-            <td style="text-align: right">{{i+1}}</td>
+          <tr *ngFor="let employee of employeeList| paginate: { itemsPerPage: 8, currentPage: p }, index as i">
+            <td class="text-center">{{i+1}}</td>
             <td class="text-center">{{getEmployeeCode(employee.employeeId, 3)}}</td>
             <td class="text-center">{{employee.name}}</td>
             <td style="text-align: center" class="text-center">{{employee.dateOfBirth}}</td>
             <td style="text-align: center" class="text-center">{{employee.idCard}}</td>
-            <td >{{employee.address}}</td>
+            <td class="text-center">{{employee.address}}</td>
             <td style="text-align: center" class="text-center">{{employee.phone}}</td>
             <td class="text-center">{{employee.position}}</td>
             <td class="text-center">{{employee.account}}</td>
@@ -85,7 +84,30 @@
         <pagination-controls
           previousLabel="Trước"
           nextLabel="Sau"
-          class="float-right" (pageChange)="p = $event"></pagination-controls>
+          class="float-right" (pageChange)="p = $event">
+        </pagination-controls>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <!-- Modal -->
         <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
