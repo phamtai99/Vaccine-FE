@@ -38,7 +38,7 @@
         </tr>
         </thead>
         <tbody *ngIf="listPatient.content.length > 0">
-        <tr *ngFor="let element of listPatient.content,index as i  " >
+        <tr *ngFor="let element of listPatient.content | paginate: { itemsPerPage: 8, currentPage: p },index as i  " >
           <td class="center-stt">{{i + 1}}</td>
           <td>{{getCode(element.patientId,3)}}</td>
           <td>{{element.name}}</td>
@@ -59,41 +59,15 @@
         </tbody>
       </table>
     </div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination d-flex justify-content-md-end justify-content-center">
-        <li class="page-item">
-          <button class="page-link" [hidden]="listPatient.pageable.pageNumber === 0" (click)="searchPatient(0)">Đầu</button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" [hidden]="listPatient.pageable.pageNumber == 0"
-                  (click)="searchPatient(listPatient.pageable.pageNumber - 1)">Trang
-            trước
-          </button>
-        </li>
-        <li class="page-item col-md-1 col-2  px-0">
-          <div class="input-group">
-            <input #ok type="number" min="1" max="listPatient.totalPages"
-                   class="form-control text-right rounded-0" [value]="listPatient.pageable.pageNumber + 1">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1"> /{{listPatient.totalPages}}</span>
-            </div>
-          </div>
-        </li>
-        <li class="page-item">
-          <button (click)="searchPatient(ok.value - 1)" class="btn btn-primary rounded-0">Đi</button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" [hidden]="listPatient.pageable.pageNumber >=  listPatient.totalPages - 1"
-                  (click)="searchPatient(listPatient.pageable.pageNumber + 1)">Trang kế
-          </button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" [hidden]="listPatient.pageable.pageNumber >=  listPatient.totalPages - 1 && listPatient.pageable.pageNumber < listPatient.totalPages"
-                  (click)="listPatient.pageable.pageNumber = listPatient.totalPages - 1; searchPatient(listPatient.totalPages -1)">Cuối
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <div>
+      <pagination-controls
+          previousLabel="Trước"
+          nextLabel="Sau"
+          class="float-right" (pageChange)="p = $event">
+        </pagination-controls>
+
+    </div>
+
   </div>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

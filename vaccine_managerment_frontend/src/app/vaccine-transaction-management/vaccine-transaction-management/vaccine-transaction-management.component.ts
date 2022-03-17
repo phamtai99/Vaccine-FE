@@ -19,7 +19,8 @@ export class VaccineTransactionManagementComponent implements OnInit {
   pageable: any;
   keyword2 = '';
   keyword3 = '';
-  listVaccineType: any
+  listVaccineType: any;
+  p: any;
 
   constructor(
     public transactionService: VaccineTransactionService,

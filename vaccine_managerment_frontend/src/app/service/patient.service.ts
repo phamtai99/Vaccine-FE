@@ -10,7 +10,7 @@ import {catchError} from "rxjs/operators";
 })
 export class PatientService {
 
-  private url = "http://localhost:8080/api/public";
+  private url = "http://localhost:8666/api/public";
 
   httpOptions = {
     headers: new HttpHeaders({

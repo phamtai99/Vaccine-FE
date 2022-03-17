@@ -6,7 +6,7 @@ import { CreateVaccineTransactionComponent } from './create-vaccine-transaction/
 import { EditVaccineTransactionComponent } from './edit-vaccine-transaction/edit-vaccine-transaction.component';
 import { DeleteVaccineTransactionComponent } from './delete-vaccine-transaction/delete-vaccine-transaction.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     VaccineTransactionManagementRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class VaccineTransactionManagementModule { }

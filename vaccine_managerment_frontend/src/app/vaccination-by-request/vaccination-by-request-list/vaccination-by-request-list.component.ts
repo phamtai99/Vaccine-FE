@@ -13,16 +13,12 @@ export class VaccinationByRequestListComponent implements OnInit {
   public vaccineList: IVaccine[];
 
   public name = '';
-
   public vaccineTypename = '';
-
   public origin = '';
-
   public page = 0;
-
   public pageable: any;
-
   public status = "";
+  p:any;
 
   constructor(private vaccineService: VaccineService,
               private showMessage: ShowMessage) {}

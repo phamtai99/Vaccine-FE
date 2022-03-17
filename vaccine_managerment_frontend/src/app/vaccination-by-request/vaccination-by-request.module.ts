@@ -5,7 +5,7 @@ import { VaccinationByRequestCreateComponent } from './vaccination-by-request-cr
 import {VaccinationByRequestRoutingModule} from './vaccination-by-request-routing.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SuggestionComponent } from './suggestion/suggestion.component';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -14,7 +14,8 @@ import { SuggestionComponent } from './suggestion/suggestion.component';
         CommonModule,
         VaccinationByRequestRoutingModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        NgxPaginationModule
     ]
 })
 export class VaccinationByRequestModule { }

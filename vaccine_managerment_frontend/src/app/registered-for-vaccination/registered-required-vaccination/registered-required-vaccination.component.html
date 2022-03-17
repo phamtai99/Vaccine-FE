@@ -1,4 +1,4 @@
-<div class="content" (click)="pageInput.value = ''">
+<div class="content" >
   <div class="container">
     <h1 class="text-center mt-4 mb-4">Danh sách bệnh nhân<br>đã đăng kí tiêm chủng theo yêu cầu</h1>
     <div class="search row d-flex justify-content-end mb-4 text-center">
@@ -42,7 +42,7 @@
           <th style="width: 230px">Kiểm tra trước khi khám</th>
         </tr>
         </thead>
-        <tr *ngFor="let vac of vaccinationHistoryList, index as i">
+        <tr *ngFor="let vac of vaccinationHistoryList | paginate: { itemsPerPage: 8, currentPage: p }, index as i">
           <td style="text-align: center">{{i + 1}}</td>
           <td style="text-align: center">BN-{{vac.patient.patientId}}</td>
           <td>{{vac.patient.name}}</td>
@@ -72,41 +72,12 @@
     </div>
 
     <div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination d-flex justify-content-md-end justify-content-center">
-          <li class="page-item">
-            <button class="page-link" [hidden]="page == 0" (click)="page = 0; search()">Đầu</button>
-          </li>
-          <li class="page-item">
-            <button class="page-link" [hidden]="page == 0" (click)="page = page - 1; search()">Trang
-              sau
-            </button>
-          </li>
-          <li class="page-item col-md-1 col-2  px-0">
-            <div class="input-group">
-              <input #pageInput (change)="page = $event.target.value - 1" type="text"
-                     class="form-control text-right rounded-0" [placeholder]="page + 1" aria-label="Username"
-                     aria-describedby="basic-addon1">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> /{{pageable.totalPages}}</span>
-              </div>
-            </div>
-          </li>
-          <li class="page-item">
-            <button (click)="search()" class="btn btn-primary rounded-0">Đi</button>
-          </li>
-          <li class="page-item">
-            <button class="page-link" [hidden]="page >=  pageable.totalPages - 1"
-                    (click)="page = page + 1; search()">Trang kế
-            </button>
-          </li>
-          <li class="page-item">
-            <button class="page-link" [hidden]="page >=  pageable.totalPages - 1 && page < pageable.totalPages"
-                    (click)="page = pageable.totalPages - 1; search()">Cuối
-            </button>
-          </li>
-        </ul>
-      </nav>
+      <pagination-controls
+          previousLabel="Trước"
+          nextLabel="Sau"
+          class="float-right" (pageChange)="p = $event">
+      </pagination-controls>
+
     </div>
 
   </div>

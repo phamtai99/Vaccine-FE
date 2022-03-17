@@ -1,4 +1,4 @@
-<div class="content" (click)="pageInput.value = ''">
+<div class="content" >
   <div class="container-fluid ">
     <h1 class="text-center mt-4 mb-4">Danh Sách Các Giao Dịch Với Khách Hàng (Bệnh Nhân)</h1>
 
@@ -12,7 +12,7 @@
         <input class="form-control" type="text" [(ngModel)]="keyword2" placeholder="Nhập Tên khách hàng">
       </div>
       <div class="col-xl-2 col-md-3">
-        <label>Loại vắc-xin</label>
+        <label>Loại vaccine</label>
         <select [(ngModel)]="keyword3" class="form-control" name="">
           <option value="">Mặc định</option>
           <option *ngFor="let item of listVaccineType">{{item.name}}</option>
@@ -31,8 +31,8 @@
         <tr class="text-center bg-table-header" style="background-color:   rgb(158,207,251) !important;">
           <th>STT</th>
           <th>Mã giao dịch<br>khách hàng</th>
-          <th>Mã vắc-xin</th>
-          <th>Loại vắc-xin</th>
+          <th>Mã vaccine</th>
+          <th>Loại vaccine</th>
           <th>Số lượng<br>vắc xin (mũi)</th>
           <th>Mã bệnh nhân<br>(khách hàng)</th>
           <th>Tên khách hàng<br>(bệnh nhân)</th>
@@ -43,7 +43,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of vaccineTransaction,index as i">
+        <tr *ngFor="let item of vaccineTransaction | paginate: { itemsPerPage: 7, currentPage: p },index as i">
           <td>{{i + 1}}</td>
           <td>GDK-{{item.vaccinationTransactionId}}</td>
           <td>MVC-{{item.vaccinationHistory.vaccination.vaccine.vaccineId}}</td>
@@ -66,32 +66,12 @@
       </table>
     </div>
     <div>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination d-flex justify-content-md-end justify-content-center">
-          <li class="page-item"><a class="page-link" [hidden]="page==0" (click)="page =0;getList()">Đầu</a></li>
-          <li class="page-item"><a class="page-link" [hidden]="page==0" (click)="page =page - 1;getList()">Trang sau</a>
-          </li>
-          <li class="page-item col-md-1 col-2  px-0">
-            <div class="input-group">
-              <input #pageInput (change)="page= $event.target.value -1 " type="text"
-                     class="form-control text-right rounded-0" [placeholder]="page +1" aria-label="Username"
-                     aria-describedby="basic-addon1">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">/{{pageable.totalPages}}</span>
-              </div>
-            </div>
-          </li>
-          <li class="page-item">
-            <button class="btn btn-primary rounded-0">Đi</button>
-          </li>
-          <li class="page-item"><a class="page-link" [hidden]="page >= pageable.totalPages - 1"
-                                   (click)="page= page +1; getList()">Trang kế</a>
-          </li>
-          <li class="page-item"><a class="page-link"
-                                   [hidden]="page >= pageable.totalPages - 1 &&page<pageable.totalPages"
-                                   (click)="page= pageable.totalPages -1; getList()">Cuối</a></li>
-        </ul>
-      </nav>
+      <pagination-controls
+      previousLabel="Trước"
+      nextLabel="Sau"
+      class="float-right"
+      (pageChange)="p=$event">
+    </pagination-controls>
     </div>
   </div>
 </div>

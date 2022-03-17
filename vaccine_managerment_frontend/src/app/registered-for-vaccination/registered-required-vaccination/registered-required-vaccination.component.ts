@@ -18,6 +18,7 @@ export class RegisteredRequiredVaccinationComponent implements OnInit {
   public status = '';
   public page = 0;
   public pageable : any;
+  p:any;
   constructor(private vaccinationHistoryService: VaccinationHistoryService ) { }
 
   ngOnInit(): void {

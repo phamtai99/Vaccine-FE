@@ -16,9 +16,9 @@ export class VaccinationManagerService {
     }),
     'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
   };
-  private apiVaccinationManagerUrl = 'http://localhost:8080/api/public/vaccination-manager';
-  private apiLocationUrl = 'http://localhost:8080/api/public/vaccination-manager/locations';
-  private apiVaccineUrl = 'http://localhost:8080/api/public/vaccination-manager/vaccines';
+  private apiVaccinationManagerUrl = 'http://localhost:8666/api/public/vaccination-manager';
+  private apiLocationUrl = 'http://localhost:8666/api/public/vaccination-manager/locations';
+  private apiVaccineUrl = 'http://localhost:8666/api/public/vaccination-manager/vaccines';
 
   constructor(private httpClient: HttpClient) {
   }

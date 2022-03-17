@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
 })
 export class VaccineService {
 
-  private url = "http://localhost:8080/api/public";
+  private url = "http://localhost:8666/api/public";
 
   private header: any;
 

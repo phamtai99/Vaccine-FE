@@ -13,6 +13,7 @@ export class ListPatientComponent implements OnInit {
   listPatient;
   public patientId = '';
   public name = '';
+  p:any;
 
   constructor(private patientService: PatientService, private toastrService: ToastrService) {
   }

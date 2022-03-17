@@ -5,7 +5,7 @@ import {PeriodicalVaccinationRoutingModule} from './periodical-vaccination-routi
 import { PeriodicalVaccinationRegisterComponent } from './periodical-vaccination-register/periodical-vaccination-register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CancelRegisterComponent } from './cancel-register/cancel-register.component';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -14,7 +14,8 @@ import { CancelRegisterComponent } from './cancel-register/cancel-register.compo
     CommonModule,
     PeriodicalVaccinationRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class PeriodicalVaccinationModule { }

@@ -11,7 +11,7 @@ import {
   providedIn: 'root'
 })
 export class PeriodicalVaccinationKhoaService {
-  private apiServer = 'http://localhost:8080/api/public/vaccination/';
+  private apiServer = 'http://localhost:8666/api/public/vaccination/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

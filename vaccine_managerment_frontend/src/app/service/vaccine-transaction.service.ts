@@ -7,8 +7,8 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class VaccineTransactionService {
-  public API = 'http://localhost:8080/api/public/';
-  API_SEARCH = 'http://localhost:8080/api/public/vaccine-transaction-search';
+  public API = 'http://localhost:8666/api/public/';
+  API_SEARCH = 'http://localhost:8666/api/public/vaccine-transaction-search';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

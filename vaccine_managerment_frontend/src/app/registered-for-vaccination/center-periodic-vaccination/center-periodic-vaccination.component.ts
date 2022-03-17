@@ -8,8 +8,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: './center-periodic-vaccination.component.html',
   styleUrls: ['./center-periodic-vaccination.component.scss']
 })
-/** LuyenNT code
- */
+
 export class CenterPeriodicVaccinationComponent implements OnInit {
 
   public vaccinationHistoryList: IVaccinationHistory[];

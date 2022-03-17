@@ -4,6 +4,7 @@ import {VaccinePriceManagementComponent} from './vaccine-price-management/vaccin
 import {EditVaccinePriceComponent} from "./edit-vaccine-price/edit-vaccine-price.component";
 
 
+
 const routes: Routes = [
   {path: 'vaccine-price-list', component: VaccinePriceManagementComponent},
   {path: 'vaccine-price-edit/:id', component: EditVaccinePriceComponent},

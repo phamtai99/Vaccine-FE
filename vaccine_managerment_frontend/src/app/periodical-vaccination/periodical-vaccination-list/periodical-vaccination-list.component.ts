@@ -46,6 +46,7 @@ export class PeriodicalVaccinationListComponent implements OnInit {
   selectedMonth: string;
   selectedDay: string;
   patient: object;
+  p:any;
 
   constructor(private vaccinationService : PeriodicalVaccinationKhoaService,
               public tokenStorageService: TokenStorageService) {

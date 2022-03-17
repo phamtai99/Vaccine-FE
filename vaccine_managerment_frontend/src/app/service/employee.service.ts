@@ -9,7 +9,7 @@ import {catchError} from "rxjs/operators";
 })
 export class EmployeeService {
 
-  private API_EMPLOYEE: string = 'http://localhost:8080/api/public';
+  private API_EMPLOYEE: string = 'http://localhost:8666/api/public';
   constructor(private httpClient: HttpClient) {
   }
   httpOptions = {
@@ -32,7 +32,7 @@ export class EmployeeService {
     return throwError(errorMessage);
   };
 
-  /** 
+  /**
    * @param employeeDto
    */
   createEmployee(employeeDto): Observable<EmployeeDto> {

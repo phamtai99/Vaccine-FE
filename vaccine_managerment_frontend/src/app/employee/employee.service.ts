@@ -11,7 +11,7 @@ export class EmployeeService {
   /*
   * Hien thi, sua, xoa Employee
    */
-  private API_EMPLOYEE = 'http://localhost:8080/api/public';
+  private API_EMPLOYEE = 'http://localhost:8666/api/public';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

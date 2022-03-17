@@ -19,7 +19,10 @@ export class SuggestionComponent implements OnInit {
 
   getAllVaccine() {
     this.vaccineService.getAllVaccine().subscribe(data => {
-      this.vaccineList = data.content
+
+      console.log(data);
+      this.vaccineList = data.content;
+      console.log(" danh sach vaccine goi y :"+this.vaccineList);
     })
   }
 }

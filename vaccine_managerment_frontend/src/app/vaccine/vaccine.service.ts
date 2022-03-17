@@ -9,7 +9,7 @@ import {ICreateDTO} from "../entity/ICreateDTO";
   providedIn: 'root'
 })
 export class VaccineService {
-  public API: string = "http://localhost:8080/api/public/";
+  public API: string = "http://localhost:8666/api/public/";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
