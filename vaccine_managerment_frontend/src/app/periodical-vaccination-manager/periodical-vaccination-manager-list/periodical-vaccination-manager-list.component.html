@@ -83,7 +83,7 @@
     <thead>
     <tr class="table-primary" style="text-align: center">
       <th class="center-th">STT</th>
-      <th>Mã Lịch Tiêm</th>
+      <!-- <th>Mã Lịch Tiêm</th> -->
       <th>Thời Gian</th>
       <th>Ngày Tiêm</th>
       <th>Địa điểm</th>
@@ -96,9 +96,9 @@
     </tr>
     </thead>
     <tbody *ngIf="listVaccination.content.length > 0">
-    <tr *ngFor="let vaccinationManager of listVaccination.content |  paginate: { itemsPerPage: 10, currentPage: page }, index as i">
+    <tr *ngFor="let vaccinationManager of listVaccination.content |   paginate: config, index as i">
       <td class="center-th">{{i + 1}}</td>
-      <td class="center-th"> {{getCode(vaccinationManager.vaccinationId, 3)}}</td>
+      <!-- <td class="center-th"> {{getCode(vaccinationManager.vaccinationId, 3)}}</td> -->
       <td>{{vaccinationManager.startTime | slice: 0: 5}} - {{vaccinationManager.endTime | slice: 0: 5}}</td>
       <td>{{vaccinationManager.date | date: 'dd/MM/yyyy'}}</td>
       <td><a data-toggle="tooltip" data-placement="right"
@@ -151,7 +151,9 @@
   <pagination-controls
   previousLabel="Trước"
   nextLabel="Sau"
-  class="float-right" (pageChange)="page = $event">
+  class="float-right"
+  (pageChange)="pageChanged($event)"
+  >
 </pagination-controls>
 
 

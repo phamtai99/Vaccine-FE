@@ -76,7 +76,7 @@ export class PeriodicalVaccinationListComponent implements OnInit {
     });
     this.vaccinationService.findCustomVaccination(this.searchData).subscribe( (data: IPeriodicalVaccinationDTO[]) => {
       this.registrableVaccinationList = data;
-      console.log(data)
+      console.log(" danh sách vaccine tiêm chủng định kỳ :",data)
     })
   }
 

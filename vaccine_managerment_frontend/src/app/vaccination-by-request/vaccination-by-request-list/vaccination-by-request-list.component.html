@@ -49,7 +49,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let v of vaccineList | paginate: { itemsPerPage: 8, currentPage: p }; let i = index">
+        <tr *ngFor="let v of vaccineList |  paginate: config ; let i = index">
           <td height="50px">{{i + 1}}</td>
           <td style="width: 300px">{{v.name}}</td>
           <td>{{v.vaccineType.name}}</td>
@@ -68,7 +68,9 @@
       <pagination-controls
         previousLabel="Trước"
         nextLabel="Sau"
-        class="float-right" (pageChange)="p = $event">
+        class="float-right"
+        (pageChange)="pageChanged($event)"
+        >
       </pagination-controls>
     </div>
   </div>

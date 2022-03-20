@@ -19,27 +19,57 @@ export class VaccinationByRequestListComponent implements OnInit {
   public pageable: any;
   public status = "";
   p:any;
+  config: any;
 
   constructor(private vaccineService: VaccineService,
-              private showMessage: ShowMessage) {}
+              private showMessage: ShowMessage) {
+
+              }
+
+
+
 
   ngOnInit(): void {
     this.getListVaccine();
   }
+  pageChanged(event){
+    console.log(" event : ", event)
+    this.config.currentPage = event;
 
+    this.vaccineService.getListVaccine(event-1,this.name.trim(),this.vaccineTypename.trim(),this.origin.trim(), this.status).subscribe(data => {
+      console.log(data.length);
+      this.vaccineList = data.content;
+      this.pageable = data;
 
+      this.config = {
+                  itemsPerPage: data.size,
+                  currentPage: event,
+                  totalItems: data.totalElements
+                };
+      console.log(  "data phân trang :",data);
+    }, error => {
+      this.showMessage.showMessageNotFound();
+      this.vaccineList = [];
+    });
+
+  }
   getListVaccine() {
-
+    console.log(  "check phân trang :",Number(this.page));
     if (!Number(this.page) || Number(this.page) < 0) {
       this.page = 0;
     }
-
 
     this.vaccineService.getListVaccine(this.page,this.name.trim(),this.vaccineTypename.trim(),this.origin.trim(), this.status).subscribe(data => {
       console.log(data.length);
       this.vaccineList = data.content;
       this.pageable = data;
-      console.log(data);
+
+      this.config = {
+                  itemsPerPage: data.size,
+                  currentPage: this.page,
+                  totalItems: data.totalElements
+                };
+      console.log(  "data phân trang :",data);
     }, error => {
       this.showMessage.showMessageNotFound();
       this.vaccineList = [];
@@ -52,7 +82,6 @@ export class VaccinationByRequestListComponent implements OnInit {
     this.vaccineTypename = '';
     this.origin = '';
     this.status = '';
-
     this.getListVaccine();
   }
 }
