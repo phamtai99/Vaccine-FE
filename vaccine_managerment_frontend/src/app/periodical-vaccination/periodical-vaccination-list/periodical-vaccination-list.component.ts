@@ -70,7 +70,7 @@ export class PeriodicalVaccinationListComponent implements OnInit {
     if(this.selectedDay != null && this.selectedDay != '') {
       this.searchData.date += '-' + this.changeNumberFormat(this.selectedDay,2)
     }
-    console.log(this.searchData);
+    console.log(" Tham số searchData: ",this.searchData);
     this.vaccinationService.findTotalPage(this.searchData).subscribe((data: number) => {
       this.searchData.maxPage = data;
     });

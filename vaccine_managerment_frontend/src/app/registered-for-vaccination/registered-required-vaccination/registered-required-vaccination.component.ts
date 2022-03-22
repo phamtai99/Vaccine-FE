@@ -19,6 +19,10 @@ export class RegisteredRequiredVaccinationComponent implements OnInit {
   public page = 0;
   public pageable : any;
   p:any;
+  config;any;
+
+
+
   constructor(private vaccinationHistoryService: VaccinationHistoryService ) { }
 
   ngOnInit(): void {
@@ -29,9 +33,32 @@ export class RegisteredRequiredVaccinationComponent implements OnInit {
     this.vaccinationHistoryService.getAllRegisteredRequired(this.page,2,this.name,).subscribe(data => {
       this.vaccinationHistoryList = data.content;
       this.pageable = data;
-      console.log(data);
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: this.page,
+        totalItems: data.totalElements
+      };
+      console.log(" Danh sánh bệnh nhân đăng kí tiêm chủng theo yêu cầu : ",data);
     }, error => console.log(error));
   }
+
+
+  pageChanged(event){
+    console.log(" event : ", event)
+    this.config.currentPage = event;
+    this.vaccinationHistoryService.getAllRegisteredRequired(event-1,2,this.name,).subscribe(data => {
+      this.vaccinationHistoryList = data.content;
+      this.pageable = data;
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: event,
+        totalItems: data.totalElements
+      };
+      console.log(" Danh sánh bệnh nhân đăng kí tiêm chủng theo yêu cầu : ",data);
+    }, error => console.log(error));
+  }
+
+  
 
   search(){
     this.vaccinationHistoryService.searchRegisteredRequired(this.page,2,this.name,this.status,).subscribe(data => {

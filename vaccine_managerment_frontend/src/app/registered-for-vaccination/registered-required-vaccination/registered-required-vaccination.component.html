@@ -42,7 +42,7 @@
           <th style="width: 230px">Kiểm tra trước khi khám</th>
         </tr>
         </thead>
-        <tr *ngFor="let vac of vaccinationHistoryList | paginate: { itemsPerPage: 8, currentPage: p }, index as i">
+        <tr *ngFor="let vac of vaccinationHistoryList | paginate: config , index as i">
           <td style="text-align: center">{{i + 1}}</td>
           <td style="text-align: center">BN-{{vac.patient.patientId}}</td>
           <td>{{vac.patient.name}}</td>
@@ -75,7 +75,9 @@
       <pagination-controls
           previousLabel="Trước"
           nextLabel="Sau"
-          class="float-right" (pageChange)="p = $event">
+          class="float-right"
+          (pageChange)="pageChanged($event)"
+          >
       </pagination-controls>
 
     </div>

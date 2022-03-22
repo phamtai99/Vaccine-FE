@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="col-xl-2 col-12 px-0">
-      <!--            <br>-->
+
       <button class="btn btn-success mt-2 mb-md-3" routerLink="/patient/create"><i class="fa fa-plus"></i> Thêm mới
       </button>
     </div>
@@ -33,12 +33,11 @@
           <th>Người Giám Hộ</th>
           <th>Số Điện Thoại</th>
           <th>Địa Chỉ</th>
-          <!-- <th>Email</th> -->
           <th class="text-center">Chức năng</th>
         </tr>
         </thead>
         <tbody *ngIf="listPatient.content.length > 0">
-        <tr *ngFor="let element of listPatient.content | paginate: { itemsPerPage: 8, currentPage: p },index as i  " >
+        <tr *ngFor="let element of listPatient.content | paginate: config ,index as i  " >
           <td class="center-stt">{{i + 1}}</td>
           <td>{{getCode(element.patientId,3)}}</td>
           <td>{{element.name}}</td>
@@ -63,12 +62,16 @@
       <pagination-controls
           previousLabel="Trước"
           nextLabel="Sau"
-          class="float-right" (pageChange)="p = $event">
+          class="float-right"
+          (pageChange)="pageChanged($event)"
+          >
         </pagination-controls>
 
     </div>
 
   </div>
+
+
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
