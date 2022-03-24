@@ -43,7 +43,7 @@
           <th>Tạo giá mới/Sửa</th>
         </tr>
         </thead>
-        <tbody *ngFor="let vaccine of exports | paginate: { itemsPerPage: 7, currentPage: p },index as i">
+        <tbody *ngFor="let vaccine of exports | paginate: config ,index as i">
         <tr>
           <td>{{i + 1}}</td>
           <td>MVC-{{vaccine.storage.vaccine.vaccineId}}</td>
@@ -62,11 +62,12 @@
     </div>
     <div>
       <pagination-controls
-        previousLabel="Trước"
-        nextLabel="Sau"
-        class="float-right"
-        (pageChange)="p=$event">
-      </pagination-controls>
+          previousLabel="Trước"
+          nextLabel="Sau"
+          class="float-right"
+          (pageChange)="pageChanged($event)"
+          >
+        </pagination-controls>
 
     </div>
   </div>

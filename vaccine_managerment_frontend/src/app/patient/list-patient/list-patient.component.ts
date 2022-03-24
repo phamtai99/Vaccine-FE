@@ -15,7 +15,7 @@ export class ListPatientComponent implements OnInit {
   public name = '';
   p:any;
   public page = 0;
-  config;any;
+  config:any;
 
 
 

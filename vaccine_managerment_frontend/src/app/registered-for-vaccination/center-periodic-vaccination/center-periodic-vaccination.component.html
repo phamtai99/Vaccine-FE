@@ -1,6 +1,6 @@
-<div class="container" (click)="pageInput.value = ''">
+<div class="container" >
   <div>
-    <h3 class="text-center mt-4 ">DANH SÁCH BỆNH NHÂN ĐĂNG KÝ TIÊM CHỦNG THEO ĐỊNH KỲ CỦA TRUNG TÂM</h3>
+    <h3 class="text-center mt-4 ">DANH SÁCH BỆNH NHÂN ĐĂNG KÝ TIÊM CHỦNG THEO ĐỊNH KỲ CỦA TRUNG TÂM Y TẾ</h3>
     <div class="search row mb-4 mt-4 xl-12 ">
       <div class="col-xl-2 mt-3">
         <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 text-center">
@@ -64,7 +64,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let object of vaccinationHistoryList;let i = index">
+      <tr *ngFor="let object of vaccinationHistoryList | paginate: config ;let i = index">
         <td>{{i + 1}}</td>
         <td>BN-{{object.patient.patientId}}</td>
         <td>{{object.patient.name}}</td>
@@ -94,43 +94,18 @@
       </tbody>
     </table>
   </div>
+
+
+
+
+
   <div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination d-flex justify-content-md-end justify-content-center">
-        <li class="page-item">
-          <button class="page-link" [hidden]="page == 0" (click)="page = 0; searchPeriodicVaccination()">Đầu</button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" [hidden]="page == 0" (click)="page = page - 1; searchPeriodicVaccination()">Trang
-            sau
-          </button>
-        </li>
-        <!--                    <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
-        <li class="page-item col-md-1 col-2  px-0">
-          <!--                        <input class="form-control shadow-none rounded-0" type="text" placeholder="2/5">-->
-          <div class="input-group">
-            <input #pageInput (change)="page = $event.target.value - 1" type="text"
-                   class="form-control text-right rounded-0" [placeholder]="page + 1" aria-label="Username"
-                   aria-describedby="basic-addon1">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id=""> /{{pageable.totalPages}}</span>
-            </div>
-          </div>
-        </li>
-        <li class="page-item">
-          <button (click)="searchPeriodicVaccination()" class="btn btn-primary rounded-0">Đi</button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" [hidden]="page >=  pageable.totalPages - 1"
-                  (click)="page = page + 1; searchPeriodicVaccination()">Trang kế
-          </button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" [hidden]="page >=  pageable.totalPages - 1 && page < pageable.totalPages"
-                  (click)="page = pageable.totalPages - 1; searchPeriodicVaccination()">Cuối
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <pagination-controls
+    previousLabel="Trước"
+    nextLabel="Sau"
+    class="float-right"
+    (pageChange)="pageChanged($event)"
+    >
+    </pagination-controls>
   </div>
 </div>

@@ -6,7 +6,7 @@ import {RegisteredRequiredVaccinationComponent} from "./registered-required-vacc
 import {ViewRegisteredRequiredVaccinationComponent} from "./view-registered-required-vaccination/view-registered-required-vaccination.component";
 
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import {AuthGuard} from "../security/auth.guard";
 
 
@@ -35,6 +35,7 @@ const routes: Routes = [
         CommonModule,
         RouterModule.forChild(routes),
         ReactiveFormsModule,
+        NgxPaginationModule,
         FormsModule
     ],
   exports: [RouterModule]

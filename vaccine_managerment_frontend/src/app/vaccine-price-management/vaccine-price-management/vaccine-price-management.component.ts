@@ -22,7 +22,7 @@ export class VaccinePriceManagementComponent implements OnInit {
   pageable: any;
   check = "disable";
   p: any;
-
+  config:any;
 
   constructor(
     public exportService: ImportAndExportService,
@@ -39,7 +39,14 @@ export class VaccinePriceManagementComponent implements OnInit {
     this.exportService.getListExport(this.page).subscribe(data => {
       this.exports = data.content;
       this.pageable = data;
-    });
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: this.page,
+        totalItems: data.totalElements
+      };
+      console.log("Danh sánh quản lý giá  vaccine : ",data)
+    }, error => console.log(error));
+
     this.exportService.getListVaccineType().subscribe(data => {
       this.vaccineType = data
       console.log(" list vaccine type ",this.vaccineType);
@@ -52,7 +59,7 @@ export class VaccinePriceManagementComponent implements OnInit {
 
       // console.log("Danh sánh loại vaccine  khác nhau: ",this.listVaccineType)
 
-    })
+    }, error => console.log(error))
     this.exportService.getListOrigin().subscribe(data => {
       console.log(" lấy danh sách nước sản xuất ",data);
       this.origin = data
@@ -61,13 +68,26 @@ export class VaccinePriceManagementComponent implements OnInit {
             if(!this.listOrigin.includes(element.origin)){
               this.listOrigin.push(element.origin);
             }
-
       });
-
       // console.log("Danh sánh nước sản xuất khác nhau: ",this.listOrigin)
-
-    })
+    }, error => console.log(error))
   }
+
+  pageChanged(event){
+    console.log(" event : ", event)
+    this.config.currentPage = event;
+    this.exportService.getListExport(event-1).subscribe(data => {
+      this.exports = data.content;
+      this.pageable = data;
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: event,
+        totalItems: data.totalElements
+      };
+      console.log("Danh sánh quản lý giá  vaccine : ",data)
+    }, error => console.log(error));
+  }
+
 
   search() {
     const searchCriteria = {

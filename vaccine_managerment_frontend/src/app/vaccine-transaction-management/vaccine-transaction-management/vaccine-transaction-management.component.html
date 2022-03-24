@@ -43,7 +43,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of vaccineTransaction | paginate: { itemsPerPage: 7, currentPage: p },index as i">
+        <tr *ngFor="let item of vaccineTransaction | paginate: config ,index as i">
           <td>{{i + 1}}</td>
           <td>GDK-{{item.vaccinationTransactionId}}</td>
           <td>MVC-{{item.vaccinationHistory.vaccination.vaccine.vaccineId}}</td>
@@ -70,7 +70,8 @@
       previousLabel="Trước"
       nextLabel="Sau"
       class="float-right"
-      (pageChange)="p=$event">
+      (pageChange)="pageChanged($event)"
+      >
     </pagination-controls>
     </div>
   </div>
