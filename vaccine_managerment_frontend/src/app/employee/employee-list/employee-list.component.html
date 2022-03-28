@@ -63,7 +63,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let employee of employeeList| paginate: { itemsPerPage: 8, currentPage: p }, index as i">
+          <tr *ngFor="let employee of employeeList| paginate: { itemsPerPage: 10, currentPage: p }, index as i">
             <td class="text-center">{{i+1}}</td>
             <td class="text-center">{{getEmployeeCode(employee.employeeId, 3)}}</td>
             <td class="text-center">{{employee.name}}</td>

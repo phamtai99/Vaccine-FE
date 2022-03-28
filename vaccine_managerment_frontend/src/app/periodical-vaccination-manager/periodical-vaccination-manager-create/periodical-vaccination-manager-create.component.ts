@@ -17,6 +17,7 @@ export class PeriodicalVaccinationManagerCreateComponent implements OnInit {
 
   formGroup: FormGroup;
   vaccineList: IVaccine[] = [];
+  vaccineLists: IVaccine[] = [];
   locationList: ILocation[] = [];
   valueTimes: number;
   valueDuration: number;
@@ -25,7 +26,7 @@ export class PeriodicalVaccinationManagerCreateComponent implements OnInit {
   check = false;
   messageError: string;
 
-  /**TrungTQ Code: Thông báo validate*/
+  /** Thông báo validate*/
   statusString: string = 'Chưa thực hiện';
   currentDuration: string = 'Ngày';
   messageTime: string = 'Thời gian kết thúc phải sau thời gian bắt đầu!';
@@ -71,21 +72,30 @@ export class PeriodicalVaccinationManagerCreateComponent implements OnInit {
     }, {validators: ValidatorFormGroup});
   }
 
-  /**TrungTQ Code: Lấy danh sách địa điểm*/
+  /** Lấy danh sách địa điểm*/
   getAllLocation() {
     this.vaccinationManagerService.getAllLocation().subscribe((data: ILocation[]) => {
       this.locationList = data;
-    });
+    }, error => console.log(error));
   };
 
-  /**TrungTQ Code: Lấy danh sách vaccine*/
+  /** Lấy danh sách vaccine*/
   getAllVaccine() {
     this.vaccinationManagerService.getAllVaccine().subscribe((data: IVaccine[]) => {
       this.vaccineList = data;
-    });
+
+      // console.log("danh sách tên vaccine: ",data)
+      this.vaccineList.forEach(element => {
+        if(!this.vaccineLists.includes(element)){
+          this.vaccineLists.push(element);
+        }
+
+      });
+      console.log("danh sách tên vaccine: ", this.vaccineLists)
+    }, error => console.log(error));
   };
 
-  /**TrungTQ Code: quay lại trang chủ*/
+  /** quay lại trang chủ*/
   submitForm() {
     if (this.formGroup.invalid){
       this.messageManager.showMessageCreateNotRole();
@@ -104,7 +114,7 @@ export class PeriodicalVaccinationManagerCreateComponent implements OnInit {
   }
 
   /**
-   * TrungTQ code: lấy dữ liệu của đối tượng khi có sự kiện
+   *  lấy dữ liệu của đối tượng khi có sự kiện
    * */
   getValue(vaccineId: any) {
     for (let i = 0; i < this.vaccineList.length; i++) {

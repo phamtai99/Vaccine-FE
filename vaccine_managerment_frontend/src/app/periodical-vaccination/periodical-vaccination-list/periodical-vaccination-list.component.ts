@@ -87,6 +87,9 @@ export class PeriodicalVaccinationListComponent implements OnInit {
     }, error => console.log(error))
   }
 
+
+
+
   getAgeList(): void {
     this.vaccinationService.getAgeList().subscribe( data => {
       this.ageList = data
