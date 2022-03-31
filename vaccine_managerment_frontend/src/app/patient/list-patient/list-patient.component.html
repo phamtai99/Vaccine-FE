@@ -26,25 +26,25 @@
         <thead>
         <tr class="table-primary">
           <th class="center-stt">STT</th>
-          <th>Mã Bệnh Nhân</th>
-          <th>Họ Và Tên</th>
-          <th>Ngày Sinh</th>
-          <th>Giới Tính</th>
-          <th>Người Giám Hộ</th>
-          <th>Số Điện Thoại</th>
-          <th>Địa Chỉ</th>
+          <th class="text-center">Mã Bệnh Nhân</th>
+          <th class="text-center">Họ Và Tên</th>
+          <th class="text-center">Ngày Sinh</th>
+          <th class="text-center">Giới Tính</th>
+          <th class="text-center">Người Giám Hộ</th>
+          <th class="text-center">Số Điện Thoại</th>
+          <th class="text-center">Địa Chỉ</th>
           <th class="text-center">Chức năng</th>
         </tr>
         </thead>
         <tbody *ngIf="listPatient.content.length > 0">
         <tr *ngFor="let element of listPatient.content | paginate: config ,index as i  " >
           <td class="center-stt">{{i + 1}}</td>
-          <td>{{getCode(element.patientId,3)}}</td>
+          <td class="text-center">{{getCode(element.patientId,3)}}</td>
           <td>{{element.name}}</td>
-          <td>{{element.dateOfBirth|date:'dd/MM/yyy'}}</td>
-          <td>{{element.gender}}</td>
+          <td>{{element.dateOfBirth| date:'dd-MM-yyyy'}}</td>
+          <td class="text-center">{{element.gender}}</td>
           <td>{{element.guardian}}</td>
-          <td>{{element.phone}}</td>
+          <td class="text-center">{{element.phone}}</td>
           <td>{{element.address}}</td>
           <!-- <td>{{element.email}}</td> -->
           <td class="text-center">

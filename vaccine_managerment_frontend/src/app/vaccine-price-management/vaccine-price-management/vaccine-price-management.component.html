@@ -28,9 +28,9 @@
     </div>
 
 
-    <div class="" style="">
+    <div class="" >
       <h3 class="text-danger text-center" *ngIf="exports.length == 0">Không có kết quả tìm thấy</h3>
-      <table style="" class="table table-hover table-striped table-bordered" *ngIf="exports.length > 0">
+      <table  class="table table-hover table-striped table-bordered" *ngIf="exports.length > 0">
         <thead>
         <tr class="text-center bg-table-header" style="background-color:   rgb(158,207,251) !important;">
           <th>STT</th>
@@ -45,13 +45,13 @@
         </thead>
         <tbody *ngFor="let vaccine of exports | paginate: config ,index as i">
         <tr>
-          <td>{{i + 1}}</td>
+          <td class="text-center">{{i + 1}}</td>
           <td>MVC-{{vaccine.storage.vaccine.vaccineId}}</td>
           <td>{{vaccine.storage.vaccine.name}}</td>
           <td>{{vaccine.storage.vaccine.vaccineType.name}}</td>
           <td>{{vaccine.storage.vaccine.origin}}</td>
           <td>{{vaccine.storage.vaccine.age}}</td>
-          <td style="text-align: right">{{vaccine.price}}</td>
+          <td style="text-align: right">{{vaccine.price}} VNĐ</td>
           <td style="text-align: center">
             <button [routerLink]="['/vaccine-price-edit/'+vaccine.importAndExportId]" class="btn btn-primary"><i
               class="fa fa-edit"></i></button>

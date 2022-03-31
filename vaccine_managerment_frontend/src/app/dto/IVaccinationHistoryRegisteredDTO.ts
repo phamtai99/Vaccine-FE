@@ -33,6 +33,7 @@ export interface IVaccinationHistoryRegisteredDTO {
   preStatus : string;
 
   afterStatus : string;
+  expired: string;
 
   vaccinationTimes : number;
 

@@ -39,25 +39,25 @@
           <table class="table table-hover table-bordered" *ngIf="vaccinationHistoryList.length > 0">
             <thead>
             <tr class="bg-table-header">
-              <th scope="col">Stt</th>
-              <th scope="col">Tên vắc xin</th>
-              <th scope="col">Loại vắc xin</th>
-              <th scope="col">Ngày tiêm</th>
-              <th scope="col">Trạng thái</th>
-              <th scope="col">Mũi tiêm</th>
-              <th scope="col">Tình trạng sau khi tiêm</th>
-              <th scope="col">Phản hồi</th>
+              <th scope="col" class="text-center">Stt</th>
+              <th scope="col" class="text-center">Tên vắc xin</th>
+              <th scope="col" class="text-center">Loại vắc xin</th>
+              <th scope="col"class="text-center">Ngày tiêm</th>
+              <th scope="col" class="text-center">Trạng thái</th>
+              <th scope="col" class="text-center">Mũi tiêm</th>
+              <th scope="col" class="text-center">Tình trạng sau khi tiêm</th>
+              <th scope="col" class="text-center">Phản hồi</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let vaccinationHistory of vaccinationHistoryList  |  paginate: config ; index as i">
-              <td scope="row">{{i + 1}}</td>
+              <td scope="row" class="text-center">{{i + 1}}</td>
 
               <td style="width: 200px">{{vaccinationHistory.vaccination.vaccine.name}}</td>
               <td>{{vaccinationHistory.vaccination.vaccine.vaccineType.name}}</td>
-              <td>{{vaccinationHistory.vaccination.date |  date: "dd-MM-yyyy"}}</td>
-              <td> <span [class]="vaccinationHistory.status ? 'badge badge-danger' : 'badge badge-primary'">{{vaccinationHistory.status ? 'Đã tiêm' : 'Chưa tiêm'}}</span></td>
-              <td>{{vaccinationHistory.vaccinationTimes}}</td>
+              <td class="text-center">{{vaccinationHistory.vaccination.date |  date: "dd-MM-yyyy"}}</td>
+              <td class="text-center"> <span [class]="vaccinationHistory.status ? 'badge badge-danger' : 'badge badge-primary'">{{vaccinationHistory.status ? 'Đã tiêm' : 'Chưa tiêm'}}</span></td>
+              <td class="text-center">{{vaccinationHistory.vaccinationTimes}}</td>
               <td>{{vaccinationHistory.afterStatus}}</td>
 
               <td class="text-center">

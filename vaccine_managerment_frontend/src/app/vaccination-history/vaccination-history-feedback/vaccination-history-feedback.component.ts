@@ -40,6 +40,7 @@ export class VaccinationHistoryFeedbackComponent implements OnInit {
       this.vaccinationHistoryService.findByIdVaccinationHistory(paramMap.get('id')).subscribe((data: IVaccinationHistoryFeedbackDTO) => {
         this.vaccinationHistoryId = paramMap.get('id');
         this.vaccinationHistoryFeedback = data;
+        console.log("Dữ liệu phản ánh :", data);
       });
       this.vaccinationHistoryService.findByAfterStatus(paramMap.get('id')).subscribe((data: IVaccinationHistorySendFeedbackDTO) => {
         this.formGroup.patchValue(data);

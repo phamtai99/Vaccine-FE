@@ -1,15 +1,15 @@
 <div class="content" >
   <div class="container">
-    <h1 class="text-center mt-4 mb-4">Bảng thông tin vắc-xin của trung tâm</h1>
+    <h1 class="text-center mt-4 mb-4">Bảng thông tin Vaccine của trung tâm</h1>
 
     <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 text-center">
       <div class="col-xl-2 col-md-3">
-        <label for="nameVaccine">Tên vắc-xin</label>
-        <input (keydown.enter)="page = 0; getListVaccine()" [(ngModel)]="name"  id="nameVaccine" class="form-control" type="text" placeholder="Nhập tên vắc-xin">
+        <label for="nameVaccine">Tên Vaccine</label>
+        <input (keydown.enter)="page = 0; getListVaccine()" [(ngModel)]="name"  id="nameVaccine" class="form-control" type="text" placeholder="Nhập tên Vaccine">
       </div>
       <div class="col-xl-2 col-md-3">
-        <label for="vaccineType">Loại vắc-xin</label>
-        <input (keydown.enter)="page = 0; getListVaccine()" [(ngModel)]="vaccineTypename" id="vaccineType" class="form-control" type="text" placeholder="Nhập loại vắc-xin">
+        <label for="vaccineType">Loại Vaccine</label>
+        <input (keydown.enter)="page = 0; getListVaccine()" [(ngModel)]="vaccineTypename" id="vaccineType" class="form-control" type="text" placeholder="Nhập loại Vaccine">
       </div>
       <div class="col-xl-2 col-md-3">
         <label for="provider">Nhà sản xuất</label>
@@ -17,7 +17,7 @@
 
       </div>
       <div class="col-xl-2 col-md-3">
-        <label for="status">Tình trạng vắc-xin</label>
+        <label for="status">Tình trạng Vaccine</label>
         <select (keydown.enter)="page = 0; getListVaccine()" [(ngModel)]="status" id="status" class="form-control" name="">
           <option value="">Lựa chọn...</option>
           <option value="true" >Còn</option>
@@ -40,22 +40,22 @@
         <thead>
         <tr style="background-color:   rgb(158,207,251) !important;">
           <th>STT</th>
-          <th>Tên vắc-xin</th>
-          <th>Loại vắc-xin</th>
+          <th>Tên Vaccine</th>
+          <th>Loại Vaccine</th>
           <th>Nước sản xuất</th>
           <th>Độ tuổi tiêm chủng</th>
-          <th>Tình trạng vắc-xin</th>
+          <th>Tình trạng Vaccine</th>
           <th>Đăng ký tiêm</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let v of vaccineList |  paginate: config ; let i = index">
-          <td height="50px">{{i + 1}}</td>
+          <td height="50px"class="text-center" >{{i + 1}}</td>
           <td style="width: 300px">{{v.name}}</td>
           <td>{{v.vaccineType.name}}</td>
           <td>{{v.origin}}</td>
           <td>{{v.age}}</td>
-          <td>{{v.quantity > 0 ? 'Còn' : 'Hết'}}</td>
+          <td class="text-center">{{v.quantity > 0 ? 'Còn' : 'Hết'}}</td>
           <td class="text-center">
             <button [disabled]="v.quantity < 1"  [routerLink]="v.quantity > 1 ?'/vaccination-by-request/create/' + v.vaccineId : '/vaccination-by-request/list'"  class="btn btn-success">Đăng ký</button>
           </td>

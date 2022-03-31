@@ -2,10 +2,13 @@ div .tab{
   overflow-x: scroll;
 }
 .table{
-  width: 2050px;
+  // width: 2050px;
   height: 100px;
 }
-
+.pageHeader{
+  margin-top: 45px;
+  margin-right: 45px;
+}
 .bg-table-header{
   text-align: center;
   background-color:rgb(158,207,251) !important;

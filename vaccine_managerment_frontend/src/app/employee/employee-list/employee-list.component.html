@@ -67,7 +67,7 @@
             <td class="text-center">{{i+1}}</td>
             <td class="text-center">{{getEmployeeCode(employee.employeeId, 3)}}</td>
             <td class="text-center">{{employee.name}}</td>
-            <td style="text-align: center" class="text-center">{{employee.dateOfBirth}}</td>
+            <td style="text-align: center" class="text-center">{{employee.dateOfBirth | date:'dd-MM-yyyy'}}</td>
             <td style="text-align: center" class="text-center">{{employee.idCard}}</td>
             <td class="text-center">{{employee.address}}</td>
             <td style="text-align: center" class="text-center">{{employee.phone}}</td>
