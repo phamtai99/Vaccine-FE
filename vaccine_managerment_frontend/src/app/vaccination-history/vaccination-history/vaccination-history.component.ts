@@ -19,10 +19,11 @@ export class VaccinationHistoryComponent implements OnInit {
   vaccineName = '';
   vaccinationDate = '';
   flag = false;
-
+  config: any;
   error : string;
-
   patientId: string;
+
+
 
   constructor(
     public vaccinationHistoryService: VaccinationHistoryService,
@@ -36,12 +37,35 @@ export class VaccinationHistoryComponent implements OnInit {
     this.getListVaccine();
   }
 
+  pageChanged(event){
+    console.log(" event : ", event)
+    this.config.currentPage = event;
+    this.vaccinationHistoryService.findAllVaccinationHistory(event-1, this.vaccineName, this.vaccinationDate, this.patientId).subscribe(data => {
+      this.vaccinationHistoryList = data.content;
+      this.pageable = data;
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: event,
+        totalItems: data.totalElements
+      };
+      console.log(" Hồ sơ đăng kí tiêm chủng của bệnh nhân : ",data)
+      this.flag = true;
+    }, error => {
+      this.error = 'Chưa có lịch sử tiêm';
+    })
+  }
   getListVaccine() {
     this.route.paramMap.subscribe(param => {
       this.patientId = param.get('patientId');
       this.vaccinationHistoryService.findAllVaccinationHistory(this.page, this.vaccineName, this.vaccinationDate, this.patientId).subscribe(data => {
         this.vaccinationHistoryList = data.content;
         this.pageable = data;
+        this.config = {
+          itemsPerPage: data.size,
+          currentPage: this.page,
+          totalItems: data.totalElements
+        };
+        console.log(" Hồ sơ đăng kí tiêm chủng của bệnh nhân : ",data)
         this.flag = true;
       }, error => {
         this.error = 'Chưa có lịch sử tiêm';

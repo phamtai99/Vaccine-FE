@@ -39,25 +39,25 @@
           <table class="table table-hover table-bordered" *ngIf="vaccinationHistoryList.length > 0">
             <thead>
             <tr class="bg-table-header">
-              <th scope="col">Stt</th>
-              <th scope="col">Tên vắc xin</th>
-              <th scope="col">Loại vắc xin</th>
-              <th scope="col">Ngày tiêm</th>
-              <th scope="col">Trạng thái</th>
-              <th scope="col">Mũi tiêm</th>
-              <th scope="col">Tình trạng sau khi tiêm</th>
-              <th scope="col">Phản hồi</th>
+              <th scope="col" class="text-center">Stt</th>
+              <th scope="col" class="text-center">Tên vắc xin</th>
+              <th scope="col" class="text-center">Loại vắc xin</th>
+              <th scope="col"class="text-center">Ngày tiêm</th>
+              <th scope="col" class="text-center">Trạng thái</th>
+              <th scope="col" class="text-center">Mũi tiêm</th>
+              <th scope="col" class="text-center">Tình trạng sau khi tiêm</th>
+              <th scope="col" class="text-center">Phản hồi</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let vaccinationHistory of vaccinationHistoryList, index as i">
-              <td scope="row">{{i + 1}}</td>
+            <tr *ngFor="let vaccinationHistory of vaccinationHistoryList  |  paginate: config ; index as i">
+              <td scope="row" class="text-center">{{i + 1}}</td>
 
               <td style="width: 200px">{{vaccinationHistory.vaccination.vaccine.name}}</td>
               <td>{{vaccinationHistory.vaccination.vaccine.vaccineType.name}}</td>
-              <td>{{vaccinationHistory.vaccination.date |  date: "dd-MM-yyyy"}}</td>
-              <td> <span [class]="vaccinationHistory.status ? 'badge badge-danger' : 'badge badge-primary'">{{vaccinationHistory.status ? 'Đã tiêm' : 'Chưa tiêm'}}</span></td>
-              <td>{{vaccinationHistory.vaccinationTimes}}</td>
+              <td class="text-center">{{vaccinationHistory.vaccination.date |  date: "dd-MM-yyyy"}}</td>
+              <td class="text-center"> <span [class]="vaccinationHistory.status ? 'badge badge-danger' : 'badge badge-primary'">{{vaccinationHistory.status ? 'Đã tiêm' : 'Chưa tiêm'}}</span></td>
+              <td class="text-center">{{vaccinationHistory.vaccinationTimes}}</td>
               <td>{{vaccinationHistory.afterStatus}}</td>
 
               <td class="text-center">
@@ -84,40 +84,13 @@
     <br>
     <div class="row">
       <div class="col-12">
-        <nav aria-label="Page navigation example" *ngIf="pageable.totalPages > 0">
-          <ul class="pagination d-flex justify-content-md-end justify-content-center">
-            <li class="page-item">
-              <button class="page-link" [hidden]="page == 0" (click)="page = 0; getListVaccine()">Đầu</button>
-            </li>
-            <li class="page-item">
-              <button class="page-link" [hidden]="page == 0" (click)="page = page - 1; getListVaccine()">Trang sau
-              </button>
-            </li>
-            <li class="page-item col-md-1 col-2  px-0">
-              <div class="input-group">
-                <input #pageInput (change)="page = $event.target.value - 1" type="text"
-                       class="form-control text-right rounded-0" [placeholder]="page + 1" aria-label="Username"
-                       aria-describedby="basic-addon1">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1"> /{{pageable.totalPages}}</span>
-                </div>
-              </div>
-            </li>
-            <li class="page-item">
-              <button (click)="getListVaccine()" class="btn btn-primary rounded-0">Đi</button>
-            </li>
-            <li class="page-item">
-              <button class="page-link" [hidden]="page >=  pageable.totalPages - 1"
-                      (click)="page = page + 1; getListVaccine()">Trang kế
-              </button>
-            </li>
-            <li class="page-item">
-              <button class="page-link" [hidden]="page >=  pageable.totalPages - 1 && page < pageable.totalPages"
-                      (click)="page = pageable.totalPages - 1; getListVaccine()">Cuối
-              </button>
-            </li>
-          </ul>
-        </nav>
+        <pagination-controls
+        previousLabel="Trước"
+        nextLabel="Sau"
+        class="float-right"
+        (pageChange)="pageChanged($event)"
+        >
+      </pagination-controls>
       </div>
     </div>
   </div>

@@ -19,7 +19,11 @@ export class VaccineTransactionManagementComponent implements OnInit {
   pageable: any;
   keyword2 = '';
   keyword3 = '';
-  listVaccineType: any
+  listVaccineType: any;
+  listTypeVaccine:any
+  p: any;
+  config:any;
+
 
   constructor(
     public transactionService: VaccineTransactionService,
@@ -33,23 +37,55 @@ export class VaccineTransactionManagementComponent implements OnInit {
   }
 
   /**
-   * Made by Khanh lấy list giao dịch
+   * lấy list giao dịch
    */
   getList() {
     this.transactionService.getListTransaction(this.page).subscribe(data => {
       this.vaccineTransaction = data.content
       this.pageable = data
-    })
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: this.page,
+        totalItems: data.totalElements
+      };
+      console.log("danh sách giao dịch  vacccine ", data)
+    }, error => console.log(error));
+
     this.exportService.getListExport(this.page).subscribe(data => {
       this.exports = data;
-    })
+    }, error => console.log(error))
     this.exportService.getListVaccineType().subscribe(data => {
-      this.listVaccineType = data
-    })
+      this.listVaccineType = data;
+      // this.listTypeVaccine.forEach(element => {
+      //   if(!this.listVaccineType.includes(element.name)){
+      //     this.listVaccineType.push(element.name)
+      //   }
+
+      // });
+
+      console.log("danh sách loại vacccine ", data)
+    }, error => console.log(error))
 
   }
+
+
+  pageChanged(event){
+    console.log(" event : ", event)
+    this.config.currentPage = event;
+    this.transactionService.getListTransaction(event-1).subscribe(data => {
+      this.vaccineTransaction = data.content
+      this.pageable = data
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: event,
+        totalItems: data.totalElements
+      };
+      console.log("danh sách giao dịch  vacccine ", data)
+    }, error => console.log(error));
+  }
+
   /**
-   * Made by Khanh tìm kiếm list giao dịch bằng tên bệnh nhân, loại vắc xin
+   *tìm kiếm list giao dịch bằng tên bệnh nhân, loại vắc xin
    */
   search() {
     const searchCriteria = {
@@ -60,27 +96,27 @@ export class VaccineTransactionManagementComponent implements OnInit {
       console.log(data)
       this.vaccineTransaction = data.content;
       console.log(this.vaccineTransaction);
-    })
+    }, error => console.log(error))
   }
   /**
-   * Made by Khanh lấy id , name cần xóa
+   * lấy id , name cần xóa
    */
   getContentDelete(id, name) {
     this.vaccineTransactionId = id
     this.patientName = name
   }
   /**
-   * Made by Khanh xóa giao dịch bằng id
+   * xóa giao dịch bằng id
    */
   getMessageDelete(id: number) {
     this.transactionService.deleteById(id).subscribe(data => {
       this.ngOnInit()
       this.toastrService.success('Xóa thông tin giao dịch với bệnh nhân thành công!', 'Thông báo:');
-    })
+    }, error => console.log(error))
 
   }
   /**
-   * Made by Khanh thông báo hủy
+   * thông báo hủy
    */
   getMessageCancel() {
     this.toastrService.warning('Bạn đã chọn hủy và thông tin này không được xóa', 'Thông báo hủy.');

@@ -22,6 +22,7 @@ import {PeriodicalVaccinationManagerModule} from "./periodical-vaccination-manag
 import {ProfileModule} from "./profile/profile.module";
 import {AngularFireModule} from '@angular/fire';
 import {environment} from "../environments/environment";
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {environment} from "../environments/environment";
   ],
   imports: [
     ReactiveFormsModule,
+    NgxPaginationModule,
     EmployeeModule,
     BrowserModule,
     AppRoutingModule,

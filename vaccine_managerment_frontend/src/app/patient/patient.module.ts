@@ -9,6 +9,7 @@ import { DeletePatientComponent } from './delete-patient/delete-patient.componen
 import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [ListPatientComponent, EditPatientComponent, PatientCreateComponent, DeletePatientComponent],
@@ -20,6 +21,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgxPaginationModule
   ]
 })
 export class PatientModule { }

@@ -10,13 +10,13 @@ import {IVaccinationHistoryRegisteredDTO} from "../dto/IVaccinationHistoryRegist
   providedIn: 'root'
 })
 export class VaccinationHistoryService {
-  private url = "http://localhost:8080/api/public";
+  private url = "http://localhost:8666/api/public";
   private header: any;
   constructor(private http: HttpClient) {
     this.header = new Headers( {'Content-Type' : 'application/context'})
   }
 
-  private baseURL = 'http://localhost:8080/api/public';
+  private baseURL = 'http://localhost:8666/api/public';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ export class VaccinationHistoryService {
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
   };
 
- 
+
   findByIdVaccinationHistory(vaccinationHistoryId): Observable<IVaccinationHistoryFeedbackDTO> {
     return this.http.get<IVaccinationHistoryFeedbackDTO>(this.baseURL + '/vaccination-history/feedback/' + vaccinationHistoryId, this.httpOptions);
   }
@@ -34,11 +34,11 @@ export class VaccinationHistoryService {
     return this.http.get<IVaccinationHistorySendFeedbackDTO>(this.baseURL + '/vaccination-history/feedback/getAfterStatus/' + vaccinationHistoryId, this.httpOptions);
 
   }
-  
+
   updateFeedback(vaccinationHistoryId, vaccinationHistory): Observable<IVaccinationHistorySendFeedbackDTO> {
     return this.http.put<IVaccinationHistorySendFeedbackDTO>(this.baseURL + '/vaccination-history/feedback/sendFeedback/' + vaccinationHistoryId, vaccinationHistory, this.httpOptions);
   }
- 
+
   findAllVaccinationHistory(page: number, vaccineName: string, vaccinationDate: string, patientId: string): Observable<any> {
     return this.http.get<any>(this.baseURL + '/vaccination-history/?page=' + page + '&vaccineName=' + vaccineName + '&vaccinationDate='+ vaccinationDate + "&patientId="+ patientId, this.httpOptions);
   }
@@ -53,7 +53,7 @@ export class VaccinationHistoryService {
     return this.http.get<any>(this.url + '/periodic-vaccination/search?name='+ name + '&status='+status + '&page=' + page);
   }
 
-  /** 
+  /**
    * @param page
    * @param name
    */
@@ -66,32 +66,32 @@ export class VaccinationHistoryService {
   }
 
   /**
-   * search and paging 
+   * search and paging
    */
   searchRegisteredRequired(page: number,id: number, name: string, status: string) {
     return this.http.get<any>(this.url + '/registered-for-vaccination/search?name='+ name + '&id='+id + '&status='+status + '&page=' + page);
   }
 
   /**
-   * find by Id 
+   * find by Id
    */
   getByIdRegisteredRequired(id): Observable<IVaccinationHistoryRegisteredDTO[]> {
     return this.http.get<IVaccinationHistoryRegisteredDTO[]>(this.url + '/registered-for-vaccination/view/' + id)
   }
 
   /**
-   * edit by Id 
+   * edit by Id
    */
   editVaccinationHistory(preStatus, idNeedEdit): Observable<any> {
     return this.http.get(this.url + '/registered-for-vaccination/edit?id=' + idNeedEdit + '&preStatus=' +preStatus);
   }
 
-  
+
   getPatientId(accountId): Observable<number> {
     return this.http.get<number>(this.baseURL + '/gePatientVaccinationHistoryId/' + accountId , this.httpOptions);
   }
   /**
- 
+
    * sendMailForAdmin
    */
   sendMailFeedbackForAdmin(value: string, accountEmail: string): Observable<any> {

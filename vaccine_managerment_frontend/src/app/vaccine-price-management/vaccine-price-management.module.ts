@@ -4,6 +4,7 @@ import {VaccinePriceRoutingModule} from './vaccine-price-routing.module';
 import { VaccinePriceManagementComponent } from './vaccine-price-management/vaccine-price-management.component';
 import { EditVaccinePriceComponent } from './edit-vaccine-price/edit-vaccine-price.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -16,7 +17,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     VaccinePriceRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class VaccinePriceManagementModule { }

@@ -8,8 +8,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: './center-periodic-vaccination.component.html',
   styleUrls: ['./center-periodic-vaccination.component.scss']
 })
-/** LuyenNT code
- */
+
 export class CenterPeriodicVaccinationComponent implements OnInit {
 
   public vaccinationHistoryList: IVaccinationHistory[];
@@ -18,13 +17,41 @@ export class CenterPeriodicVaccinationComponent implements OnInit {
   public page = 0;
   public pageable : any;
   public formGroup : FormGroup;
+
+  config;any;
+
+
+
   constructor(private vaccinationHistoryService: VaccinationHistoryService ) { }
 
   getListPeriodicVaccination(){
     this.vaccinationHistoryService.getListPeriodicVaccination(this.page).subscribe(data => {
       this.vaccinationHistoryList = data.content;
       this.pageable = data;
-      console.log(data);
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: this.page,
+        totalItems: data.totalElements
+      };
+      console.log(" Danh sách bệnh nhân đăng kí tiêm chủng định kì trung tâm :",data);
+    }, error =>
+      this.vaccinationHistoryList = []
+    );
+  }
+
+
+  pageChanged(event){
+    console.log(" event : ", event)
+    this.config.currentPage = event;
+    this.vaccinationHistoryService.getListPeriodicVaccination(event-1).subscribe(data => {
+      this.vaccinationHistoryList = data.content;
+      this.pageable = data;
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: event,
+        totalItems: data.totalElements
+      };
+      console.log(" Danh sách bệnh nhân đăng kí tiêm chủng định kì trung tâm :",data);
     }, error =>
       this.vaccinationHistoryList = []
     );
@@ -38,6 +65,9 @@ export class CenterPeriodicVaccinationComponent implements OnInit {
     this.vaccinationHistoryList = []
     );
   }
+
+
+
   validation_messages = {
     name: [
       {type: 'pattern', message: 'Không được nhập ký tự đặt biệt hoặc số'}

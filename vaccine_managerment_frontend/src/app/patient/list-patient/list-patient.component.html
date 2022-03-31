@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="col-xl-2 col-12 px-0">
-      <!--            <br>-->
+
       <button class="btn btn-success mt-2 mb-md-3" routerLink="/patient/create"><i class="fa fa-plus"></i> Thêm mới
       </button>
     </div>
@@ -26,26 +26,25 @@
         <thead>
         <tr class="table-primary">
           <th class="center-stt">STT</th>
-          <th>Mã Bệnh Nhân</th>
-          <th>Họ Và Tên</th>
-          <th>Ngày Sinh</th>
-          <th>Giới Tính</th>
-          <th>Người Giám Hộ</th>
-          <th>Số Điện Thoại</th>
-          <th>Địa Chỉ</th>
-          <!-- <th>Email</th> -->
+          <th class="text-center">Mã Bệnh Nhân</th>
+          <th class="text-center">Họ Và Tên</th>
+          <th class="text-center">Ngày Sinh</th>
+          <th class="text-center">Giới Tính</th>
+          <th class="text-center">Người Giám Hộ</th>
+          <th class="text-center">Số Điện Thoại</th>
+          <th class="text-center">Địa Chỉ</th>
           <th class="text-center">Chức năng</th>
         </tr>
         </thead>
         <tbody *ngIf="listPatient.content.length > 0">
-        <tr *ngFor="let element of listPatient.content,index as i  " >
+        <tr *ngFor="let element of listPatient.content | paginate: config ,index as i  " >
           <td class="center-stt">{{i + 1}}</td>
-          <td>{{getCode(element.patientId,3)}}</td>
+          <td class="text-center">{{getCode(element.patientId,3)}}</td>
           <td>{{element.name}}</td>
-          <td>{{element.dateOfBirth|date:'dd/MM/yyy'}}</td>
-          <td>{{element.gender}}</td>
+          <td>{{element.dateOfBirth| date:'dd-MM-yyyy'}}</td>
+          <td class="text-center">{{element.gender}}</td>
           <td>{{element.guardian}}</td>
-          <td>{{element.phone}}</td>
+          <td class="text-center">{{element.phone}}</td>
           <td>{{element.address}}</td>
           <!-- <td>{{element.email}}</td> -->
           <td class="text-center">
@@ -59,42 +58,20 @@
         </tbody>
       </table>
     </div>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination d-flex justify-content-md-end justify-content-center">
-        <li class="page-item">
-          <button class="page-link" [hidden]="listPatient.pageable.pageNumber === 0" (click)="searchPatient(0)">Đầu</button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" [hidden]="listPatient.pageable.pageNumber == 0"
-                  (click)="searchPatient(listPatient.pageable.pageNumber - 1)">Trang
-            trước
-          </button>
-        </li>
-        <li class="page-item col-md-1 col-2  px-0">
-          <div class="input-group">
-            <input #ok type="number" min="1" max="listPatient.totalPages"
-                   class="form-control text-right rounded-0" [value]="listPatient.pageable.pageNumber + 1">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1"> /{{listPatient.totalPages}}</span>
-            </div>
-          </div>
-        </li>
-        <li class="page-item">
-          <button (click)="searchPatient(ok.value - 1)" class="btn btn-primary rounded-0">Đi</button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" [hidden]="listPatient.pageable.pageNumber >=  listPatient.totalPages - 1"
-                  (click)="searchPatient(listPatient.pageable.pageNumber + 1)">Trang kế
-          </button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" [hidden]="listPatient.pageable.pageNumber >=  listPatient.totalPages - 1 && listPatient.pageable.pageNumber < listPatient.totalPages"
-                  (click)="listPatient.pageable.pageNumber = listPatient.totalPages - 1; searchPatient(listPatient.totalPages -1)">Cuối
-          </button>
-        </li>
-      </ul>
-    </nav>
+    <div>
+      <pagination-controls
+          previousLabel="Trước"
+          nextLabel="Sau"
+          class="float-right"
+          (pageChange)="pageChanged($event)"
+          >
+        </pagination-controls>
+
+    </div>
+
   </div>
+
+
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

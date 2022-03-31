@@ -36,17 +36,17 @@ export class RegisterComponent implements OnInit {
       {type:'pattern',message: 'Email sai định dạng' }
     ],
     gender: [{
-      
+
     }]
   };
   ngOnInit(): void {
-    //  declare form group by Linh
+
     this.formGroup = this.formBuild.group({
         password: ['',[Validators.required,Validators.minLength(8),Validators.maxLength(32)]],
         email:['',[Validators.required,Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
         name:[''],
         gender:['',[Validators.required]],
-        
+
       }
     );
 

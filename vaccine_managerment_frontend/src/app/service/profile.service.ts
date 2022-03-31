@@ -7,12 +7,12 @@ import {HttpClient} from "@angular/common/http";
 })
 export class ProfileService {
 
-  private url = "http://localhost:8080/api/public";
+  private url = "http://localhost:8666/api/public";
 
   constructor(private http: HttpClient) { }
 
 
-  
+
   getAllPatientByEmai(email: string):Observable<any> {
     return this.http.get<any>(this.url + '/profile?email=' + email);
   }

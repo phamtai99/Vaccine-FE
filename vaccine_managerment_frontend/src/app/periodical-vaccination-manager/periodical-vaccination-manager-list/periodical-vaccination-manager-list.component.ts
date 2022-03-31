@@ -16,6 +16,8 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
   vaccineTypeName: string;
   vaccineName: string;
   dateVaccination: string;
+  public page = 0;
+  config;any;
 
   formGroup: FormGroup;
   str = 'Ngày';
@@ -48,6 +50,42 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
     ]
   };
 
+  pageChanged(event){
+    this.config.currentPage = event;
+    // this.searchDateAndNameOrStatus(event-1, 1);
+    if (this.startDate === '' && this.endDate === '' && this.name === '' && this.status === '') {
+      this.startDate = '';
+      this.endDate = '';
+      this.name = '';
+      this.status = '';
+      this.vaccinationManagerService.getAllVaccination(event-1, 1).subscribe(data => {
+        this.listVaccination = data;
+        this.config = {
+          itemsPerPage: data.size,
+          currentPage: event,
+          totalItems: data.totalElements
+        };
+        console.log("Danh sách lịch tiêm chủng định kỳ trung tâm phần quản trị :",data);
+      }, error => console.log(error));
+    } else {
+      this.vaccinationManagerService.searchDateAndNameOrStatus(this.startDate, this.endDate, this.name, this.status, event-1, 1).subscribe(data => {
+        if (data === null) {
+          this.messageManager.showSearchWarning();
+          this.getAllVaccinationManager(event-1, 1);
+        } else {
+          this.config = {
+            itemsPerPage: data.size,
+            currentPage: event,
+            totalItems: data.totalElements
+          };
+          this.listVaccination = data;
+        }
+      });
+    }
+  }
+
+
+
   ngSubmit() {
     this.formGroup = this.formBuilder.group({
       startDateInput: ['', [Validators.required]],
@@ -58,7 +96,7 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
     this.getAllVaccinationManager(0, 1);
   }
 
-  /**TrungTQ Code: Tìm kiếm và phân trang*/
+  /** Tìm kiếm và phân trang*/
   searchDateAndNameOrStatus(pageable, type) {
     if (this.startDate === '' && this.endDate === '' && this.name === '' && this.status === '') {
       this.getAllVaccinationManager(pageable, type)
@@ -67,7 +105,7 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
     }
   }
 
-  /**TrungTQ Code: Hiện danh sách và phân trang*/
+  /** Hiện danh sách và phân trang*/
   getAllVaccinationManager(pageable, type) {
     this.startDate = '';
     this.endDate = '';
@@ -75,23 +113,33 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
     this.status = '';
     this.vaccinationManagerService.getAllVaccination(pageable, type).subscribe(data => {
       this.listVaccination = data;
-      console.log(data);
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: this.page,
+        totalItems: data.totalElements
+      };
+      console.log("Danh sách lịch tiêm chủng định kỳ trung tâm phần quản trị :",data);
     }, error => console.log(error));
   }
 
-  /**TrungTQ Code: Hiện danh sách tìm kiếm*/
+  /** Hiện danh sách tìm kiếm*/
   searchVaccinationManager(pageable, type) {
     this.vaccinationManagerService.searchDateAndNameOrStatus(this.startDate, this.endDate, this.name, this.status, pageable, type).subscribe(data => {
       if (data === null) {
         this.messageManager.showSearchWarning();
         this.getAllVaccinationManager(pageable, type);
       } else {
+        this.config = {
+          itemsPerPage: data.size,
+          currentPage: this.page,
+          totalItems: data.totalElements
+        };
         this.listVaccination = data;
       }
     });
   }
 
-  /**TrungTQ Code: Xóa theo biến flag*/
+  /** Xóa theo biến flag*/
   deleteVaccinationManager() {
     this.vaccinationManagerService.deleteVaccinationManager(this.vaccinationId).subscribe(data => {
       this.ngOnInit();
@@ -99,7 +147,7 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
     });
   }
 
-  /**TrungTQ Code: Cập nhật trạng thái*/
+  /** Cập nhật trạng thái*/
   updateVaccinationStatusManager() {
     this.vaccinationManagerService.updateVaccinationManagerStatus(this.vaccinationId).subscribe(data => {
       this.ngOnInit();
@@ -107,7 +155,7 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
     });
   }
 
-  /**TrungTQ Code: Hiện nội dung sau khi muốn xóa hay muốn câp nhập trạng thái*/
+  /** Hiện nội dung sau khi muốn xóa hay muốn câp nhập trạng thái*/
   getContentVaccination(id: number, date: string, location: string, vaccineType: string, vaccine: string) {
     this.vaccinationId = id;
     this.locationName = location;
@@ -116,7 +164,7 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
     this.dateVaccination = date;
   }
 
-  /**TrungTQ Code: Cắt bớt tên vaccine*/
+  /** Cắt bớt tên vaccine*/
   getShortName(name: string, size: number): string {
     let nameStr = name;
     if (name.length > size) {
@@ -126,7 +174,7 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
     }
   }
 
-  /**TrungTQ Code: Hiện Mã ID */
+  /** Hiện Mã ID */
   getCode(id: number, size: number): string {
     let num = id.toString();
     while (num.length < size) {
@@ -135,12 +183,12 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
     return 'LTC-' + num;
   }
 
-  /**TrungTQ Code: Thông báo khi hủy xóa*/
+  /** Thông báo khi hủy xóa*/
   getMessageDelete() {
     this.messageManager.showMessageInfoDelete();
   }
 
-  /**TrungTQ Code: Thông báo khi hủy cập nhật*/
+  /** Thông báo khi hủy cập nhật*/
   getMessageUpdate() {
     this.messageManager.showMessageInfoUpdate();
   }

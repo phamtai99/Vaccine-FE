@@ -46,6 +46,10 @@ export class PeriodicalVaccinationListComponent implements OnInit {
   selectedMonth: string;
   selectedDay: string;
   patient: object;
+  p:any;
+
+  public page = 0;
+  config:any;
 
   constructor(private vaccinationService : PeriodicalVaccinationKhoaService,
               public tokenStorageService: TokenStorageService) {
@@ -57,7 +61,11 @@ export class PeriodicalVaccinationListComponent implements OnInit {
     this.getPatient();
     this.searchPeriodicalVaccination();
   }
+  pageChanged(event){
+    console.log(" event : ", event)
+    this.config.currentPage = event;
 
+  }
   searchPeriodicalVaccination() {
     this.searchData.date='';
     if(this.selectedYear != null && this.selectedYear != '') {
@@ -69,20 +77,23 @@ export class PeriodicalVaccinationListComponent implements OnInit {
     if(this.selectedDay != null && this.selectedDay != '') {
       this.searchData.date += '-' + this.changeNumberFormat(this.selectedDay,2)
     }
-    console.log(this.searchData);
+    console.log(" Tham số searchData: ",this.searchData);
     this.vaccinationService.findTotalPage(this.searchData).subscribe((data: number) => {
       this.searchData.maxPage = data;
-    });
+    }, error => console.log(error));
     this.vaccinationService.findCustomVaccination(this.searchData).subscribe( (data: IPeriodicalVaccinationDTO[]) => {
       this.registrableVaccinationList = data;
-      console.log(data)
-    })
+      console.log(" danh sách vaccine tiêm chủng định kỳ :",data)
+    }, error => console.log(error))
   }
+
+
+
 
   getAgeList(): void {
     this.vaccinationService.getAgeList().subscribe( data => {
       this.ageList = data
-    })
+    }, error => console.log(error))
   }
 
   getTimeList(): void {
@@ -92,7 +103,7 @@ export class PeriodicalVaccinationListComponent implements OnInit {
         this.timeListString.push(data[i].startTime + ' - ' + data[i].endTime)
       }
       console.log(this.timeListString);
-    })
+    }, error => console.log(error))
   }
 
   search() {

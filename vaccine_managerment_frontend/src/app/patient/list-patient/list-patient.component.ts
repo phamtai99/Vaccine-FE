@@ -13,6 +13,12 @@ export class ListPatientComponent implements OnInit {
   listPatient;
   public patientId = '';
   public name = '';
+  p:any;
+  public page = 0;
+  config:any;
+
+
+
 
   constructor(private patientService: PatientService, private toastrService: ToastrService) {
   }
@@ -26,10 +32,29 @@ export class ListPatientComponent implements OnInit {
     this.name = '';
     this.patientService.getAllPatient(pageable).subscribe(data => {
       this.listPatient = data;
-      console.log(data);
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: this.page,
+        totalItems: data.totalElements
+      };
+      console.log("Data danh sách bệnh nhân :",data);
     }, error => console.log(error))
   }
 
+
+  pageChanged(event){
+    console.log(" event : ", event)
+    this.config.currentPage = event;
+    this.patientService.getAllPatient(event-1).subscribe(data => {
+      this.listPatient = data;
+      this.config = {
+        itemsPerPage: data.size,
+        currentPage: event,
+        totalItems: data.totalElements
+      };
+      console.log("Data danh sách bệnh nhân :",data);
+    }, error => console.log(error))
+  }
   searchPatient(pageable) {
     this.patientId = this.patientId.replace('BN-', '');
     this.patientId = this.patientId.replace('BN', '');

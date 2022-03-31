@@ -7,8 +7,8 @@ import {IPosition} from "../entity/IPosition";
   providedIn: 'root'
 })
 export class PositionService {
- 
-  private baseURL = 'http://localhost:8080/api/public/position';
+
+  private baseURL = 'http://localhost:8666/api/public/position';
   constructor(
     private http: HttpClient
   ) {

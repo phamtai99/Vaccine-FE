@@ -18,7 +18,7 @@
         <td>{{vaccinationHistoryRegisteredDTOS.patientGender}}</td>
       </tr>
       <tr>
-        <td class="title-info-patient">Năm sinh:</td>
+        <td class="title-info-patient">Ngày sinh:</td>
         <td>{{vaccinationHistoryRegisteredDTOS.patientDob}}</td>
       </tr>
       <tr>
@@ -72,8 +72,8 @@
 
         <div class="row" style="margin-left: 5px" >
           <div class="form-group form-inline" style="padding-right: 5em">
-            <label for="vaccineType" style="padding-right: 1.4em">Loại vắc xin:</label>
-            <div><input [value]="vaccinationHistoryRegisteredDTOS.vaccineTypeName" type="text" id="vaccineType" class="form-control" size="19" readonly></div>
+            <label for="vaccineType" style="padding-right: 1.4em">Tên Vaccine:</label>
+            <div><input [value]="vaccinationHistoryRegisteredDTOS.vaccineName" type="text" id="vaccineType" class="form-control" size="19" readonly></div>
           </div>
           <div class="form-group form-inline" style="margin-left: 5px">
             <label for="dosage" style="padding-right: 2em">Liều lượng (ml):</label>
@@ -87,9 +87,13 @@
             <label for="vaccineType" style="padding-right: 1.4em">Mũi tiêm:</label>
             <div><input [value]="vaccinationHistoryRegisteredDTOS.vaccinationTimes" type="text" id="vaccinationTimes" class="form-control" size="19" readonly></div>
           </div>
+          <div class="form-group form-inline" style="padding-right: 5em">
+            <label for="vaccineType" style="padding-right: 1.4em">Hạn Sử dụng:</label>
+            <div><input [value]="vaccinationHistoryRegisteredDTOS.expired | date:'dd-MM-yyyy'" type="text" id="vaccinationTimes" class="form-control" size="19" readonly></div>
+          </div>
         </div>
 
-        <div class="col-auto" style="text-align: center">
+        <div class="col-auto  btnHeader" style="text-align: center" >
           <button type="button" class="btn btn-primary" (click)="editVaccinationHistory()">Xong/Cho tiêm</button>
           <button style="margin-left: 5px" type="button" class="btn btn-secondary" [routerLink]="['/registered-required-vaccination']">Huỷ</button>
         </div>

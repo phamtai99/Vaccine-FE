@@ -30,7 +30,7 @@ export class ViewRegisteredRequiredVaccinationComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.vaccinationHistoryService.getByIdRegisteredRequired(paramMap.get('id')).subscribe((data: IVaccinationHistoryRegisteredDTO[]) => {
         this.infoPatient = data;
-        console.log(data);
+        console.log("Chi tiết: ",data);
         for (let e of data) {
           if (e.vaccinationHistoryId == Number(paramMap.get('idHistory'))) {
             this.vaccinationHistoryRegisteredDTOS = e;

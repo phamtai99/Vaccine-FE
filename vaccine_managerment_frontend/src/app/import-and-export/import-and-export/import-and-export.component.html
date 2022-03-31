@@ -51,7 +51,6 @@
                disabled>
       </div>
 
-
       <div class="col-md-6 mt-3">
         <p>Độ Tuổi Tiêm Chủng:</p>
         <input type="text" class="form-control" placeholder="Độ Tuổi Tiêm Chủng" aria-label="Độ Tuổi Tiêm Chủng"
@@ -63,7 +62,6 @@
         <input type="text" class="form-control" placeholder="Nước Sản Xuất" aria-label="Nước Sản Xuất" [value]="origin"
                disabled>
       </div>
-
       <div class="col-md-6 mt-3">
         <p>Hàm Lượng Cần Xuất<sup  style="color: red">*</sup>:</p>
         <input type="text" formControlName="quantityExport" class="form-control"
@@ -76,20 +74,13 @@
                *ngIf="formExportVaccine.get('quantityExport').hasError(validation.type) && (formExportVaccine.get('quantityExport').dirty || formExportVaccine.get('quantityExport').pristine)">
             {{validation.message}}</div>
         </div>
-
       </div>
-
-
       <div class="col-md-3" style="margin-top: 20px;margin-left: 880px">
         <button [disabled]="formExportVaccine.invalid" type="button" class="btn btn-warning mr-4 " data-toggle="modal"
                 data-target="#exampleModal2">Xuất Kho
         </button>
         <button type="button" class="btn btn-secondary mr-3" routerLink="/vaccine-list">Huỷ</button>
-
-
       </div>
-
-
     </div>
   </form>
   <!-- footer -->
