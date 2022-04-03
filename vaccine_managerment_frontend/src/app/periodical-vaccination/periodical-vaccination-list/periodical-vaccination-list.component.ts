@@ -64,7 +64,6 @@ export class PeriodicalVaccinationListComponent implements OnInit {
   pageChanged(event){
     console.log(" event : ", event)
     this.config.currentPage = event;
-
   }
   searchPeriodicalVaccination() {
     this.searchData.date='';
@@ -87,9 +86,6 @@ export class PeriodicalVaccinationListComponent implements OnInit {
     }, error => console.log(error))
   }
 
-
-
-
   getAgeList(): void {
     this.vaccinationService.getAgeList().subscribe( data => {
       this.ageList = data
@@ -111,37 +107,6 @@ export class PeriodicalVaccinationListComponent implements OnInit {
     this.getAgeList();
     this.getTimeList();
     this.ngOnInit();
-  }
-
-  goFirstPage() {
-    this.searchData.currentPage = 1;
-    this.searchPeriodicalVaccination();
-  }
-
-  goPreviousPage() {
-    this.searchData.currentPage--;
-    this.searchPeriodicalVaccination();
-  }
-
-  goNextPage() {
-    this.searchData.currentPage++;
-    this.searchPeriodicalVaccination();
-  }
-
-  goLastPage() {
-    this.searchData.currentPage = this.searchData.maxPage;
-    this.searchPeriodicalVaccination();
-  }
-
-  goCustomPage() {
-    console.log(this.searchData.currentPage);
-    if (this.searchData.currentPage > this.searchData.maxPage){
-      this.searchData.currentPage = this.searchData.maxPage
-    }
-    if (this.searchData.currentPage < 1) {
-      this.searchData.currentPage = 1
-    }
-    this.searchPeriodicalVaccination();
   }
 
   clearSearch() {
@@ -171,6 +136,7 @@ export class PeriodicalVaccinationListComponent implements OnInit {
       this.patient = this.tokenStorageService.getUser().patient;
     }
   }
+
   changeNumberFormat(num: string, formatNum: number): string {
     let outPut: string = '';
     for (let i = 0; i < formatNum - num.toString().length; i++ ) {

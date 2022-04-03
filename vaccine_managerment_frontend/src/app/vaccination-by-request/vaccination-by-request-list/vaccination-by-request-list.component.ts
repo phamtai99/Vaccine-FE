@@ -35,7 +35,6 @@ export class VaccinationByRequestListComponent implements OnInit {
   pageChanged(event){
     console.log(" event : ", event)
     this.config.currentPage = event;
-
     this.vaccineService.getListVaccine(event-1,this.name.trim(),this.vaccineTypename.trim(),this.origin.trim(), this.status).subscribe(data => {
       console.log(data.length);
       this.vaccineList = data.content;

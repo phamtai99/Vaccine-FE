@@ -34,14 +34,7 @@ export class VaccineListComponent implements OnInit {
       statusVaccine: new FormControl('')
     });
 
-    // this.vaccineService.getAllVaccineNotPagination().subscribe((data: IVaccineDTO[]) => {
-
-    //   this.listVaccineNotPagination = data;
-
-      // if ((this.listVaccineNotPagination.length % 5) != 0) {
-      //   this.totalPagination = (Math.round(this.listVaccineNotPagination.length / 5)) + 1;
-      // }
-    // })
+  
   }
 
   search() {
@@ -51,47 +44,4 @@ export class VaccineListComponent implements OnInit {
     });
   }
 
-  // findPaginnation() {
-  //   this.vaccineService.getAllVaccine((this.indexPagination * 5) - 5).subscribe((data: IVaccineDTO[]) => {
-  //     this.vaccines = data;
-  //   })
-  // }
-
-  // indexPaginationChage(value: number) {
-  //   this.indexPagination = value;
-  // }
-
-  // firtPage() {
-  //   this.indexPagination = 1;
-  //   this.ngOnInit();
-  // }
-
-  // nextPage() {
-  //   this.indexPagination = this.indexPagination + 1;
-  //   if (this.indexPagination > this.totalPagination) {
-  //     this.indexPagination = this.indexPagination - 1;
-  //   }
-  //   this.vaccineService.getAllVaccine((this.indexPagination * 5) - 5).subscribe((data: IVaccineDTO[]) => {
-  //     this.vaccines = data;
-  //   })
-  // }
-
-  // prviousPage() {
-  //   this.indexPagination = this.indexPagination - 1;
-  //   if (this.indexPagination == 0) {
-  //     this.indexPagination = 1;
-  //     this.ngOnInit();
-  //   } else {
-  //     this.vaccineService.getAllVaccine((this.indexPagination * 5) - 5).subscribe((data: IVaccineDTO[]) => {
-  //       this.vaccines = data;
-  //     })
-  //   }
-  // }
-
-  // lastPage() {
-  //   this.indexPagination = this.listVaccineNotPagination.length / 5;
-  //   this.vaccineService.getAllVaccine((this.indexPagination * 5) - 5).subscribe((data: IVaccineDTO[]) => {
-  //     this.vaccines = data;
-  //   })
-  // }
 }

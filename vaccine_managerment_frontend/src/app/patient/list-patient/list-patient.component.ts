@@ -69,6 +69,8 @@ export class ListPatientComponent implements OnInit {
   }
 
   getSearch(pageable) {
+    console.log("Danh sach ma benh nhan :", this.patientId);
+    // this.patientId = this.patientId.replace('BN-0', '');
     this.patientService.getAllPatientByPatientIdAndName(this.patientId, this.name, pageable).subscribe(data => {
       if (data === null) {
         this.toastrService.warning("Thông tin bạn tìm kiếm hiện không có trong hệ thống ", 'Thông báo !')

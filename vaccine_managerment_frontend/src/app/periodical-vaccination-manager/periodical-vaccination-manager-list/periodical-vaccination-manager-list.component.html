@@ -7,20 +7,20 @@
         <label>Ngày Tiêm:<span class="search"> *</span></label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="start">Từ</span>
+            
           </div>
           <input formControlName="startDateInput" type="date" class="form-control"
                  (change)="startDate = $event.target.value" aria-describedby="start" required>
         </div>
-        <div class="error-place" *ngFor="let validation of validate_message.startDateInput">
+        <!-- <div class="error-place" *ngFor="let validation of validate_message.startDateInput">
           <div><small class="text-danger"
                       *ngIf="formGroup.get('startDateInput').hasError(validation.type) && (formGroup.get('startDateInput').touched)">
             {{validation.message}}</small></div>
           <div><small *ngIf="formGroup.errors?.dateSearchValid" class="text-danger">Ngày bắt đầu nhỏ hơn ngày kết
             thúc</small></div>
-        </div>
+        </div> -->
       </div>
-      <div class="form-group col-auto">
+      <!-- <div class="form-group col-auto">
         <label></label>
         <div class="input-group mb-3 mt-xl-2">
           <div class="input-group-prepend">
@@ -36,7 +36,7 @@
           <div><small *ngIf="formGroup.errors?.dateSearchValid" class="text-danger">Ngày bắt đầu nhỏ hơn ngày kết
             thúc</small></div>
         </div>
-      </div>
+      </div> -->
 
       <div class="form-group col-auto">
         <label>Tên vắc-xin</label>
@@ -44,11 +44,11 @@
           <input formControlName="nameInput" type="text" class="form-control" placeholder="Nhập tên vắc-xin"
                  (change)="name = $event.target.value">
         </div>
-        <div class="error-place" *ngFor="let validation of validate_message.nameInput">
+        <!-- <div class="error-place" *ngFor="let validation of validate_message.nameInput">
           <small class="text-danger"
                  *ngIf="formGroup.get('nameInput').hasError(validation.type) && (formGroup.get('nameInput').touched)">
             {{validation.message}}</small>
-        </div>
+        </div> -->
 
       </div>
       <div class="form-group col-auto">
@@ -61,7 +61,7 @@
       </div>
       <div class="col-auto">
         <br>
-        <button type="button" class="btn btn-success mt-xl-2 mr-2" [disabled]="formGroup.invalid"
+        <button type="button" class="btn btn-success mt-xl-2 mr-2"
                 (click)="searchVaccinationManager(0, 1)">
           <i class="fa fa-search"></i> Tìm kiếm
         </button>
@@ -83,7 +83,6 @@
     <thead>
     <tr class="table-primary" style="text-align: center">
       <th class="center-th">STT</th>
-      <!-- <th>Mã Lịch Tiêm</th> -->
       <th>Thời Gian</th>
       <th>Ngày Tiêm</th>
       <th>Địa điểm</th>
@@ -98,9 +97,8 @@
     <tbody *ngIf="listVaccination.content.length > 0">
     <tr *ngFor="let vaccinationManager of listVaccination.content |   paginate: config, index as i">
       <td class="center-th">{{i + 1}}</td>
-      <!-- <td class="center-th"> {{getCode(vaccinationManager.vaccinationId, 3)}}</td> -->
       <td>{{vaccinationManager.startTime | slice: 0: 5}} - {{vaccinationManager.endTime | slice: 0: 5}}</td>
-      <td>{{vaccinationManager.date | date: 'dd/MM/yyyy'}}</td>
+      <td>{{vaccinationManager.date | date: 'dd-MM-yyyy'}}</td>
       <td><a data-toggle="tooltip" data-placement="right"
              title="{{vaccinationManager.location.name }}">{{getShortName(vaccinationManager.location.name, 15) }}</a>
       </td>
@@ -119,14 +117,14 @@
       <td class="center-th">{{vaccinationManager.vaccine.times}}</td>
       <td class="center-th">
         <a data-toggle="tooltip" data-placement="right"
-           title="Cập nhập lịch tiêm ngày {{vaccinationManager.date | date: 'dd/MM/yyyy'}}">
+           title="Cập nhập lịch tiêm ngày {{vaccinationManager.date | date: 'dd-MM-yyyy'}}">
           <button type="button" class="btn btn-warning mr-3" [disabled]="vaccinationManager.status"
                   [routerLink]="['/periodical-vaccination-manager/',vaccinationManager.vaccinationId, 'edit']">
             <i class="fa fa-edit"></i>
           </button>
         </a>
         <a data-toggle="tooltip" data-placement="right"
-           title="Cập nhập trạng thái lịch tiêm ngày {{vaccinationManager.date | date: 'dd/MM/yyyy'}}">
+           title="Cập nhập trạng thái lịch tiêm ngày {{vaccinationManager.date | date: 'dd-MM-yyyy'}}">
           <button type="button" class="btn btn-success mr-3" [disabled]="vaccinationManager.status"
                   data-toggle="modal" data-target="#updateModal"
                   (click)="getContentVaccination(vaccinationManager.vaccinationId, vaccinationManager.date,
@@ -135,7 +133,7 @@
           </button>
         </a>
         <a data-toggle="tooltip" data-placement="right"
-           title="Xóa lịch tiêm ngày {{vaccinationManager.date | date: 'dd/MM/yyyy'}}">
+           title="Xóa lịch tiêm ngày {{vaccinationManager.date | date: 'dd-MM-yyyy'}}">
           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal"
                   (click)="getContentVaccination(vaccinationManager.vaccinationId, vaccinationManager.date,
                   vaccinationManager.location.name, vaccinationManager.vaccine.name, vaccinationManager.vaccine.vaccineType.name)">
@@ -147,68 +145,15 @@
     </tbody>
   </table>
 
-
   <pagination-controls
-  previousLabel="Trước"
-  nextLabel="Sau"
-  class="float-right"
-  (pageChange)="pageChanged($event)"
-  >
-</pagination-controls>
+    previousLabel="Trước"
+    nextLabel="Sau"
+    class="float-right"
+    (pageChange)="pageChanged($event)"
+    >
+  </pagination-controls>
 
-
-
-
-  <!-- <pagination-controls
-          previousLabel="Trước"
-          nextLabel="Sau"
-          class="float-right" (pageChange)="p = $event"></pagination-controls> -->
-<!--
-  <nav aria-label="Page navigation example">
-    <ul class="pagination d-flex justify-content-md-end justify-content-center">
-      <li class="page-item">
-        <button class="page-link" [hidden]="listVaccination.pageable.pageNumber === 0"
-                (click)="searchDateAndNameOrStatus(0,1)">
-          Đầu
-        </button>
-      </li>
-      <li class="page-item">
-        <button class="page-link" [hidden]="listVaccination.pageable.pageNumber == 0"
-                (click)="searchDateAndNameOrStatus(listVaccination.pageable.pageNumber - 1,1)">Trang
-          sau
-        </button>
-      </li>
-      <li class="page-item col-md-1 col-2  px-0">
-        <div class="input-group">
-          <input #ok type="number" min="1" max="{{listVaccination.totalPages}}"
-                 class="form-control text-right rounded-0" [value]="listVaccination.pageable.pageNumber + 1">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"> /{{listVaccination.totalPages}}</span>
-          </div>
-        </div>
-      </li>
-      <li class="page-item">
-        <button (click)="searchDateAndNameOrStatus(ok.value - 1,1)" class="btn btn-primary rounded-0">Đi</button>
-      </li>
-      <li class="page-item">
-        <button class="page-link" [hidden]="listVaccination.pageable.pageNumber >=  listVaccination.totalPages - 1"
-                (click)="searchDateAndNameOrStatus(listVaccination.pageable.pageNumber + 1,1)">Trang kế
-        </button>
-      </li>
-      <li class="page-item">
-        <button class="page-link"
-                [hidden]="listVaccination.pageable.pageNumber >=  listVaccination.totalPages - 1 && listVaccination.pageable.pageNumber < listVaccination.totalPages"
-                (click)="listVaccination.pageable.pageNumber = listVaccination.totalPages - 1; searchDateAndNameOrStatus(listVaccination.totalPages -1,1)">
-          Cuối
-        </button>
-      </li>
-    </ul>
-  </nav> -->
 </div>
-
-
-
-
 
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"

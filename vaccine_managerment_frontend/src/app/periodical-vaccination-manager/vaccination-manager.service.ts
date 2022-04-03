@@ -30,8 +30,9 @@ export class VaccinationManagerService {
       );
   }
 
-  searchDateAndNameOrStatus(startDate: any, endDate: any, name: any, status: any, pageable, type): Observable<any> {
-    return this.httpClient.get<any>(this.apiVaccinationManagerUrl + '/search?startDate=' + startDate + '&endDate=' + endDate
+  searchDateAndNameOrStatus(startDate: any, name: any, status: any, pageable, type:any): Observable<any> {
+
+    return this.httpClient.get<any>(this.apiVaccinationManagerUrl + '/search?startDate=' + startDate
       + '&name=' + name + '&status=' + status + '&pageable=' + pageable + '&type=' + type)
       .pipe(
         catchError(this.errorHandler)
