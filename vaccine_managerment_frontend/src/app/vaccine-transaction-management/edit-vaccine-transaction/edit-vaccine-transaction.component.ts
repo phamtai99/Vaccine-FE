@@ -38,7 +38,7 @@ export class EditVaccineTransactionComponent implements OnInit {
 
   ngOnInit(): void {
     /**
-     * Made by Khanh lấy thông tin giao dịch cần sửa , validate
+     *  lấy thông tin giao dịch cần sửa , validate
      */
     this.activatedRoute.params.subscribe(data => {
       this.transactionId = Number(data.id)
@@ -54,7 +54,7 @@ export class EditVaccineTransactionComponent implements OnInit {
     })
   }
   /**
-   * Made by Khanh sửa giao dịch
+   *  sửa giao dịch
    */
   submit() {
     this.vaccineTransactionService.editTransaction(this.transactionId, this.formGroup.value.price, this.formGroup.value.quantity).subscribe(data => {
@@ -63,7 +63,7 @@ export class EditVaccineTransactionComponent implements OnInit {
     })
   }
   /**
-   * Made by Khanh thông báo hủy
+   *  thông báo hủy
    */
   getMessageCancel() {
     this.toastrService.warning('Bạn đã chọn hủy và không được cập nhật', 'Thông báo hủy.');

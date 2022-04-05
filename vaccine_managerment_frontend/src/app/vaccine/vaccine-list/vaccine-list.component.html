@@ -7,14 +7,14 @@
         </div>
         <form [formGroup]="searchVaccine" (ngSubmit)="search()">
           <div class=" search row d-flex justify-content-md-end mb-4 text-right float-right">
-            <div class="col-xl-2 col-md-3 form-group" style="text-align: center">
+            <div class="col-xl-2 col-md-3 form-group" style="text-align: left">
               <label for="nameVaccine">Tên Vaccine</label>
               <input id="nameVaccine" class="form-control"
                       type="text" placeholder="Tên Vaccine"
                       formControlName="nameVaccine">
             </div>
             <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
-              <div style="text-align: center">
+              <div style="text-align: left">
                 <label for="typeVaccine">Loại Vaccine</label>
               </div>
               <div>
@@ -22,14 +22,14 @@
               </div>
             </div>
             <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
-              <div style="text-align: center">
+              <div style="text-align: left">
                 <label for="provider">Nước Sản Xuất</label>
               </div>
               <div>
                 <input type="text" id="provider" class="form-control" placeholder="Nước sản xuất" formControlName="originVaccine">
               </div>
             </div>
-            <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
+            <div class="col-xl-2 col-md-3 form-group" style="text-align: left">
               <label for="status">Tình trạng </label>
               <select id="status" class="form-control" formControlName="statusVaccine"   >
                 <option value="">Lựa chọn...</option>
@@ -63,7 +63,7 @@
               <th style="width: 20px">STT</th>
               <th style="width: 100px" >Tên Vaccine</th>
               <th style="width: 80px">Loại Vaccine</th>
-              <th style="width: 70px" >Ngày Nhận</th>
+              <th style="width: 70px" >Số mũi tiêm</th>
               <th style="width: 80px">Nước SX</th>
               <th style="width: 50px">Số Lượng</th>
               <th style="width: 70px">Hạn Sử Dụng</th>
@@ -78,7 +78,7 @@
               <td class="text-center">{{i + 1}}</td>
               <td style="text-align: left">{{vaccine.name}}</td>
               <td>{{vaccine.vaccineType}}</td>
-              <td>{{vaccine.dayReceive | date:'dd-MM-yyyy'}}</td>
+              <td class="text-center">{{vaccine.times }}</td>
               <td>{{vaccine.origin}}</td>
               <td class="text-center">{{vaccine.quantity}}</td>
               <td>{{vaccine.expired | date:'dd-MM-yyyy'}}</td>

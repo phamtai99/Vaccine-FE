@@ -30,7 +30,7 @@ export class PeriodicalVaccinationManagerEditComponent implements OnInit {
   formGroup: FormGroup;
   defaultValue = false;
 
-  /**TrungTQ Code: Thông báo validate*/
+  /** Thông báo validate*/
   statusString: string = 'Chưa thực hiện';
   messageTime: string = 'Thời gian kết thúc phải sau thời gian bắt đầu!';
   timeDurationOne: string = 'Số mũi tiêm nếu bằng có 1 thì ngày tiếp mũi tiếp tiếp theo phải bằng 0';
@@ -88,7 +88,7 @@ export class PeriodicalVaccinationManagerEditComponent implements OnInit {
     });
   }
 
-  /**TrungTQ Code: Lấy dữ liệu khi có sự kiện*/
+  /** Lấy dữ liệu khi có sự kiện*/
   getValue(vaccineId: any) {
     for (let i = 0; i < this.vaccineList.length; i++) {
       if (this.vaccineList[i].vaccineId == parseInt(vaccineId)) {
@@ -100,21 +100,21 @@ export class PeriodicalVaccinationManagerEditComponent implements OnInit {
     }
   }
 
-  /**TrungTQ Code: Lấy danh sách địa điểm*/
+  /** Lấy danh sách địa điểm*/
   getAllLocation() {
     this.vaccinationManagerService.getAllLocation().subscribe((data: ILocation[]) => {
       this.locationList = data;
     });
   };
 
-  /**TrungTQ Code: Lấy danh sách vaccine*/
+  /** Lấy danh sách vaccine*/
   getAllVaccine() {
     this.vaccinationManagerService.getAllVaccine().subscribe((data: IVaccine[]) => {
       this.vaccineList = data;
     });
   };
 
-  /**TrungTQ Code: Xong thì quay lại trang chủ*/
+  /** Xong thì quay lại trang chủ*/
   submitForm() {
     if (this.formGroup.invalid) {
       this.messageManager.showMessageCreateNotRole();
