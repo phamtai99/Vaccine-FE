@@ -52,7 +52,7 @@
         <tr *ngFor="let vac of infoPatient">
           <div *ngIf="vac.vaccinationHistoryStatus === true then logged"></div>
           <ng-template #logged>
-            <td>{{vac.vaccineTypeName}}</td>
+            <td>{{vac.vaccineName}}</td>
             <td>{{vac.endTime}}</td>
             <td>{{vac.afterStatus}}</td>
           </ng-template>

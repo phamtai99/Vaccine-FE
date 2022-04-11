@@ -6,10 +6,7 @@
         <label for="nameVaccine">Tên Vaccine</label>
         <input (keydown.enter)="page = 0; getListVaccine()" [(ngModel)]="name"  id="nameVaccine" class="form-control" type="text" placeholder="Nhập tên Vaccine">
       </div>
-      <!-- <div class="col-xl-2 col-md-3">
-        <label for="vaccineType">Loại Vaccine</label>
-        <input (keydown.enter)="page = 0; getListVaccine()" [(ngModel)]="vaccineTypename" id="vaccineType" class="form-control" type="text" placeholder="Nhập loại Vaccine">
-      </div> -->
+  
       <div class="col-xl-2 col-md-3">
         <label for="provider">Nhà sản xuất</label>
         <input (keydown.enter)="page = 0; getListVaccine()" [(ngModel)]="origin" id="provider" class="form-control" type="text" placeholder="Nhập nhà sản xuất">

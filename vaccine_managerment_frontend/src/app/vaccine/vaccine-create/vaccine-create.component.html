@@ -42,7 +42,7 @@
             <label for="ngaynhap" class="mr-3">Ngày Nhập <span style="color: red">*</span></label>
           </div>
           <div class="col-8">
-            <input type="date" id="ngaynhap" class="form-control" formControlName="dayReceive">
+            <input type="date" id="ngaynhap"  class="form-control"  formControlName="dayReceive">
             <div class="text-danger" *ngFor="let validation of validation_messages.dayReceive">
               <div class="error-message"
                    *ngIf="formCreateVaccine.get('dayReceive').hasError(validation.type) && (formCreateVaccine.get('dayReceive').dirty || formCreateVaccine.get('dayReceive').touched)">

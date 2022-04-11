@@ -1,73 +1,79 @@
-<div class="content" >
+<!-- <div class="content" > -->
   <div class="container">
-    <h1 class="text-center mt-4 mb-4">Trang Quản Lý Giá Vắc Xin</h1>
-    <div class="search row d-flex justify-content-center mb-4 text-center"  >
-      <div class="col-lg-2 col-md-3">
-      </div>
-      <div class="col-lg-2 col-md-3">
-      </div>
-      <div class="col-lg-2 col-md-3">
-        <label>Loại vắc-xin</label>
-        <select class="form-control" name="" [(ngModel)]="keyword2">
-          <option value="">Mặc định</option>
-          <option *ngFor="let item of listVaccineType">{{item}}</option>
-        </select>
-      </div>
-      <div class="col-lg-2 col-md-3">
-        <label>Nước sản xuất</label>
-        <select class="form-control" name="" [(ngModel)]="keyword3">
-          <option value="">Mặc định</option>
-          <option *ngFor="let item of listOrigin">{{item}}</option>
-        </select>
-      </div>
-      <div class="col-md-2 mt-2">
-        <br>
-        <button class="btn btn-success"    (click)="search()"><i class="fa fa-search"> </i>Tìm kiếm</button>
-      </div>
-    </div>
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center mt-4 mb-4">Trang Quản Lý Giá Vắc Xin</h1>
+        <div class="search row d-flex justify-content-center mb-4 text-center float-right"  >
+          <!-- <div class="col-lg-2 col-md-3">
+          </div>
+          <div class="col-lg-2 col-md-3">
+          </div> -->
+          <div class="col-xl-4 col-md-4">
+            <label>Loại vắc-xin</label>
+            <select class="form-control" name="" [(ngModel)]="keyword2">
+              <option value="">Mặc định</option>
+              <option *ngFor="let item of listVaccineType">{{item}}</option>
+            </select>
+          </div>
+          <div class="col-xl-4 col-md-4">
+            <label>Nước sản xuất</label>
+            <select class="form-control" name="" [(ngModel)]="keyword3">
+              <option value="">Mặc định</option>
+              <option *ngFor="let item of listOrigin">{{item}}</option>
+            </select>
+          </div>
+          <div class="col-xl-4 col-md-4">
+            <br/>
+            <button class="btn btn-success"    (click)="search()"><i class="fa fa-search"> </i>Tìm kiếm</button>
+          </div>
+        </div>
 
 
-    <div class="" >
-      <h3 class="text-danger text-center" *ngIf="exports.length == 0">Không có kết quả tìm thấy</h3>
-      <table  class="table table-hover table-striped table-bordered" *ngIf="exports.length > 0">
-        <thead>
-        <tr class="text-center bg-table-header" style="background-color:   rgb(158,207,251) !important;">
-          <th>STT</th>
-          <th>Mã vắc-xin</th>
-          <th>Tên vắc-xin</th>
-          <th>Loại vắc-xin</th>
-          <th>Nước sản xuất</th>
-          <th>Độ tuổi tiêm chủng</th>
-          <th>Giá (VND/mũi)</th>
-          <th>Tạo giá mới/Sửa</th>
-        </tr>
-        </thead>
-        <tbody *ngFor="let vaccine of exports | paginate: config ,index as i">
-        <tr>
-          <td class="text-center">{{i + 1}}</td>
-          <td>MVC-{{vaccine.storage.vaccine.vaccineId}}</td>
-          <td>{{vaccine.storage.vaccine.name}}</td>
-          <td>{{vaccine.storage.vaccine.vaccineType.name}}</td>
-          <td>{{vaccine.storage.vaccine.origin}}</td>
-          <td>{{vaccine.storage.vaccine.age}}</td>
-          <td style="text-align: right">{{vaccine.price}} VNĐ</td>
-          <td style="text-align: center">
-            <button [routerLink]="['/vaccine-price-edit/'+vaccine.importAndExportId]" class="btn btn-primary"><i
-              class="fa fa-edit"></i></button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <div>
-      <pagination-controls
-          previousLabel="Trước"
-          nextLabel="Sau"
-          class="float-right"
-          (pageChange)="pageChanged($event)"
-          >
-        </pagination-controls>
+        <div class="" >
+          <h3 class="text-danger text-center" *ngIf="exports.length == 0">Không có kết quả tìm thấy</h3>
+          <table  class="table table-hover table-striped table-bordered" *ngIf="exports.length > 0">
+            <thead>
+            <tr class="text-center bg-table-header" style="background-color:   rgb(158,207,251) !important;">
+              <th>STT</th>
+              <th>Mã vắc-xin</th>
+              <th>Tên vắc-xin</th>
+              <th>Loại vắc-xin</th>
+              <th>Nước sản xuất</th>
+              <th>Độ tuổi tiêm chủng</th>
+              <th>Giá (VND/mũi)</th>
+              <th>Tạo giá mới/Sửa</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let vaccine of exports | paginate: config ,index as i">
+            <tr>
+              <td class="text-center">{{i + 1}}</td>
+              <td>MVC-{{vaccine.storage.vaccine.vaccineId}}</td>
+              <td>{{vaccine.storage.vaccine.name}}</td>
+              <td>{{vaccine.storage.vaccine.vaccineType.name}}</td>
+              <td>{{vaccine.storage.vaccine.origin}}</td>
+              <td>{{vaccine.storage.vaccine.age}}</td>
+              <td style="text-align: right">{{vaccine.price}} VNĐ</td>
+              <td style="text-align: center">
+                <button [routerLink]="['/vaccine-price-edit/'+vaccine.importAndExportId]" class="btn btn-primary"><i
+                  class="fa fa-edit"></i></button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <pagination-controls
+              previousLabel="Trước"
+              nextLabel="Sau"
+              class="float-right"
+              (pageChange)="pageChanged($event)"
+              >
+            </pagination-controls>
+
+        </div>
+      </div>
 
     </div>
+
   </div>
-</div>
+<!-- </div> -->

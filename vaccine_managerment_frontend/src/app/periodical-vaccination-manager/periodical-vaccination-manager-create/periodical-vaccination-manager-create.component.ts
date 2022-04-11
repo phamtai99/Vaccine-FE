@@ -21,11 +21,12 @@ export class PeriodicalVaccinationManagerCreateComponent implements OnInit {
   locationList: ILocation[] = [];
   valueTimes: number;
   valueDuration: number;
+
   valueAge: string;
   valueNameVaccine: string;
   check = false;
   messageError: string;
-
+  valueOrigin:String;
   /** Thông báo validate*/
   statusString: string = 'Chưa thực hiện';
   currentDuration: string = 'Ngày';
@@ -64,6 +65,7 @@ export class PeriodicalVaccinationManagerCreateComponent implements OnInit {
     this.getAllVaccine();
     this.formGroup = this.formBuilder.group({
       vaccinationId: [''],
+      locationId:[''],
       startTime: ['', [Validators.required]],
       endTime: ['', [Validators.required]],
       date: ['', [Validators.required, DateValidator]],
@@ -76,6 +78,7 @@ export class PeriodicalVaccinationManagerCreateComponent implements OnInit {
   getAllLocation() {
     this.vaccinationManagerService.getAllLocation().subscribe((data: ILocation[]) => {
       this.locationList = data;
+      console.log("danh sách địa điểm tiêm: ", this.locationList)
     }, error => console.log(error));
   };
 
@@ -91,7 +94,7 @@ export class PeriodicalVaccinationManagerCreateComponent implements OnInit {
         }
 
       });
-      console.log("danh sách tên vaccine: ", this.vaccineLists)
+      console.log("danh sách tên vaccine: ", this.vaccineList)
     }, error => console.log(error));
   };
 
@@ -123,6 +126,7 @@ export class PeriodicalVaccinationManagerCreateComponent implements OnInit {
         this.valueNameVaccine = this.vaccineList[i].vaccineType.name;
         this.valueTimes = this.vaccineList[i].times;
         this.valueDuration =this.vaccineList[i].duration;
+        this.valueOrigin=this.vaccineList[i].origin;
       }
     }
   }
