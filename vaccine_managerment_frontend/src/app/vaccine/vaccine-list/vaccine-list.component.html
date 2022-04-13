@@ -7,21 +7,21 @@
         </div>
         <form [formGroup]="searchVaccine" (ngSubmit)="search()">
           <div class=" search row d-flex justify-content-md-end mb-4 text-right float-right">
-            <div class="col-xl-2 col-md-3 form-group" style="text-align: left">
+            <div class="col-xl-3 col-md-3 form-group" style="text-align: left">
               <label for="nameVaccine">Tên Vaccine</label>
               <input id="nameVaccine" class="form-control"
                       type="text" placeholder="Tên Vaccine"
                       formControlName="nameVaccine">
             </div>
-            <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
+            <!-- <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
               <div style="text-align: left">
                 <label for="typeVaccine">Loại Vaccine</label>
               </div>
               <div>
                 <input type="text" id="typeVaccine" class="form-control" placeholder="Loại Vaccine" formControlName="typeVaccine">
               </div>
-            </div>
-            <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
+            </div> -->
+            <div class="col-xl-3 col-md-3 form-group" style="text-align: right">
               <div style="text-align: left">
                 <label for="provider">Nước Sản Xuất</label>
               </div>
@@ -29,7 +29,7 @@
                 <input type="text" id="provider" class="form-control" placeholder="Nước sản xuất" formControlName="originVaccine">
               </div>
             </div>
-            <div class="col-xl-2 col-md-3 form-group" style="text-align: left">
+            <div class="col-xl-3 col-md-3 form-group" style="text-align: left">
               <label for="status">Tình trạng </label>
               <select id="status" class="form-control" formControlName="statusVaccine"   >
                 <option value="">Lựa chọn...</option>
@@ -37,7 +37,7 @@
                 <option [value]="'het'">Hết</option>
               </select>
             </div>
-            <div class="col-xl-2 col-4" style="text-align: right">
+            <div class="col-xl-3 col-4" style="text-align: right">
               <br>
               <button class="btn btn-success mt-xl-2"><i class="fa fa-search"></i>Tìm Kiếm</button>
             </div>

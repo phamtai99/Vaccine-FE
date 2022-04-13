@@ -110,7 +110,7 @@ export class VaccinationByRequestCreateComponent implements OnInit {
       const user = this.tokenStorageService.getUser();
       this.patient = user.patient;
       this.checkLoad = true;
-      console.log(user);
+      console.log("Thông tin Usser : ",user);
     }
   }
 

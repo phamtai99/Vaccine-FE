@@ -24,7 +24,7 @@ export class VaccineService {
     return this.http.get<any>(this.url + '/vaccination/get-vaccine/' + vaccineId);
   }
 
-  getAllVaccine(): Observable<any> {
-    return this.http.get<any>(this.url + '/get-list-vaccine')
+  getAllVaccine(name: string): Observable<any> {
+    return this.http.get<any>(this.url + '/get-list-vaccine?name='+name)
   }
 }

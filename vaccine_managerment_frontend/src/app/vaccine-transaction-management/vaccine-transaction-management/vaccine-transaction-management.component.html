@@ -1,27 +1,34 @@
 <div class="content" >
-  <div class="container-fluid ">
+  <div class="container ">
     <h1 class="text-center mt-4 mb-4">Danh Sách Các Giao Dịch Với Khách Hàng (Bệnh Nhân)</h1>
 
-    <div class="search row d-flex justify-content-center mb-4 text-center">
-      <div class="col-lg-4 col-md-3">
-        <br>
-        <button class="btn btn-success mt-2 mb-md-3" [routerLink]="['/vaccine-transaction-create']"><i class="fa fa-plus"></i> Thêm mới giao dịch</button>
+    <div class="search row ">
+
+
+      <div class=" col-sm-2 col-md-2 col-lg-2">
       </div>
-      <div class="col-xl-2 col-md-3">
+      <div class=" col-sm-2 col-md-2 col-lg-2">
+      </div>
+      <div class=" col-sm-3 col-md-3 col-lg-3">
         <label>Tên Khách Hàng</label>
         <input class="form-control" type="text" [(ngModel)]="keyword2" placeholder="Nhập Tên khách hàng">
       </div>
-      <div class="col-xl-2 col-md-3">
+      <div class="form-group col-sm-2 col-md-2 col-lg-2">
         <label>Loại vaccine</label>
         <select [(ngModel)]="keyword3" class="form-control" name="">
           <option value="">Mặc định</option>
           <option *ngFor="let item of listTypeVaccine">{{item}}</option>
         </select>
       </div>
-      <div class="col-md-2 mt-2">
+      <div class="col-sm-2 col-md-2 col-lg-2 width-search" style="margin-top: 8px;">
         <br>
         <button class="btn btn-success" (click)="search()"><i class="fa fa-search"> </i>Tìm kiếm</button>
       </div>
+    </div>
+
+     <div class="col-lg-4 col-md-3" style="margin-top: 70px;padding-left: unset;">
+        <br>
+        <button class="btn btn-success mt-2 mb-md-3" [routerLink]="['/vaccine-transaction-create']"><i class="fa fa-plus"></i> Thêm mới </button>
     </div>
 
     <div class="">
@@ -30,12 +37,13 @@
         <thead>
         <tr class="text-center bg-table-header" style="background-color:   rgb(158,207,251) !important;">
           <th>STT</th>
-          <th>Mã giao dịch<br>khách hàng</th>
-          <th>Mã vaccine</th>
-          <th>Loại vaccine</th>
-          <th>Số lượng<br>vắc xin (mũi)</th>
-          <th>Mã bệnh nhân<br>(khách hàng)</th>
           <th>Tên khách hàng<br>(bệnh nhân)</th>
+          <th>Tên vaccine</th>
+          <!-- <th>Mã vaccine</th> -->
+          <th>Loại vaccine</th>
+          <th>Số mũi</th>
+          <!-- <th>Mã bệnh nhân<br>(khách hàng)</th> -->
+          <!-- <th>Tên khách hàng<br>(bệnh nhân)</th> -->
           <th>Ngày giao dịch</th>
           <th>Giá<br>(VNĐ/mũi)</th>
           <th>Thành tiền<br>(VNĐ/mũi)</th>
@@ -45,12 +53,13 @@
         <tbody>
         <tr *ngFor="let item of vaccineTransaction | paginate: config ,index as i">
           <td class="text-center">{{i + 1}}</td>
-          <td>GDK-{{item.vaccinationTransactionId}}</td>
-          <td>MVC-{{item.vaccinationHistory.vaccination.vaccine.vaccineId}}</td>
+          <td>{{item.vaccinationHistory.patient.name}}</td>
+          <td>{{item.vaccinationHistory.vaccination.vaccine.name}}</td>
+          <!-- <td>MVC-{{item.vaccinationHistory.vaccination.vaccine.vaccineId}}</td> -->
           <td>{{item.vaccinationHistory.vaccination.vaccine.vaccineType.name}}</td>
           <td class="text-center">{{item.quantity}}</td>
-          <td>MBN-{{item.vaccinationHistory.patient.patientId}}</td>
-          <td>{{item.vaccinationHistory.patient.name}}</td>
+          <!-- <td>MBN-{{item.vaccinationHistory.patient.patientId}}</td> -->
+          <!-- <td>{{item.vaccinationHistory.patient.name}}</td> -->
           <td style="text-align: center">{{item.vaccinationHistory.vaccination.date | date:'dd/MM/yyyy' }}</td>
           <td style="text-align: right" (change)="$event.target.value">{{item.price |currency: "VND"}}</td>
           <td style="text-align: right">{{item.price*item.quantity| currency:"VND"}}</td>

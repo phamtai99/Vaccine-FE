@@ -1,12 +1,12 @@
 <div class="content" >
   <div class="container">
     <h1 class="text-center mt-4 mb-4">Bảng thông tin Vaccine của trung tâm</h1>
-    <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 text-center">
+    <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 ">
       <div class="col-xl-2 col-md-3">
         <label for="nameVaccine">Tên Vaccine</label>
         <input (keydown.enter)="page = 0; getListVaccine()" [(ngModel)]="name"  id="nameVaccine" class="form-control" type="text" placeholder="Nhập tên Vaccine">
       </div>
-  
+
       <div class="col-xl-2 col-md-3">
         <label for="provider">Nhà sản xuất</label>
         <input (keydown.enter)="page = 0; getListVaccine()" [(ngModel)]="origin" id="provider" class="form-control" type="text" placeholder="Nhập nhà sản xuất">

@@ -10,6 +10,7 @@ import {IVaccine} from "../../entity/IVaccine";
 export class SuggestionComponent implements OnInit {
 
   vaccineList: IVaccine[];
+  name:string="";
 
   constructor(private vaccineService: VaccineService) { }
 
@@ -18,10 +19,10 @@ export class SuggestionComponent implements OnInit {
   }
 
   getAllVaccine() {
-    this.vaccineService.getAllVaccine().subscribe(data => {
+    this.vaccineService.getAllVaccine("").subscribe(data => {
 
-      console.log(data);
-      this.vaccineList = data.content;
+      // console.log(data);
+      this.vaccineList = data;
       console.log(" danh sach vaccine goi y :"+this.vaccineList);
     })
   }
