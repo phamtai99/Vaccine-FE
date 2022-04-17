@@ -1,6 +1,4 @@
-/**
- * VaccinationHistoryRegistered : create by LongBP
- */
+
 
 import { Component, OnInit } from '@angular/core';
 import {IVaccinationHistory} from "../../entity/IVaccinationHistory";
@@ -58,7 +56,7 @@ export class RegisteredRequiredVaccinationComponent implements OnInit {
     }, error => console.log(error));
   }
 
-  
+
 
   search(){
     this.vaccinationHistoryService.searchRegisteredRequired(this.page,2,this.name,this.status,).subscribe(data => {

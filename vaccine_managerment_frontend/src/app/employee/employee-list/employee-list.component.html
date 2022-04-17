@@ -3,10 +3,6 @@
     <div class="col-12">
       <h2 class="text-center">Trang quản lý nhân viên</h2>
       <div class="search row d-flex justify-content-end mb-4 float-right">
-        <!-- <div class="col-xl-3 col-md-3">
-          <label>Mã nhân viên:</label>
-          <input id="myInput" (keyup.enter)="search()" (change)="idEmpSearch = $event.target.value" class="form-control" type="text" placeholder="Nhập mã NV">
-        </div> -->
         <div class="col-xl-4 col-md-4">
           <label>Họ và tên:</label>
           <input (keyup.enter)="search()" (change)="name = $event.target.value" class="form-control " type="text" placeholder="Nhập tên NV">
@@ -34,7 +30,7 @@
     <div class="col-12 mb-4" style="margin-top: -15px">
       <a href="employee/create" class="btn btn-success">
         <i class="fa fa-plus"></i>
-        Tạo mới nhân viên
+        Thêm mới
       </a>
       <h2 class="text-center">Danh sách nhân viên</h2>
     </div>

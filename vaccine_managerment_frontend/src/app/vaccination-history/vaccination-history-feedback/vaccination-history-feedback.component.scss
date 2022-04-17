@@ -22,6 +22,11 @@
   margin-top: 50px;
 }
 
+.borderless td, .borderless th {
+  border: none;
+}
+
+
 .header {
   height: 80px;
 }

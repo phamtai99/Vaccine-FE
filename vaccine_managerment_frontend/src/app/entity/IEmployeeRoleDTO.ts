@@ -8,4 +8,5 @@ export interface IEmployeeRoleDTO {
   position: number;
   account: number;
   role: number;
+  email:string;
 }

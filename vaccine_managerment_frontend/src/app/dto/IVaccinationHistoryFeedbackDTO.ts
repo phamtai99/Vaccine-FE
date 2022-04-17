@@ -11,4 +11,7 @@ export interface IVaccinationHistoryFeedbackDTO {
   vaccineHistoryPreStatus: string;
   expired : string;
   name: string;
+  startTime:string;
+  location:string;
+  endTime:string;
 }

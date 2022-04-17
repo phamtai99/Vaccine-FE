@@ -21,6 +21,7 @@ export class ImportAndExportComponent implements OnInit {
   public origin;
   public expired;
   public dayReceive;
+  public dosage;
   public formExportVaccine: FormGroup;
   idVaccine: number;
 
@@ -59,8 +60,9 @@ export class ImportAndExportComponent implements OnInit {
       this.origin = this.vaccine.origin;
       this.expired = this.vaccine.expired;
       this.dayReceive = this.vaccine.dayReceive;
+      this.dosage=this.vaccine.dosage;
 
-      console.log(this.vaccine);
+      console.log("Thông tin Vaccine: ",this.vaccine);
     })
 
   }

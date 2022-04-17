@@ -46,6 +46,8 @@ export class AuthService {
 
   verify(code:string): Observable<any> {
     console.log(code);
+
+   
     return this.http.post(AUTH_API + 'verify', {
       code: code
     }, this.httpOptions);

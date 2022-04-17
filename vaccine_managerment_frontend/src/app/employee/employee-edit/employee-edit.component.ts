@@ -69,7 +69,8 @@ export class EmployeeEditComponent implements OnInit {
       phone: ['', [Validators.required, Validators.pattern('^(090|091|\\(84\\)\\+90|\\(84\\)\\+91)\\d{7}$')]],
       position: [''],
       account: [''],
-      role: ['']
+      role: [''],
+      email:['']
     });
 
     this.activatedRoute.paramMap.subscribe((data :ParamMap) => {

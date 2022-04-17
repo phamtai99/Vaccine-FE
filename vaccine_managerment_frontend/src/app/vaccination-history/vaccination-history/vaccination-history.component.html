@@ -6,9 +6,9 @@
         <h1 class="text-center mt-4 mb-4 ">Lịch sử tiêm chủng</h1>
         <div class="search row d-flex justify-content-end mb-4 float-right ">
           <div class="col-xl-3 col-md-3 ">
-            <label for="nameVaccine">Tên vắc-xin</label>
+            <label for="nameVaccine">Tên Vaccine</label>
             <input (keydown.enter)="page = 0; getListVaccine()"  [(ngModel)]="vaccineName" id="nameVaccine" class="form-control" type="text"
-                   placeholder="Nhập tên vắc-xin">
+                   placeholder="Nhập tên Vaccine">
           </div>
           <div class="col-xl-3 col-md-3 ">
             <label for="vaccinationDate">Ngày tiêm</label>
@@ -39,9 +39,9 @@
           <table class="table table-hover table-bordered" *ngIf="vaccinationHistoryList.length > 0">
             <thead>
             <tr class="bg-table-header">
-              <th scope="col" class="text-center">Stt</th>
-              <th scope="col" class="text-center">Tên vắc xin</th>
-              <th scope="col" class="text-center">Loại vắc xin</th>
+              <th scope="col" class="text-center">STT</th>
+              <th scope="col" class="text-center">Tên Vaccine</th>
+              <th scope="col" class="text-center">Loại Vaccine</th>
               <th scope="col"class="text-center">Ngày tiêm</th>
               <th scope="col" class="text-center">Trạng thái</th>
               <th scope="col" class="text-center">Mũi tiêm</th>

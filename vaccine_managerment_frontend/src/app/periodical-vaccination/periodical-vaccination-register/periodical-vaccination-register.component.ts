@@ -49,6 +49,7 @@ export class PeriodicalVaccinationRegisterComponent implements OnInit {
       const id = paraMap.get('id');
       this.vaccinationService.getById(id).subscribe( (data: IPeriodicalVaccinationDTO) => {
         this.periodicalVaccination = data;
+        console.log(" Thông tin lịch tiêm chủng định kì: ", this.periodicalVaccination)
         this.periodicalVaccination.duration = (this.periodicalVaccination.duration == null) ? 0 : this.periodicalVaccination.duration;
         this.periodicalVaccination.times = (this.periodicalVaccination.times == null) ? 1 : this.periodicalVaccination.times;
       })
@@ -70,14 +71,14 @@ export class PeriodicalVaccinationRegisterComponent implements OnInit {
   }
   getPatient() {
     this.currentPatient =  this.tokenStorageService.getUser().patient;
-    console.log(this.currentPatient);
+    console.log("thoong tin bệnh nhân : ",this.currentPatient);
   }
   selectTime(value: any) {
       this.patientForm.value.startTime = value.substring(0,8);
       this.patientForm.value.endTime = value.substring(11);
       this.patientForm.value.vaccinationId = this.periodicalVaccination.vaccinationId;
       this.patientForm.value.patientId = this.currentPatient.patientId;
-      console.log(this.patientForm.value);
+      console.log("giá trị form gửi đi :",    this.patientForm.value);
       this.vaccinationService.checkAvailableRegister(this.patientForm.value).subscribe( (data: any) => {
         console.log(data);
         this.timeMessage = (data.timeIsValid) ? "": "Khung giờ này đã đầy";

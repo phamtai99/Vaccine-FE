@@ -45,7 +45,7 @@ export class VaccinationByRequestListComponent implements OnInit {
                   currentPage: event,
                   totalItems: data.totalElements
                 };
-      console.log(  "data phân trang :",data);
+      console.log(  "data phân trang :",this.vaccineList);
     }, error => {
       this.showMessage.showMessageNotFound();
       this.vaccineList = [];

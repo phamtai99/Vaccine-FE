@@ -13,8 +13,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-/**
- * PhuocTC
- **/
+
 
 export class ProfileRoutingModule { }

@@ -31,7 +31,7 @@ export class VaccinationHistoryFeedbackComponent implements OnInit {
   ngOnInit(): void {
     this.getAccountEmail();
     this.formGroup = this.formBuilder.group({
-      afterStatus: ['', [Validators.required, Validators.maxLength(40),
+      afterStatus: ['', [Validators.required, Validators.maxLength(140),
         Validators.pattern('^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ,;-]+(\\s[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ,;-]+)*$'),
 
       ]]
@@ -59,6 +59,7 @@ export class VaccinationHistoryFeedbackComponent implements OnInit {
     if (this.formGroup.invalid){
       this.toast.error("Vui lòng nhập thông tin!");
     }else{
+      console.log("Dữ liệu form gửi đi  :", this.formGroup.value);
       this.isSubmited = true;
       this.vaccinationHistoryService.updateFeedback(this.vaccinationHistoryId, this.formGroup.value).subscribe( data => {
         this.vaccinationHistoryService.sendMailFeedbackForAdmin(this.formGroup.value.afterStatus, this.accountEmail).subscribe(data =>{
