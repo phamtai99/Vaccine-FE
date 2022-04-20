@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="col-xl-10 mt-3">
-        <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 text-center">
+        <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 ">
           <div class="col-xl-2 col-md-2">
             <form [formGroup]="formGroup">
             <label>Họ Và Tên</label>
@@ -79,7 +79,8 @@
           <td>{{object.vaccination.date | date:"dd-MM-yyyy"}}</td>
           <td>{{object.vaccination.startTime | slice:0:5}} - {{object.vaccination.endTime| slice:0:5}}</td>
           <td class="text-center">
-            <div *ngIf="object.vaccination.status === true then logged else notLogged"></div>
+
+            <div *ngIf="object.status === true then logged else notLogged"></div>
             <ng-template #logged>
               <span class="badge badge-primary">Đã tiêm</span>
             </ng-template>
@@ -88,7 +89,7 @@
             </ng-template>
           </td>
           <td class="text-center">
-            <button class="btn btn-primary" [routerLink]="['/registered-required-vaccination/view',object.patient.patientId, object.vaccinationHistoryId]" [disabled]="object.vaccination.status">Kiểm Tra</button>
+            <button class="btn btn-primary" [routerLink]="['/registered-required-vaccination/view',object.patient.patientId, object.vaccinationHistoryId]" [disabled]="object.status">Kiểm Tra</button>
           </td>
         </tr>
         </tbody>

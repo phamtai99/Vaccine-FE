@@ -6,7 +6,7 @@
       <form [formGroup]="formGroup" (ngSubmit)="update()">
         <div class="row">
           <div class="container col-4">
-        
+
           <table class="table borderless" >
             <tbody>
             <tr>
@@ -105,7 +105,17 @@
               <input formcontrolname="chartName" fullwidth="" id="chartName" nbinput="" trim="blur" type="text"
                   ng-reflect-status="danger"
                   ng-reflect-trim="blur"
-                  [value]="" type="text" id="vaccinationTimes"  size="19" readonly
+                  [value]="vaccinationHistoryFeedback.location" type="text" id="vaccinationTimes"  size="19" readonly
+                  class="form-control input1" >
+            </div>
+            <div  class="form-group col-12 col-md-12 col-xl-12">
+              <label class="label" for="vaccineType">Khung giờ tiêm
+                <span class="text-danger ml-2">*</span>
+              </label>
+              <input formcontrolname="chartName" fullwidth="" id="chartName" nbinput="" trim="blur" type="text"
+                  ng-reflect-status="danger"
+                  ng-reflect-trim="blur"
+                  [value]="time" type="text" id="vaccinationTimes"  size="19" readonly
                   class="form-control input1" >
             </div>
             <div  class="form-group col-12 col-md-12 col-xl-12">
@@ -120,6 +130,8 @@
                   {{validation.message}}</small>
               </div>
             </div>
+
+
             <div class="form-group col-12 col-md-12 col-xl-12">
               <div class="text-center with-submit">
                 <div *ngIf="isSubmited then submited else notSubmited"></div>

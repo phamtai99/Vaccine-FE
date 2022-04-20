@@ -1,4 +1,4 @@
-
+<!--
 <div >
   <h2 class="text-center mt-4 mb-4">Đăng ký</h2>
   <div style="margin-left: 18%" class="container row g-3" id="createPatient">
@@ -194,7 +194,194 @@
         </div>
       </form>
     </div>
-    <div class="col-2"></div>
+    <div class="col-2">
+
+    </div>
   </div>
 </div>
+ -->
 
+
+
+ <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+<div class="container  class_register">
+  <div class="card-body">
+    <div class="header_register">
+      <!-- <span>Đăng ký</span> -->
+      <h2 class="text-center mt-4 mb-4">Đăng ký</h2>
+    </div>
+
+      <div  class="row">
+          <div  class="form-group col-12 col-md-6 col-xl-6">
+              <label class="label" for="chartName"> Mã sổ tiêm chủng
+                <span class="text-danger ml-2">*</span>
+              </label>
+              <input formControlName="book_id"  placeholder="Mã sổ tiêm chủng"
+                     trim="blur" type="text"  class="form-control input1">
+              <div class="text-danger" *ngFor="let validation of validation_messages.book_id">
+                  <div class="error-message"
+                          *ngIf="patientForm.get('book_id').hasError(validation.type) && (patientForm.get('book_id').dirty || patientForm.get('book_id').touched)">
+                        {{validation.message}}
+                  </div>
+              </div>
+          </div>
+
+
+
+          <div  class="form-group col-12 col-md-6 col-xl-6">
+            <label class="label" for="chartName">Họ và tên
+              <span class="text-danger ml-2">*</span>
+            </label>
+            <input formControlName="name" placeholder="Họ và tên" id="chartName"  trim="blur"
+                   type="text"  class="form-control input1">
+
+            <div class="text-danger" *ngFor="let validation of validation_messages.name">
+              <div class="error-message"
+                   *ngIf="patientForm.get('name').hasError(validation.type) && (patientForm.get('name').dirty || patientForm.get('name').touched)">
+                {{validation.message}}
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div  class="form-group col-12 col-md-6 col-xl-6">
+            <label class="label" for="chartName">Email
+              <span class="text-danger ml-2">*</span>
+            </label>
+            <input formControlName="email" placeholder="Email"  id="exampleInputEmail"  trim="blur" type="text"  class="form-control input1">
+            <div class="text-danger" *ngFor="let validation of validation_messages.email">
+              <div class="error-message"
+                   *ngIf="patientForm.get('email').hasError(validation.type) && (patientForm.get('email').dirty || patientForm.get('email').touched)">
+                {{validation.message}}</div>
+            </div>
+          </div>
+
+
+
+
+          <div  class="form-group col-12 col-md-6 col-xl-6">
+            <label class="label" for="chartName">Ngày Sinh
+              <span class="text-danger ml-2">*</span>
+            </label>
+            <input type="date"  formControlName="dateOfBirth"  trim="blur"   class="form-control input1">
+
+            <div class="text-danger" *ngFor="let validation of validation_messages.dateOfBirth">
+              <div class="error-message"
+                   *ngIf="patientForm.get('dateOfBirth').hasError(validation.type) && (patientForm.get('dateOfBirth').dirty || patientForm.get('dateOfBirth').touched)">
+                {{validation.message}}</div>
+              <span *ngIf="patientForm.get('dateOfBirth').hasError('checkAge')">Tuổi từ 3 tháng đến 90 tuổi</span>
+            </div>
+          </div>
+
+
+
+
+          <div  class="form-group col-12 col-md-6 col-xl-6">
+            <label class="label" for="chartName">Giới Tính
+              <span class="text-danger ml-2">*</span>
+            </label>
+            <!-- <input formcontrolname="chartName"  id="chartName"  trim="blur" type="text"  class=" input1"> -->
+            <select class="form-control"   formControlName="gender">
+              <!-- <option value="none" selected="">Chọn giới tính...</option> -->
+              <option value="">Lựa chọn...</option>
+              <option value="male">Nam</option>
+              <option value="female">Nữ</option>
+
+          </select>
+          </div>
+
+
+          <div  class="form-group col-12 col-md-6 col-xl-6">
+            <label class="label" for="chartName">Số Điện Thoại
+              <span class="text-danger ml-2">*</span>
+            </label>
+            <input formControlName="phone"  placeholder="Số điện thoại"  id="exampleInputPhone"  trim="blur" type="text"  class="form-control input1">
+            <div class="text-danger" *ngFor="let validation of validation_messages.phone">
+              <div class="error-message"
+                    *ngIf="patientForm.get('phone').hasError(validation.type) && (patientForm.get('phone').dirty || patientForm.get('phone').touched)">
+                {{validation.message}}
+              </div>
+            </div>
+          </div>
+
+          <div  class="form-group col-12 col-md-6 col-xl-6">
+            <label class="label" for="chartName">Địa Chỉ
+              <span class="text-danger ml-2">*</span>
+            </label>
+            <input class="form-control" id="exampleInputAddress" formControlName="address" placeholder="Địa chỉ"   trim="blur" type="text"  class="form-control input1">
+            <div class="text-danger" *ngFor="let validation of validation_messages.address">
+              <div class="error-message"
+                    *ngIf="patientForm.get('address').hasError(validation.type) && (patientForm.get('address').dirty || patientForm.get('address').touched)">
+                {{validation.message}}</div>
+            </div>
+          </div>
+
+
+          <div  class="form-group col-12 col-md-6 col-xl-6">
+            <label class="label" for="chartName">Người Giám Hộ
+              <span class="text-danger ml-2">*</span>
+            </label>
+            <input id="exampleInputGuardian" formControlName="guardian" placeholder="Người giám hộ"   trim="blur" type="text"  class="form-control input1">
+            <div class="text-danger" *ngFor="let validation of validation_messages.guardian">
+              <div class="error-message"
+                   *ngIf="patientForm.get('guardian').hasError(validation.type) && (patientForm.get('guardian').dirty || patientForm.get('guardian').touched)">
+                {{validation.message}}
+              </div>
+            </div>
+            <div class="text-danger"
+                 *ngIf="patientForm.hasError('checkGuardian') && (patientForm.get('guardian').dirty || patientForm.get('guardian').touched)">
+                  Dưới 18 tuổi phải có người giám hộ .
+            </div>
+          </div>
+
+
+          <div  class="form-group col-12 col-md-6 col-xl-6">
+            <label class="label" for="chartName">Mật Khẩu
+              <span class="text-danger ml-2">*</span>
+            </label>
+            <input type="password" class="form-control" id="" formControlName="password" placeholder="Mật khẩu"  class="form-control input1">
+            <div class="text-danger" *ngFor="let validation of validation_messages.password">
+              <div class="error-message"
+                   *ngIf="patientForm.get('password').hasError(validation.type) && (patientForm.get('password').dirty || patientForm.get('password').touched)">
+                {{validation.message}}
+              </div>
+            </div>
+          </div>
+
+          <div  class="form-group col-12 col-md-6 col-xl-6">
+            <label class="label" for="chartName">Địa Chỉ Người Giám Hộ
+              <span class="text-danger ml-2">*</span>
+            </label>
+            <input   placeholder="Địa chỉ"   trim="blur" type="text"  class="form-control input1">
+            <div class="text-danger" *ngFor="let validation of validation_messages.address">
+              <div class="error-message"
+                    *ngIf="patientForm.get('address').hasError(validation.type) && (patientForm.get('address').dirty || patientForm.get('address').touched)">
+                {{validation.message}}</div>
+            </div>
+          </div>
+
+          <div class="form-group col-12 col-md-12 col-xl-12"  style="margin-left: 83%;margin-top: 25px;">
+              <button type="submit" class="btn btn-primary icon" >Lưu</button>
+              <button style="margin-left: 10px" type="button" class="btn btn-dark icon" routerLink="">Hủy</button>
+              <!-- <button type="submit" class="btn btn-primary icon" disabled>Lưu
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button> -->
+          </div>
+
+
+
+
+
+
+
+
+      </div>
+
+  </div>
+
+</div>
+
+</form>

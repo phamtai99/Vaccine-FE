@@ -5,7 +5,7 @@
     <div class="search row ">
 
 
-      <div class=" col-sm-2 col-md-2 col-lg-2">
+      <!-- <div class=" col-sm-2 col-md-2 col-lg-2">
       </div>
       <div class=" col-sm-2 col-md-2 col-lg-2">
       </div>
@@ -23,7 +23,29 @@
       <div class="col-sm-2 col-md-2 col-lg-2 width-search" style="margin-top: 8px;">
         <br>
         <button class="btn btn-success" (click)="search()"><i class="fa fa-search"> </i>Tìm kiếm</button>
+      </div> -->
+
+
+      <div class="topnav">
+        <div>
+          <label>Tên Khách Hàng</label>
+          <input class="form-control" type="text" [(ngModel)]="keyword2" placeholder="Nhập Tên khách hàng">
+        </div>
+        <div style="margin-right: 20px;">
+          <label>Loại vaccine</label>
+          <select [(ngModel)]="keyword3" class="form-control" name="">
+            <option value="">Mặc định</option>
+            <option *ngFor="let item of listTypeVaccine">{{item}}</option>
+          </select>
+        </div>
+        <div  style="margin-top: 32px;">
+          <button class="btn btn-success" (click)="search()"><i class="fa fa-search"> </i>Tìm kiếm</button>
+
+        </div>
+
       </div>
+
+
     </div>
 
      <div class="col-lg-4 col-md-3" style="margin-top: 70px;padding-left: unset;">

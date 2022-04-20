@@ -18,6 +18,8 @@ export class VaccinationHistoryFeedbackComponent implements OnInit {
   vaccinationHistoryId;
   accountEmail: string;
   isSubmited = false;
+
+  time:string;
   constructor(
     private vaccinationHistoryService: VaccinationHistoryService,
     private activatedRoute: ActivatedRoute,
@@ -40,6 +42,8 @@ export class VaccinationHistoryFeedbackComponent implements OnInit {
       this.vaccinationHistoryService.findByIdVaccinationHistory(paramMap.get('id')).subscribe((data: IVaccinationHistoryFeedbackDTO) => {
         this.vaccinationHistoryId = paramMap.get('id');
         this.vaccinationHistoryFeedback = data;
+
+        this.time=this.vaccinationHistoryFeedback.startTime + ' - '+ this.vaccinationHistoryFeedback.endTime
         console.log("Dữ liệu phản ánh :", data);
       });
       this.vaccinationHistoryService.findByAfterStatus(paramMap.get('id')).subscribe((data: IVaccinationHistorySendFeedbackDTO) => {

@@ -7,8 +7,11 @@ import {VerifyResetPasswordComponent} from "./verify-reset-password/verify-reset
 import {LoginComponent} from "./login/login.component";
 
 
+
+
 const routes: Routes = [
   {path: 'login',component: LoginComponent},
+  {path: 'register-form',component: RegisterComponent},
   {path:'verification',component: VerificationComponent},
   {path:'reset-password',component: ResetPasswordComponent},
   {path:'verify-reset-password',component: VerifyResetPasswordComponent},

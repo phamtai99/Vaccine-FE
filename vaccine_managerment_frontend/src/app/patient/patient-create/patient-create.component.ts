@@ -81,6 +81,10 @@ export class PatientCreateComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("Gia trị form  đăng kí gửi đi: ",this.patientForm.value)
+
+
+
     if(this.patientForm.invalid){
       console.log(this.patientForm.value)
       this.toastr.warning("Form phải được điền đúng định dạng","Warning:",{

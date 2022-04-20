@@ -59,7 +59,7 @@ export class RegisteredRequiredVaccinationComponent implements OnInit {
 
 
   search(){
-    this.vaccinationHistoryService.searchRegisteredRequired(this.page,2,this.name,this.status,).subscribe(data => {
+    this.vaccinationHistoryService.searchRegisteredRequired(this.page,2,this.name,this.status).subscribe(data => {
       this.vaccinationHistoryList = data.content;
       this.pageable = data;
       console.log(data);
