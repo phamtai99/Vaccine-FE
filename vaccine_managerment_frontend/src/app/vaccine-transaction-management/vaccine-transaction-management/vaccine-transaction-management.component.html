@@ -31,13 +31,13 @@
           <label>Tên Khách Hàng</label>
           <input class="form-control" type="text" [(ngModel)]="keyword2" placeholder="Nhập Tên khách hàng">
         </div>
-        <div style="margin-right: 20px;">
+        <!-- <div style="margin-right: 20px;">
           <label>Loại vaccine</label>
           <select [(ngModel)]="keyword3" class="form-control" name="">
             <option value="">Mặc định</option>
             <option *ngFor="let item of listTypeVaccine">{{item}}</option>
           </select>
-        </div>
+        </div> -->
         <div  style="margin-top: 32px;">
           <button class="btn btn-success" (click)="search()"><i class="fa fa-search"> </i>Tìm kiếm</button>
 

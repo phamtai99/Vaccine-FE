@@ -48,6 +48,8 @@ export class PeriodicalVaccinationListComponent implements OnInit {
   patient: object;
   p:any;
 
+  lenghtListData:any;
+
   public page = 0;
   config:any;
 
@@ -77,12 +79,25 @@ export class PeriodicalVaccinationListComponent implements OnInit {
       this.searchData.date += '-' + this.changeNumberFormat(this.selectedDay,2)
     }
     console.log(" Tham số searchData: ",this.searchData);
-    this.vaccinationService.findTotalPage(this.searchData).subscribe((data: number) => {
-      this.searchData.maxPage = data;
-    }, error => console.log(error));
+    // this.vaccinationService.findTotalPage(this.searchData).subscribe((data: number) => {
+    //   this.searchData.maxPage = data;
+    // }, error => console.log(error));
     this.vaccinationService.findCustomVaccination(this.searchData).subscribe( (data: IPeriodicalVaccinationDTO[]) => {
-      this.registrableVaccinationList = data;
-      console.log(" danh sách vaccine tiêm chủng định kỳ :",data)
+      if(data!=null){
+        this.registrableVaccinationList = data;
+        // if(this.registrableVaccinationList.length>0){
+        //   this.lenghtListData=true;
+        // }else{
+        //   this.lenghtListData=false;
+        // }
+        this.lenghtListData=true;
+        
+        console.log(" danh sách vaccine tiêm chủng định kỳ :",this.registrableVaccinationList)
+      }else {
+        this.lenghtListData=false;
+        console.log(" danh sách vaccine :",data);
+      }
+     
     }, error => console.log(error))
   }
 

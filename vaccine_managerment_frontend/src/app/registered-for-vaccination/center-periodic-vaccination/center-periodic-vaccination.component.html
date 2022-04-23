@@ -2,7 +2,7 @@
   <div class="container-fluid">
   <div>
     <h3 class="text-center mt-4 ">DANH SÁCH BỆNH NHÂN ĐĂNG KÝ TIÊM CHỦNG THEO ĐỊNH KỲ CỦA TRUNG TÂM Y TẾ</h3>
-    <div class="search row mb-4 mt-4 xl-12 ">
+    <!-- <div class="search row mb-4 mt-4 xl-12 ">
       <div class="col-xl-2 mt-3">
         <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 ">
         </div>
@@ -40,27 +40,66 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+
+
+
+
   </div>
-  <div class="content" >
+   <div class="topnav">
+
+      <div >
+        <form [formGroup]="formGroup">
+          <label>Họ Và Tên</label>
+          <input (keydown.enter)="page = 0;searchPeriodicVaccination()"  [(ngModel)]="name" class="nameVaccine form-control" type="text" placeholder="Họ Và Tên" formControlName="name">
+            <div class="text-danger" *ngFor="let validation of validation_messages.name">
+              <div class="error-message"
+                   *ngIf="formGroup.get('name').hasError(validation.type) && (formGroup.get('name').dirty)">
+                {{validation.message}}</div>
+            </div>
+          </form>
+      </div>
+
+      <div style="margin-right: 15px;">
+        <label>Tình trạng</label>
+            <select (keydown.enter)="page = 0;searchPeriodicVaccination()" [(ngModel)]="status" class="form-control">
+              <option value="">Chọn Tình Trạng</option>
+              <option value=false>Chưa tiêm</option>
+              <option value=true>Đã tiêm</option>
+            </select>
+      </div>
+      <div  style="margin-top: 25px; margin-right: 15px;">
+        <button class="btn btn-warning mt-2"  (click)="page = 0;getListPeriodicVaccination()">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+      </div>
+      <div style="margin-top: 25px; margin-right: 15px;">
+        <button class="btn btn-success mt-2" [disabled]="!formGroup.valid" (click)="page = 0;searchPeriodicVaccination()"><i
+          class="fa fa-search"></i> Tìm kiếm
+        </button>
+      </div>
+    </div>
+
+
+  <div class="content" style="margin-top: 6%;" >
     <h2 class="text-center" *ngIf="vaccinationHistoryList.length === 0" style="color: red">Không có dữ liệu để hiển thị ! Vui lòng quay lại sau!!!</h2>
     <div class="table" *ngIf="vaccinationHistoryList.length > 0">
       <table class="table table-hover  table-bordered">
         <thead style="background-color:rgb(158,207,251)">
         <tr class="text-center">
-          <th>STT</th>
-          <th>Mã bệnh nhân</th>
-          <th>Họ và tên</th>
-          <th>Ngày sinh</th>
-          <th>Giới tính</th>
-          <th>Số điện thoại</th>
-          <th>Địa chỉ</th>
-          <th>Tên vaccine</th>
-          <th>Mũi tiêm số</th>
-          <th>Ngày tiêm</th>
-          <th>Thời gian</th>
-          <th>Tình trạng</th>
-          <th>Trước khi khám</th>
+          <th style="width: 30px">STT</th>
+          <th style="width: 100px">Mã bệnh nhân</th>
+          <th style="width: 150px">Họ và tên</th>
+          <th  style="width:  120px">Ngày sinh</th>
+          <th  style="width: 100px">Giới tính</th>
+          <th  style="width: 120px">Số điện thoại</th>
+          <th  style="width: 120px">Địa chỉ</th>
+          <th  style="width: 150px">Tên vaccine</th>
+          <th  style="width: 100px">Mũi tiêm số</th>
+          <th style="width:  120px">Ngày tiêm</th>
+          <th style="width:  120px">Thời gian</th>
+          <th style="width: 100px">Tình trạng</th>
+          <th style="width: 130px">Trước khi khám</th>
         </tr>
         </thead>
         <tbody>

@@ -68,4 +68,14 @@ export class RegisteredRequiredVaccinationComponent implements OnInit {
       this.vaccinationHistoryList = [];
     });
   }
+
+  resetSearch(){
+    this.name='';
+    this.status='';
+    this.ngOnInit();
+  }
+
 }
+
+
+

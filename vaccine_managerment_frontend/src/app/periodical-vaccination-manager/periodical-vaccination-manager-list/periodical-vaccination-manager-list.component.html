@@ -4,7 +4,7 @@
     <div class="search row d-flex justify-content-end mb-4 ">
 
       <div class="form-group col-auto">
-        <label>Ngày Tiêm:<span class="search"> *</span></label>
+        <label>Ngày Tiêm</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
           </div>
@@ -31,13 +31,14 @@
       </div>
       <div class="col-auto">
         <br>
-        <button type="button" class="btn btn-success mt-xl-2 mr-2"
+        <button type="reset" class="btn btn-warning mt-xl-2" style="margin-right: 20px;"  (click)="ResetsearchVaccinationManager()">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+        <button type="button" class="btn btn-success mt-xl-2"
                 (click)="searchVaccinationManager(0, 1)">
           <i class="fa fa-search"></i> Tìm kiếm
         </button>
-        <button type="reset" class="btn btn-warning mt-xl-2" (click)="ResetsearchVaccinationManager()">
-          <i class="fa fa-undo"></i> Quay lại
-        </button>
+
       </div>
     </div>
   </form>
@@ -55,13 +56,13 @@
       <th class="center-th">STT</th>
       <th>Thời Gian</th>
       <th>Ngày Tiêm</th>
-      <th>Địa điểm</th>
-      <th>Tên Vắc-xin</th>
-      <th>Đối tượng</th>
+      <th>Địa Điểm</th>
+      <th>Tên Vaccine</th>
+      <th>Đối Tượng</th>
       <th>Trạng Thái</th>
       <th>Ghi Chú</th>
-      <th>Số mũi tiêm</th>
-      <th>Chức năng</th>
+      <th>Số Mũi Tiêm</th>
+      <th>Chức Năng</th>
     </tr>
     </thead>
     <tbody *ngIf="listVaccination.length > 0">

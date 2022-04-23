@@ -18,8 +18,7 @@ export class EmployeeListComponent implements OnInit {
   roleList: IRole[];
   private sub: Subscription;
   p: any;
-
-
+  listDataEmp:any;
 
   public name = '';
   public idEmpSearch = '';
@@ -34,9 +33,16 @@ export class EmployeeListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.employeeService.getAllEmployee().toPromise().then(r => {
-      this.employeeList = r;
-      console.log(r);
+    this.employeeService.getAllEmployee().toPromise().then(data => {
+
+      if(data!=null){
+        this.employeeList = data;
+        // this.listDataEmp=true;
+       }else {
+        // this.listDataEmp=false;
+       }
+      // this.employeeList = r;
+      // console.log(r);
       console.log(this.employeeList);
     });
     this.positionService.findAll().toPromise().then(r => {
@@ -69,7 +75,13 @@ export class EmployeeListComponent implements OnInit {
   search() {
 
     this.employeeService.searchEmployeeByName(this.name.trim(), this.idEmpSearch.trim(), this.positionSearch).toPromise().then(data => {
+     if(data!=null){
       this.employeeList = data;
-    });
+      this.listDataEmp=true;
+     }else {
+      this.listDataEmp=false;
+     }
+     
+    }, error => console.log(error));
   }
 }
