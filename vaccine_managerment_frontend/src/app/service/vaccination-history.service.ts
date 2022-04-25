@@ -53,6 +53,12 @@ export class VaccinationHistoryService {
     return this.http.get<any>(this.url + '/periodic-vaccination/search?name='+ name + '&status='+status + '&page=' + page);
   }
 
+  searchPeriodicVaccinationRegister( name: string, status: string) {
+    return this.http.get<any>(this.url + '/periodic-vaccination/searchPatientRegistered?name='+ name + '&status='+status );
+  }
+
+
+
   /**
    * @param page
    * @param name
@@ -60,6 +66,13 @@ export class VaccinationHistoryService {
   getListPeriodicVaccination(page: number) {
     return this.http.get<any>(this.url + '/periodic-vaccination/list?page=' + page);
   }
+
+
+  getAllListPeriodicVaccination() {
+    return this.http.get<any>(this.url + '/periodic-vaccination/listPatientRegistered' );
+  }
+
+
 
   getAllRegisteredRequired(page: number, id: number, name: string) {
     return this.http.get<any>(this.url + '/registered-for-vaccination/list?name='+ name + '&id=' + id + '&page=' + page);

@@ -41,39 +41,6 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
   }
 
 
-  // pageChanged(event){
-  //   this.config.currentPage = event;
-  //   if (this.startDate === ''  && this.name === '' && this.status === '') {
-  //     this.startDate = '';
-
-  //     this.name = '';
-  //     this.status = '';
-  //     this.vaccinationManagerService.getAllVaccination(event-1, 1).subscribe(data => {
-  //       this.listVaccination = data;
-  //       this.config = {
-  //         itemsPerPage: data.size,
-  //         currentPage: event,
-  //         totalItems: data.totalElements
-  //       };
-  //       console.log("Danh sách lịch tiêm chủng định kỳ trung tâm phần quản trị :",data);
-  //     }, error => console.log(error));
-  //   } else {
-  //     this.vaccinationManagerService.searchDateAndNameOrStatus(this.startDate,  this.name, this.status, event-1, 1).subscribe(data => {
-  //       if (data === null) {
-  //         this.messageManager.showSearchWarning();
-  //         this.getAllVaccinationManager(event-1, 1);
-  //       } else {
-  //         this.config = {
-  //           itemsPerPage: data.size,
-  //           currentPage: event,
-  //           totalItems: data.totalElements
-  //         };
-  //         this.listVaccination = data;
-  //       }
-  //     });
-  //   }
-  // }
-
 
 
   ngSubmit() {
@@ -88,30 +55,10 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
 
   /** Tìm kiếm và phân trang*/
   searchDateAndNameOrStatus(pageable, type) {
-    // if (this.startDate === '' && this.endDate === '' && this.name === '' && this.status === '') {
-    //   this.getAllVaccinationManager(pageable, type)
-    // } else {
+
       this.searchVaccinationManager(pageable, type);
-    // }
+
   }
-
-  /** Hiện danh sách và phân trang*/
-  // getAllVaccinationManager(pageable, type) {
-  //   this.startDate = '';
-  //   this.endDate = '';
-  //   this.name = '';
-  //   this.status = '';
-  //   this.vaccinationManagerService.getAllVaccination(pageable, type).subscribe(data => {
-  //     this.listVaccination = data;
-  //     this.config = {
-  //       itemsPerPage: data.size,
-  //       currentPage: this.page,
-  //       totalItems: data.totalElements
-  //     };
-  //     // console.log("Danh sách lịch tiêm chủng định kỳ trung tâm phần quản trị :",data);
-  //   }, error => console.log(error));
-  // }
-
 
 
   ResetsearchVaccinationManager(){
@@ -127,13 +74,9 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
     this.vaccinationManagerService.searchDateAndNameOrStatus(this.startDate, this.name, this.status, pageable, type).subscribe(data => {
       if (data === null) {
         this.messageManager.showSearchWarning();
-        // this.getAllVaccinationManager(pageable, type);
+      
       } else {
-        // this.config = {
-        //   itemsPerPage: data.size,
-        //   currentPage: this.page,
-        //   totalItems: data.totalElements
-        // };
+
         this.listVaccination = data;
         console.log("Danh sanh tim kiem : ",     this.listVaccination)
       }

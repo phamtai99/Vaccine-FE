@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="row">
+    <div class="row">
 
-      <h2  style="text-align: center; padding-left: 40%; margin-top: 5%;">Trang quản lý nhân viên</h2>
-      <!-- <div class="search row d-flex justify-content-end mb-4 float-right">
+        <h2 style="text-align: center; padding-left: 40%; margin-top: 5%;">Trang quản lý nhân viên</h2>
+        <!-- <div class="search row d-flex justify-content-end mb-4 float-right">
         <div class="col-xl-4 col-md-4">
           <label>Họ và tên:</label>
           <input (keyup.enter)="search()" (change)="name = $event.target.value" class="form-control "
@@ -25,126 +25,125 @@
 
       </div> -->
 
-      <div class="topnav">
-        <div>
-          <label>Họ và tên:</label>
-          <input (keyup.enter)="search()" (change)="name = $event.target.value" class="form-control "
-          type="text" placeholder="Nhập tên NV">
-        </div>
-        <div style="margin-right: 20px;">
-          <label>Chức vụ:</label>
-          <select (keyup.enter)="search()" (change)="positionSearch = $event.target.value" class="form-control"  style="width: 170px;">
+        <div class="topnav">
+            <div>
+                <label>Họ và tên:</label>
+                <input (keyup.enter)="search()" (change)="name = $event.target.value" class="form-control " type="text" placeholder="Nhập tên NV">
+            </div>
+            <div style="margin-right: 20px;">
+                <label>Chức vụ:</label>
+                <select (keyup.enter)="search()" (change)="positionSearch = $event.target.value" class="form-control" style="width: 170px;">
             <option value="">Chọn chức vụ</option>
             <option *ngFor="let position of positionList" [value]="position.positionId">{{position.name}}</option>
           </select>
-        </div>
-        <div  style="margin-top: 32px;">
-          <button id="myBtn" (click)="search()" class="btn btn-success " >
+            </div>
+            <div style="margin-top: 25px;margin-right: 20px;">
+                <button class="btn btn-warning mt-xl-2" (keydown.enter)="resetSearch()" (click)="resetSearch()">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+            </div>
+            <div style="margin-top: 32px;">
+                <button id="myBtn" (click)="search()" class="btn btn-success ">
             <i class="fa fa-search"></i>
             Tìm kiếm
           </button>
+            </div>
         </div>
-      </div>
 
 
 
-  </div>
-  <div class="row">
-    <div class="col-12 mb-4" style="margin-top: 60px">
-      <a href="employee/create" class="btn btn-success">
-        <i class="fa fa-plus"></i>
-        Thêm mới
-      </a>
-      <h2 class="text-center">Danh sách nhân viên</h2>
+    </div>
+    <div class="row">
+        <div class="col-12 mb-4" style="margin-top: 60px">
+            <a href="employee/create" class="btn btn-success">
+                <i class="fa fa-plus"></i> Thêm mới
+            </a>
+            <h2 class="text-center">Danh sách nhân viên</h2>
+        </div>
+
     </div>
 
-  </div>
+    <div *ngIf="employeeList.length >0 then listData else notData">
 
-  <div *ngIf="employeeList.length >0 then listData else notData">
+    </div>
 
-  </div>
+    <ng-template #listData>
+        <div class="row">
+            <div class="col-12">
+                <div id="list">
+                    <!-- <h1 class="text-center text-danger" *ngIf="employeeList.length == 0">Không tìm thấy dữ liệu</h1> -->
+                    <table class="table table-hover  table-bordered" style="font-size: 14px">
+                        <thead style="background-color:rgb(158,207,251) !important;">
+                            <tr>
+                                <th style="text-align: center">STT</th>
+                                <th width="8%" class="text-center">Mã NV
+                                </th>
+                                <th width="12%" class="text-center">Họ và tên</th>
+                                <th style="text-align: center" class="text-center">Ngày sinh</th>
+                                <th style="text-align: center" class="text-center">CMND</th>
+                                <th width="12%" class="text-center">Địa chỉ</th>
+                                <th width="13%" style="text-align: center" class="text-center">Số điện thoại</th>
+                                <th class="text-center">Chức vụ</th>
+                                <th width="12%">Quyền truy cập</th>
+                                <th class="text-center">Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let employee of employeeList| paginate: { itemsPerPage: 10, currentPage: p }, index as i">
+                                <td class="text-center">{{i+1}}</td>
+                                <td class="text-center">{{getEmployeeCode(employee.employeeId, 3)}}</td>
+                                <td>{{employee.name}}</td>
+                                <td style="text-align: center" class="text-center">{{employee.dateOfBirth | date:'dd-MM-yyyy'}}</td>
+                                <td style="text-align: center" class="text-center">{{employee.idCard}}</td>
+                                <td>{{employee.address}}</td>
+                                <td style="text-align: center" class="text-center">{{employee.phone}}</td>
+                                <td class="text-center">{{employee.position}}</td>
+                                <td class="text-center">{{employee.account}}</td>
+                                <td class="text-center" width="11%">
+                                    <a class="btn btn-success mr-1" [routerLink]="['/employee/edit-employee', employee.employeeId]"><i class="fa fa-edit"></i></a>
+                                    <button class="btn btn-danger ml-1" (click)="temp(employee.employeeId)" data-toggle="modal" data-target="#modelId"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-  <ng-template #listData>
-    <div class="row">
-      <div class="col-12">
-        <div id="list">
-          <!-- <h1 class="text-center text-danger" *ngIf="employeeList.length == 0">Không tìm thấy dữ liệu</h1> -->
-          <table class="table table-hover  table-bordered" style="font-size: 14px">
-            <thead style="background-color:rgb(158,207,251) !important;">
-            <tr>
-              <th style="text-align: center" >STT</th>
-              <th width="8%" class="text-center">Mã NV
-              </th>
-              <th width="12%" class="text-center">Họ và tên</th>
-              <th style="text-align: center" class="text-center">Ngày sinh</th>
-              <th style="text-align: center" class="text-center">CMND</th>
-              <th width="12%" class="text-center">Địa chỉ</th>
-              <th width="13%" style="text-align: center" class="text-center">Số điện thoại</th>
-              <th class="text-center">Chức vụ</th>
-              <th width="12%">Quyền truy cập</th>
-              <th class="text-center">Chức năng</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let employee of employeeList| paginate: { itemsPerPage: 10, currentPage: p }, index as i">
-              <td class="text-center">{{i+1}}</td>
-              <td class="text-center">{{getEmployeeCode(employee.employeeId, 3)}}</td>
-              <td >{{employee.name}}</td>
-              <td style="text-align: center" class="text-center">{{employee.dateOfBirth | date:'dd-MM-yyyy'}}</td>
-              <td style="text-align: center" class="text-center">{{employee.idCard}}</td>
-              <td >{{employee.address}}</td>
-              <td style="text-align: center" class="text-center">{{employee.phone}}</td>
-              <td class="text-center">{{employee.position}}</td>
-              <td class="text-center">{{employee.account}}</td>
-              <td class="text-center" width="11%">
-                <a class="btn btn-success mr-1" [routerLink]="['/employee/edit-employee', employee.employeeId]"><i class="fa fa-edit"></i></a>
-                <button class="btn btn-danger ml-1" (click)="temp(employee.employeeId)" data-toggle="modal" data-target="#modelId"><i class="fa fa-trash"></i></button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-  
-          <pagination-controls
-            previousLabel="Trước"
-            nextLabel="Sau"
-            class="float-right" (pageChange)="p = $event">
-          </pagination-controls>
+                    <pagination-controls previousLabel="Trước" nextLabel="Sau" class="float-right" (pageChange)="p = $event">
+                    </pagination-controls>
 
-          <!-- Modal -->
-          <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-               aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Xác nhận xóa nhân viên</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <!-- Modal -->
+                    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Xác nhận xóa nhân viên</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có chắc muốn xóa nhân viên này?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
+                                    <button type="submit" (click)="onDel()" data-dismiss="modal" class="btn btn-primary">Xóa</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  Bạn có chắc muốn xóa nhân viên này?
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
-                  <button type="submit" (click)="onDel()" data-dismiss="modal" class="btn btn-primary">Xóa</button>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
 
-  </ng-template>
-  <ng-template #notData>
-    <div class="card-deck justify-content-center">
-      <h2 class="text-center text-danger" >Không có kết quả được tìm thấy</h2>
- 
-    </div>
+    </ng-template>
+    <ng-template #notData>
+        <div class="card-deck justify-content-center">
+            <h2 class="text-center text-danger">Không có kết quả được tìm thấy</h2>
 
-  </ng-template>
+        </div>
+
+    </ng-template>
 
 
- 
+
 
 </div>

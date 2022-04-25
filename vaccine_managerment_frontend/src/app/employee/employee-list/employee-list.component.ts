@@ -37,12 +37,9 @@ export class EmployeeListComponent implements OnInit {
 
       if(data!=null){
         this.employeeList = data;
-        // this.listDataEmp=true;
-       }else {
-        // this.listDataEmp=false;
+
        }
-      // this.employeeList = r;
-      // console.log(r);
+
       console.log(this.employeeList);
     });
     this.positionService.findAll().toPromise().then(r => {
@@ -81,7 +78,19 @@ export class EmployeeListComponent implements OnInit {
      }else {
       this.listDataEmp=false;
      }
-     
+
     }, error => console.log(error));
   }
+
+
+  resetSearch(){
+    this.name='';
+    this.idEmpSearch='';
+    this.positionSearch='';
+    this.ngOnInit();
+  }
 }
+
+
+
+
