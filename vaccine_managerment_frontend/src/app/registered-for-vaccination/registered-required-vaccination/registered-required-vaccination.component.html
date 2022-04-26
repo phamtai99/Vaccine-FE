@@ -4,11 +4,11 @@
     <div class="search row d-flex justify-content-end mb-4 ">
       <div class="col-xl-2 col-md-3">
         <label>Họ và Tên</label>
-        <input (change)="name = $event.target.value" (keyup.enter)="page = 0;search()" class="form-control" type="text" placeholder="Họ Và Tên">
+        <input (change)="name = $event.target.value" (keyup.enter)="search()" class="form-control" type="text" placeholder="Họ Và Tên">
       </div>
       <div class="col-xl-2 col-md-3">
         <label>Tình trạng</label>
-        <select (change)="status = $event.target.value" (keyup.enter)="page = 0;search()" class="form-control">
+        <select (change)="status = $event.target.value" (keyup.enter)="search()" class="form-control">
           <option value="">Lựa chọn</option>
           <option value=false>Chưa tiêm</option>
           <option value=true>Đã tiêm</option>
@@ -20,69 +20,84 @@
         <button type="reset" class="btn btn-warning mt-xl-2" style="margin-right: 20px;" (click)=" resetSearch()"  >
           <i class="fas fa-sync-alt"></i>
         </button>
-        <button class="btn btn-success mt-2" (click)="page = 0;search()"><i class="fa fa-search"></i> Tìm kiếm
+        <button class="btn btn-success mt-2" (click)="search()"><i class="fa fa-search"></i> Tìm kiếm
         </button>
       </div>
     </div>
-    <div class="content" >
-      <div class="table">
-        <table class="table-hover table-bordered">
-          <thead>
-          <tr class="bg-table-header text-center">
-            <th style="width: 30px">STT</th>
-            <th style="width: 150px">Mã bệnh nhân</th>
-            <th style="width: 150px">Họ và tên</th>
-            <th style="width: 120px">Ngày sinh</th>
-            <th style="width: 120px">Giới tính</th>
-            <th style="width: 150px">Người giám hộ</th>
-            <th style="width: 150px">Số điện thoại</th>
-            <th style="width: 110px">Địa chỉ</th>
-            <th style="width: 130px">Tên Vaccine</th>
-            <th style="width: 100px">Mũi tiêm số</th>
-            <th style="width: 130px">Ngày tiêm</th>
-            <th style="width: 100px">Tình trạng</th>
-            <th style="width: 150px">Kiểm tra trước khi khám</th>
-          </tr>
-          </thead>
-          <tr *ngFor="let vac of vaccinationHistoryList | paginate: config , index as i">
-            <td style="text-align: center">{{i + 1}}</td>
-            <td style="text-align: center">BN-{{vac.patient.patientId}}</td>
-            <td>{{vac.patient.name}}</td>
-            <td style="text-align: center">{{vac.patient.dateOfBirth | date:'dd-MM-yyyy'}}</td>
-            <td style="text-align: center">{{vac.patient.gender}}</td>
-            <td>{{vac.patient.guardian}}</td>
-            <td style="text-align: center">{{vac.patient.phone}}</td>
-            <td>{{vac.patient.address}}</td>
-            <td>{{vac.vaccination.vaccine.name}}</td>
-            <td class="text-center">{{vac.vaccinationTimes}}</td>
-            <td>{{vac.vaccination.date | date:'dd-MM-yyyy'}}</td>
-            <td class="text-center">
-              <div *ngIf="vac.status === true then logged else notLogged"></div>
-              <ng-template #logged>
-                <span class="badge badge-primary">Đã tiêm</span>
-              </ng-template>
-              <ng-template #notLogged>
-                <span class="badge badge-danger">Chưa tiêm</span>
-              </ng-template>
-            </td>
-            <td class="text-center">
-              <button class="btn btn-primary"
-               [routerLink]="['view',vac.patient.patientId, vac.vaccinationHistoryId]"
-               [disabled]="vac.status"
-               >Kiểm tra</button>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="pageHeader">
-        <pagination-controls
-            previousLabel="Trước"
-            nextLabel="Sau"
-            class="float-right"
-            (pageChange)="pageChanged($event)"
-            >
-        </pagination-controls>
-      </div>
+
+    <div *ngIf="vaccinationHistoryList.length >0 then listData else notData">
     </div>
+    <ng-template #listData>
+      <div class="content" >
+        <div class="table">
+          <table class="table-hover table-bordered">
+            <thead>
+            <tr class="bg-table-header text-center">
+              <th style="width: 30px">STT</th>
+              <th style="width: 150px">Mã bệnh nhân</th>
+              <th style="width: 150px">Họ và tên</th>
+              <th style="width: 120px">Ngày sinh</th>
+              <th style="width: 120px">Giới tính</th>
+              <th style="width: 150px">Người giám hộ</th>
+              <th style="width: 150px">Số điện thoại</th>
+              <th style="width: 110px">Địa chỉ</th>
+              <th style="width: 130px">Tên Vaccine</th>
+              <th style="width: 100px">Mũi tiêm số</th>
+              <th style="width: 130px">Ngày tiêm</th>
+              <th style="width: 100px">Tình trạng</th>
+              <th style="width: 150px">Kiểm tra trước khi khám</th>
+            </tr>
+            </thead>
+            <tr *ngFor="let vac of vaccinationHistoryList | paginate: { itemsPerPage: 10, currentPage: p }, index as i">
+              <td style="text-align: center">{{i + 1}}</td>
+              <td style="text-align: center">BN-{{vac.patientId}}</td>
+              <td>{{vac.name}}</td>
+              <td style="text-align: center">{{vac.dateOfBirth | date:'dd-MM-yyyy'}}</td>
+              <td style="text-align: center">{{vac.gender}}</td>
+              <td>{{vac.guardian}}</td>
+              <td style="text-align: center">{{vac.phone}}</td>
+              <td>{{vac.address}}</td>
+              <td>{{vac.vaccineName}}</td>
+              <td class="text-center">{{vac.vaccinationTimes}}</td>
+              <td>{{vac.vaccinationDate | date:'dd-MM-yyyy'}}</td>
+              <td class="text-center">
+                <div *ngIf="vac.status === true then logged else notLogged"></div>
+                <ng-template #logged>
+                  <span class="badge badge-primary">Đã tiêm</span>
+                </ng-template>
+                <ng-template #notLogged>
+                  <span class="badge badge-danger">Chưa tiêm</span>
+                </ng-template>
+              </td>
+              <td class="text-center">
+                <button class="btn btn-primary"
+                 [routerLink]="['view',vac.patientId, vac.vaccinationHistoryId]"
+                 [disabled]="vac.status"
+                 >Kiểm tra</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="pageHeader">
+          <!-- <pagination-controls
+              previousLabel="Trước"
+              nextLabel="Sau"
+              class="float-right"
+              (pageChange)="pageChanged($event)"
+              >
+          </pagination-controls> -->
+          <pagination-controls previousLabel="Trước" nextLabel="Sau" class="float-right" (pageChange)="p = $event">
+          </pagination-controls>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #notData>
+      <div class="card-deck justify-content-center" style="margin-top: 10%;">
+          <h2 class="text-center text-danger">Không có kết quả được tìm thấy</h2>
+      </div>
+    </ng-template>
+
+
   </div>
 </div>

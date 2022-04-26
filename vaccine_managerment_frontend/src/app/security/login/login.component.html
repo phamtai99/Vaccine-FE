@@ -6,13 +6,11 @@
           <h5 class="card-title text-isLoggedIncenter"> Đăng Nhập</h5>
           <form class="form-signin" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
             <div class="form-label-group">
-              <!--                            <label for="inputEmail">Tên tài khoản:</label>-->
               <input autofocus formControlName="username" type="text" id="inputEmail" class="form-control"
                      placeholder="Tên tài khoản">
             </div>
-
             <div class="form-label-group">
-              <!--                            <label for="inputPassword">Mật khẩu:</label>-->
+           
               <input formControlName="password" type="password" id="inputPassword" class="form-control"
                      placeholder="Mật khẩu"
                      required>

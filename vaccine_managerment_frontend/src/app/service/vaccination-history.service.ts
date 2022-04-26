@@ -74,16 +74,27 @@ export class VaccinationHistoryService {
 
 
 
-  getAllRegisteredRequired(page: number, id: number, name: string) {
-    return this.http.get<any>(this.url + '/registered-for-vaccination/list?name='+ name + '&id=' + id + '&page=' + page);
+  // getAllRegisteredRequired(page: number, id: number, name: string) {
+  //   return this.http.get<any>(this.url + '/registered-for-vaccination/list?name='+ name + '&id=' + id + '&page=' + page);
+  // }
+
+
+  getAllRegisteredRequired() {
+    return this.http.get<any>(this.url + '/registered-for-vaccination/AllRegisteredVaccinationHisTry');
   }
 
   /**
    * search and paging
    */
-  searchRegisteredRequired(page: number,id: number, name: string, status: string) {
-    return this.http.get<any>(this.url + '/registered-for-vaccination/search?name='+ name + '&id='+id + '&status='+status + '&page=' + page);
+  // searchRegisteredRequired(page: number,id: number, name: string, status: string) {
+  //   return this.http.get<any>(this.url + '/registered-for-vaccination/search?name='+ name + '&id='+id + '&status='+status + '&page=' + page);
+  // }
+
+
+  searchRegisteredRequired( name: string, status: string) {
+    return this.http.get<any>(this.url + '/registered-for-vaccination/searchRegisteredVaccination?name='+ name +  '&status='+status );
   }
+
 
   /**
    * find by Id
