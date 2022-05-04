@@ -1,6 +1,4 @@
-/**
- * VaccinationHistoryRegistered 
- */
+
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { Component, OnInit } from '@angular/core';
 import {IVaccinationHistoryRegisteredDTO} from "../../dto/IVaccinationHistoryRegisteredDTO";

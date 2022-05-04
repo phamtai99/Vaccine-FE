@@ -48,25 +48,25 @@
                         <label class="label" for="vaccineType">Tên Vaccine
                 <span class="text-danger ml-2">*</span>
               </label>
-                        <input id="chartName" nbinput="" trim="blur" type="text" ng-reflect-status="danger" ng-reflect-trim="blur" [value]="vaccinationHistoryRegisteredDTOS.vaccineName" type="text" id="vaccineType" size="19" readonly class="form-control input1">
+                        <input id="chartName" nbinput="" trim="blur" type="text"   [value]="vaccinationHistoryRegisteredDTOS.vaccineName"  id="vaccineType" size="19" disabled class="form-control ">
                     </div>
                     <div class="form-group col-12 col-md-6 col-xl-6">
                         <label class="label" for="vaccineType">Liều lượng (ml)
               <span class="text-danger ml-2">*</span>
             </label>
-                        <input id="chartName" nbinput="" trim="blur" type="text" ng-reflect-status="danger" ng-reflect-trim="blur" [value]="vaccinationHistoryRegisteredDTOS.dosage" type="text" id="dosage" size="19" readonly class="form-control input1">
+                        <input id="chartName" nbinput="" trim="blur" type="text"   [value]="vaccinationHistoryRegisteredDTOS.dosage"  id="dosage" size="19" disabled class="form-control ">
                     </div>
                     <div class="form-group col-12 col-md-6 col-xl-6">
                         <label class="label" for="vaccineType">Mũi tiêm
               <span class="text-danger ml-2">*</span>
             </label>
-                        <input id="chartName" nbinput="" trim="blur" type="text" ng-reflect-status="danger" ng-reflect-full-width="" ng-reflect-trim="blur" [value]="vaccinationHistoryRegisteredDTOS.vaccinationTimes" type="text" id="vaccinationTimes" size="19" readonly class="form-control input1">
+                        <input id="chartName" nbinput="" trim="blur" type="text"    [value]="vaccinationHistoryRegisteredDTOS.vaccinationTimes"  id="vaccinationTimes" size="19" disabled class="form-control ">
                     </div>
                     <div class="form-group col-12 col-md-6 col-xl-6">
                         <label class="label" for="vaccineType">Hạn Sử dụng
               <span class="text-danger ml-2">*</span>
             </label>
-                        <input id="chartName" nbinput="" trim="blur" type="text" ng-reflect-status="danger" ng-reflect-trim="blur" [value]="vaccinationHistoryRegisteredDTOS.expired | date:'dd-MM-yyyy'" type="text" id="vaccinationTimes" size="19" readonly class="form-control input1">
+                        <input id="chartName" nbinput="" trim="blur" type="text"   [value]="vaccinationHistoryRegisteredDTOS.expired | date:'dd-MM-yyyy'"  id="vaccinationTimes" size="19" disabled class="form-control ">
                     </div>
 
                     <div class="form-group col-12 col-md-12 col-xl-12">
@@ -80,7 +80,7 @@
 
                     <div class="col-auto  btnHeader" style="text-align: center; margin-left: 40%;">
                         <button type="submit" class="btn btn-primary">Xong/Cho tiêm</button>
-                        <button style="margin-left: 15px; width: 90px;" type="button" class="btn btn-secondary" [routerLink]="['/registered-required-vaccination']">Huỷ</button>
+                        <button style="margin-left: 30px; width: 125px;" type="button" class="btn btn-secondary" [routerLink]="['/registered-required-vaccination']">Huỷ</button>
                     </div>
                 </div>
             </form>

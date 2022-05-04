@@ -44,7 +44,7 @@ export class ImportAndExportComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((data: ParamMap) =>{
       this.idVaccine = Number(data.get('vaccineId'));
     });
-    // console.log(this.idVaccine);
+ 
     this.formExportVaccine = this.formBuilder.group({
       quantityExport: ['', [Validators.required, Validators.min(0), Validators.pattern('^\\d+$')]]
     });

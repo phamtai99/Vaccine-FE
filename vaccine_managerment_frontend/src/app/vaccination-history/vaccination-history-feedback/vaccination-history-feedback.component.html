@@ -1,18 +1,18 @@
 
 <div class="container">
-  <div class="container-fluid" id="custom-font">
+  <div class="container-fluid" id="custom-font"  style="">
       <h1 class="text-center mt-4 mb-4">Phản hồi thông tin sau khi tiêm chủng</h1>
-      <h5 class="title-h5">Thông tin khách hàng</h5>
-      <form [formGroup]="formGroup" (ngSubmit)="update()">
+
+      <form [formGroup]="formGroup" (ngSubmit)="update()"  style="margin-top: 8%;">
         <div class="row">
           <div class="container col-4">
-
+          <h5 class="title-h5">Thông tin khách hàng</h5>
           <table class="table borderless" >
             <tbody>
-            <tr>
+            <!-- <tr>
               <td class="title-info-patient">ID:</td>
               <td>BN-{{vaccinationHistoryFeedback.patientId}}</td>
-            </tr>
+            </tr> -->
             <tr>
               <td class="title-info-patient">Tên bệnh nhân:</td>
               <td>{{vaccinationHistoryFeedback.patientName}}</td>
@@ -40,33 +40,9 @@
             </tbody>
           </table>
         </div>
-
-
-
         <div class="container col-8">
-          <!-- <div class="">
-            <div class="">
-              <p>Loại Vaccine:</p>
-              <p>Tên Vaccine:</p>
-              <p>Ngày tiêm:</p>
-            </div>
-            <div class="">
-              <p>{{vaccinationHistoryFeedback.vaccineTypeName}}</p>
-              <p>{{vaccinationHistoryFeedback.name}}</p>
-              <p>{{vaccinationHistoryFeedback.vaccinationDate | date: "dd-MM-yyyy"}}</p>
-            </div>
-            <div class="">
-              <p>Tình trạng sau khi tiêm(Sốt cao,sốt nhẹ,dị ứng,...)</p>
-              <textarea formControlName="afterStatus" class="form-control" rows="4" id="comment">
-              </textarea>
-              <div class="text-danger" *ngFor="let validation of validation_messages.afterStatus">
-                <small class="error-message"
-                     *ngIf="formGroup.get('afterStatus').hasError(validation.type) && (formGroup.get('afterStatus').dirty || formGroup.get('afterStatus').touched)">
-                  {{validation.message}}</small>
-              </div>
-            </div>
-          </div> -->
 
+          <h5 class="title-h5">Thông tin Tiêm chủng</h5>
           <div  class="row   info_pre">
             <div  class="form-group col-12 col-md-6 col-xl-6">
                 <label class="label" for="vaccineType">Tên Vaccine
