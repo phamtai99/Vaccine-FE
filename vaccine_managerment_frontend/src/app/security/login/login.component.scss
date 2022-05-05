@@ -18,6 +18,7 @@ body {
   margin-bottom: 1rem;
   font-weight: 300;
   font-size: 1.5rem;
+
 }
 
 .card-signin .card-body {
@@ -41,6 +42,12 @@ body {
 .form-label-group {
   position: relative;
   margin-bottom: 1rem;
+}
+
+
+.form-control{
+  border-color:#ced4da !important;
+  box-shadow: 0 0 0 0.02rem  #ced4da !important;
 }
 
 .form-label-group input {

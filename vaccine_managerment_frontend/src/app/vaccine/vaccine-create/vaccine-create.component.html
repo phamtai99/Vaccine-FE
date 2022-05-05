@@ -243,7 +243,7 @@
 
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="tenvac-xin" class="mr-3">Tên Vaccine <span style="color: red">*</span></label>
-        <input type="text" id="tenvac-xin" class="form-control" formControlName="nameVaccine">
+        <input type="text" id="tenvac-xin" class="form-control" formControlName="nameVaccine" placeholder="Tên vaccine"  >
         <div class="text-danger" *ngFor="let validation of validation_messages.nameVaccine">
           <div class="error-message"
                    *ngIf="formCreateVaccine.get('nameVaccine').hasError(validation.type) && (formCreateVaccine.get('nameVaccine').dirty || formCreateVaccine.get('nameVaccine').touched)">
@@ -253,7 +253,7 @@
       </div>
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="loaivac-xin" class="mr-3">Loại Vaccine <span style="color: red">*</span></label>
-        <input type="text" id="loaivac-xin" class="form-control" formControlName="typeVaccine">
+        <input type="text" id="loaivac-xin" class="form-control" formControlName="typeVaccine" placeholder="Loại vaccine">
         <div class="text-danger" *ngFor="let validation of validation_messages.typeVaccine">
           <div class="error-message"
                *ngIf="formCreateVaccine.get('typeVaccine').hasError(validation.type) && (formCreateVaccine.get('typeVaccine').dirty || formCreateVaccine.get('typeVaccine').touched)">
@@ -264,7 +264,7 @@
 
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="ngaynhap" class="mr-3">Ngày Nhập <span style="color: red">*</span></label>
-        <input type="date" id="ngaynhap"  class="form-control"  formControlName="dayReceive">
+        <input type="date" id="ngaynhap"  class="form-control"  formControlName="dayReceive" placeholder="Ngày nhập">
         <div class="text-danger" *ngFor="let validation of validation_messages.dayReceive">
           <div class="error-message"
                *ngIf="formCreateVaccine.get('dayReceive').hasError(validation.type) && (formCreateVaccine.get('dayReceive').dirty || formCreateVaccine.get('dayReceive').touched)">
@@ -275,7 +275,7 @@
 
       <div  class="form-group col-12 col-md-4 col-xl-4">
          <label for="sogiayphep" class="mr-3">Số Giấy Phép <span style="color: red">*</span></label>
-         <input type="number" min="0" id="sogiayphep" class="form-control" formControlName="licenseCode">
+         <input type="number" min="0" id="sogiayphep" class="form-control" formControlName="licenseCode" placeholder="Số giấy phép">
          <div class="text-danger" *ngFor="let validation of validation_messages.licenseCode">
             <div class="error-message"
                 *ngIf="formCreateVaccine.get('licenseCode').hasError(validation.type) && (formCreateVaccine.get('licenseCode').dirty || formCreateVaccine.get('licenseCode').touched)">
@@ -285,7 +285,7 @@
       </div>
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="nuocsx" class="mr-3">Nước Sản Xuất <span style="color: red">*</span></label>
-        <input type="text" id="nuocsx" class="form-control" formControlName="origin">
+        <input type="text" id="nuocsx" class="form-control" formControlName="origin"  placeholder="Nước sản xuất">
         <div class="text-danger" *ngFor="let validation of validation_messages.origin">
           <div class="error-message"
                    *ngIf="formCreateVaccine.get('origin').hasError(validation.type) && (formCreateVaccine.get('origin').dirty || formCreateVaccine.get('origin').touched)">
@@ -296,7 +296,7 @@
 
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="nhacc" class="mr-3">Nhà Cung Cấp <span style="color: red">*</span></label>
-        <input type="text" id="nhacc" class="form-control" formControlName="provider">
+        <input type="text" id="nhacc" class="form-control" formControlName="provider" placeholder="Nhà cung cấp">
         <div class="text-danger" *ngFor="let validation of validation_messages.provider">
           <div class="error-message"
                    *ngIf="formCreateVaccine.get('provider').hasError(validation.type) && (formCreateVaccine.get('provider').dirty || formCreateVaccine.get('provider').touched)">
@@ -307,7 +307,7 @@
 
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="dongia" class="mr-3">Đơn Giá <span style="color: red">*</span></label>
-        <input type="number" min="0" id="dongia" class="form-control" formControlName="unitPrice">
+        <input type="number" min="0" id="dongia" class="form-control" formControlName="unitPrice" placeholder="Giá">
         <div class="text-danger" *ngFor="let validation of validation_messages.unitPrice">
           <div class="error-message"
                    *ngIf="formCreateVaccine.get('unitPrice').hasError(validation.type) && (formCreateVaccine.get('unitPrice').dirty || formCreateVaccine.get('unitPrice').touched)">
@@ -318,7 +318,7 @@
 
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="hamluong" class="mr-3">Hàm Lượng (ml)<span style="color: red">*</span></label>
-        <input type="text" id="hamluong" class="form-control" formControlName="dosage">
+        <input type="text" id="hamluong" class="form-control" formControlName="dosage" placeholder="Hàm lượng">
         <div class="text-danger" *ngFor="let validation of validation_messages.dosage">
           <div class="error-message"
                *ngIf="formCreateVaccine.get('dosage').hasError(validation.type) && (formCreateVaccine.get('dosage').dirty || formCreateVaccine.get('dosage').touched)">
@@ -329,7 +329,7 @@
 
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="solo" class="mr-3">Số Lượng <span style="color: red">*</span></label>
-        <input type="number" min="0" id="solo" class="form-control" formControlName="quantity">
+        <input type="number" min="0" id="solo" class="form-control" formControlName="quantity" placeholder="Số lượng">
         <div class="text-danger" *ngFor="let validation of validation_messages.quantity">
           <div class="error-message"
                *ngIf="formCreateVaccine.get('quantity').hasError(validation.type) && (formCreateVaccine.get('quantity').dirty || formCreateVaccine.get('quantity').touched)">
@@ -340,7 +340,7 @@
 
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="hansudung" class="mr-3">Hạn Sử Dụng <span style="color: red">*</span></label>
-            <input type="date" id="hansudung" class="form-control" formControlName="expired">
+            <input type="date" id="hansudung" class="form-control" formControlName="expired" placeholder="Hạn sử dụng">
             <div class="text-danger" *ngFor="let validation of validation_messages.expired">
               <div class="error-message"
                    *ngIf="formCreateVaccine.get('expired').hasError(validation.type) && (formCreateVaccine.get('expired').dirty || formCreateVaccine.get('expired').touched)">
@@ -351,7 +351,7 @@
 
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="dkbaoquan">Điều Kiện Bảo Quản<span style="color: red">*</span></label>
-          <input type="text" id="dkbaoquan" class="form-control" formControlName="maintenance">
+          <input type="text" id="dkbaoquan" class="form-control" formControlName="maintenance"  placeholder="Điều kiện bảo quản">
           <div class="text-danger" *ngFor="let validation of validation_messages.maintenance">
               <div class="error-message"
                    *ngIf="formCreateVaccine.get('maintenance').hasError(validation.type) && (formCreateVaccine.get('maintenance').dirty || formCreateVaccine.get('maintenance').touched)">
@@ -362,7 +362,7 @@
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="dotuoi" class="mr-3">Độ Tuổi Tiêm Chủng<span
           style="color: red">*</span></label>
-        <input type="text" id="dotuoi" class="form-control" formControlName="age">
+        <input type="text" id="dotuoi" class="form-control" formControlName="age" placeholder="Độ tuổi tiêm ">
         <div class="text-danger" *ngFor="let validation of validation_messages.age">
           <div class="error-message"
                *ngIf="formCreateVaccine.get('age').hasError(validation.type) && (formCreateVaccine.get('age').dirty || formCreateVaccine.get('age').touched)">
@@ -372,7 +372,7 @@
       </div>
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="times" class="mr-3">Số Lần Tiêm <span style="color: red">*</span></label>
-        <input type="number" min="0" id="times" class="form-control" formControlName="times">
+        <input type="number" min="0" id="times" class="form-control" formControlName="times" placeholder="Số lần tiêm">
         <div class="text-danger" *ngFor="let validation of validation_messages.unitPrice">
           <div class="error-message"
                    *ngIf="formCreateVaccine.get('unitPrice').hasError(validation.type) && (formCreateVaccine.get('unitPrice').dirty || formCreateVaccine.get('unitPrice').touched)">
@@ -383,7 +383,7 @@
 
       <div  class="form-group col-12 col-md-4 col-xl-4">
         <label for="duration" class="mr-3">Khoảng Cách Tiêm</label>
-          <input type="number" min="0" id="duration" class="form-control" formControlName="duration">
+          <input type="number" min="0" id="duration" class="form-control" formControlName="duration" placeholder="Khoảng cách tiêm">
           <div class="text-danger" *ngFor="let validation of validation_messages.unitPrice">
             <div class="error-message"
                    *ngIf="formCreateVaccine.get('unitPrice').hasError(validation.type) && (formCreateVaccine.get('unitPrice').dirty || formCreateVaccine.get('unitPrice').touched)">
