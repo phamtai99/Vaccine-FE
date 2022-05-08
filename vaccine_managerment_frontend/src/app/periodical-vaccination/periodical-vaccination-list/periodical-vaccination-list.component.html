@@ -2,7 +2,7 @@
   <div class="container col-10">
     <h1 class="text-center mt-4 mb-4">Thông tin lịch tiêm chủng định kỳ của trung tâm</h1>
     <div class="search row d-flex justify-content-end mb-4 ">
-      <div class="col-auto">
+      <!-- <div class="col-auto">
         <label for="vaccinationTime">Giờ tiêm</label>
         <select id="vaccinationTime" class="form-control" name="" [ngModel]="time" (keydown.enter)="search()" (change)="selectTime($event.target.value)">
           <option value="">Lựa chọn...</option>
@@ -10,7 +10,7 @@
             {{timeStamp}}
           </option>
         </select>
-      </div>
+      </div> -->
       <div class="col-auto">
         <label for="vaccineName">Tên Vắc xin</label>
         <input id="vaccineName" class="form-control" type="text" placeholder="Nhập tên Vắc xin" [(ngModel)]="searchData.vaccineName" (keydown.enter)="search()">

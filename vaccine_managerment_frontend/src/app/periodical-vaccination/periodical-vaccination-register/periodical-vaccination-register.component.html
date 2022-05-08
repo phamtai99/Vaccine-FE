@@ -162,15 +162,15 @@
             </div>
           </div>
         </div>
-        <div class="d-flex mt-4 col-xl-2 col-lg-3 col-sm-4">
+        <div class="">
 
-          <div >
-            <button *ngIf="!isSubmitted && !((!patientForm.touched || patientForm.invalid) || !validRegister || alreadyRegister) " type="submit" class="btn btn-primary mr-3">Đăng ký</button>
-            <button *ngIf="!isSubmitted && (!patientForm.touched || patientForm.invalid) || !validRegister || alreadyRegister" type="submit" class="btn btn-danger mr-3" disabled >Đăng ký</button>
+          <div class="footer_register">
+            <button *ngIf="!isSubmitted && validRegister " type="submit" class="btn btn-primary mr-3">Đăng ký</button>
+            <button *ngIf="!isSubmitted && !validRegister " type="submit" class="btn btn-danger mr-3" disabled >Đăng ký</button>
             <button *ngIf="isSubmitted" class="btn btn-primary mr-3" type="button" disabled>
                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                           </button>
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modelId">Hủy</button>
+            <button type="button" class="btn btn-dark" data-toggle="modal" style="width: 84px;" data-target="#modelId">Hủy</button>
           </div>
         </div>
 
@@ -183,17 +183,18 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Xác Nhận Hủy</h5>
+          <h4 class="modal-title">Xác Nhận Hủy</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <h3>Bạn có muốn hủy đăng ký tiêm chủng định kỳ không?</h3>
+          <span> Bạn có muốn hủy đăng ký tiêm chủng định kỳ không?</span>
+          <!-- <h3>Bạn có muốn hủy đăng ký tiêm chủng định kỳ không?</h3> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Không</button>
-          <button type="button" routerLink="" class="btn btn-primary" data-dismiss="modal">Có</button>
+          <button type="button" routerLink="" class="btn btn-primary"  style="width: 75px;" data-dismiss="modal">Có</button>
         </div>
       </div>
     </div>

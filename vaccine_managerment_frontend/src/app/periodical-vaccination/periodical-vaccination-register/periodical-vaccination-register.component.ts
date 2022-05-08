@@ -21,7 +21,7 @@ export class PeriodicalVaccinationRegisterComponent implements OnInit {
   patientForm: FormGroup;
   isSubmitted: boolean;
   currentPatient: any;
-  timeListString: Array<string> = ['08:00:00 - 09:30:00', '09:30:00 - 11:00:00', '13:30:00 - 15:00:00', '15:00:00 - 16:30:00'];
+  timeListString: Array<string> = ['07:00:00 - 09:00:00', '09:00:00 - 11:00:00', '13:00:00 - 15:00:00', '15:00:00 - 17:00:00'];
   timeFrame: string;
   timeMessage: string;
   quantityMessage: string;
@@ -80,7 +80,7 @@ export class PeriodicalVaccinationRegisterComponent implements OnInit {
       this.patientForm.value.patientId = this.currentPatient.patientId;
       console.log("giá trị form gửi đi :",    this.patientForm.value);
       this.vaccinationService.checkAvailableRegister(this.patientForm.value).subscribe( (data: any) => {
-        console.log(data);
+        console.log('Gia tri select time: ',data);
         this.timeMessage = (data.timeIsValid) ? "": "Khung giờ này đã đầy";
         this.quantityMessage = (data.quantityIsValid) ? "": "Loại vắc xin này đã được đăng ký tiêm hết, mong quý khách thông cảm";
         this.alreadyRegister = data.alreadyRegister;
