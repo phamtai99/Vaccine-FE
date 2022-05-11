@@ -1,34 +1,9 @@
-<!-- content -->
+
 <div class="container">
   <div class="container-fluid" id="custom-font" *ngIf="flag">
     <div class="row">
       <div class="col-12 ">
         <h1 class="text-center mt-4 mb-4 ">Lịch sử tiêm chủng</h1>
-        <!-- <div class="search row d-flex justify-content-end mb-4 float-right ">
-          <div class="col-xl-3 col-md-3 ">
-            <label for="nameVaccine">Tên Vaccine</label>
-            <input (keydown.enter)="page = 0; getListVaccine()"  [(ngModel)]="vaccineName" id="nameVaccine" class="form-control" type="text"
-                   placeholder="Nhập tên Vaccine">
-          </div>
-          <div class="col-xl-3 col-md-3 ">
-            <label for="vaccinationDate">Ngày tiêm</label>
-            <input (keydown.enter)="page = 0; getListVaccine()"  [(ngModel)]="vaccinationDate" id="vaccinationDate" class="form-control "
-                   type="date">
-          </div>
-          <div class="col-xl-1 col-md-1 ">
-            <br>
-            <button class="btn btn-warning mt-xl-2" (keydown.enter)="resetSearch()" (click)="resetSearch()">
-              <i class="fas fa-sync-alt"></i>
-            </button>
-          </div>
-          <div class="col-xl-2 col-4 width-search">
-            <br>
-            <button (keydown.enter)="page = 0; getListVaccine()" (click)="page = 0; getListVaccine()" class="btn btn-success mt-xl-2"><i class="fa fa-search"></i>
-              Tìm kiếm
-            </button>
-          </div>
-
-        </div> -->
 
 
         <div class="topnav">
@@ -121,16 +96,11 @@
         </pagination-controls>
         </div>
       </div>
-
     </ng-template>
     <ng-template #notData>
       <div class="card-deck justify-content-center"   style="margin-top: 10%;">
         <h2 class="text-center text-danger" >Không có kết quả được tìm thấy</h2>
-
       </div>
-
     </ng-template>
-
-
   </div>
 </div>
