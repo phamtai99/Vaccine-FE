@@ -1,16 +1,7 @@
 <div class="content">
   <div class="container col-10">
     <h1 class="text-center mt-4 mb-4">Thông tin lịch tiêm chủng định kỳ của trung tâm</h1>
-    <div class="search row d-flex justify-content-end mb-4 ">
-      <!-- <div class="col-auto">
-        <label for="vaccinationTime">Giờ tiêm</label>
-        <select id="vaccinationTime" class="form-control" name="" [ngModel]="time" (keydown.enter)="search()" (change)="selectTime($event.target.value)">
-          <option value="">Lựa chọn...</option>
-          <option *ngFor="let timeStamp of timeListString" [value]="timeStamp">
-            {{timeStamp}}
-          </option>
-        </select>
-      </div> -->
+    <div class="search row d-flex justify-content-end mb-4 " style="margin-right: 54px;">
       <div class="col-auto">
         <label for="vaccineName">Tên Vắc xin</label>
         <input id="vaccineName" class="form-control" type="text" placeholder="Nhập tên Vắc xin" [(ngModel)]="searchData.vaccineName" (keydown.enter)="search()">
@@ -38,29 +29,28 @@
     <ng-template #listData>
       <div class="card-deck justify-content-center">
 
-        <div class="card border-primary mb-3"   style="max-width: 18rem; min-width: 14rem" *ngFor="let vaccination of registrableVaccinationList |  paginate: { itemsPerPage: 8, currentPage: p }">
-          <img class="card-img-top" [src]="vaccination.image" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title" data-toggle="tooltip" data-placement="top" [title]="vaccination.vaccineName">{{(vaccination.vaccineName.length > 25)? (vaccination.vaccineName | slice: 0: 20)+'...': (vaccination.vaccineName)}}</h5>
-          </div>
-          <hr>
-          <!-- <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{vaccination.description}}</li>
-          </ul> -->
-          <div class="card-body">
-            <p class="card-text">{{vaccination.startTime}} - {{vaccination.endTime}}</p>
-            <p class="card-text">Ngày {{vaccination.date | date: 'dd/MM/yyyy'}}</p>
-            <p class="card-text">Độ tuổi: {{vaccination.age}}</p>
-            <p class="card-text">Số lần: {{vaccination.times}}</p>
-            <p class="card-text">Giãn cách: {{vaccination.duration}}</p>
-          </div>
-          <div class="card-footer text-center">
-            <a [routerLink]="['/periodical-vaccination/register/' + vaccination.vaccinationId]" class="btn btn-success">Đăng ký</a>
+
+
+        <div class="mr-3 ml-3 mb-5" *ngFor="let vaccination of registrableVaccinationList |  paginate: { itemsPerPage: 8, currentPage: p }">
+          <div class="card"  >
+            <img   [src]="vaccination.image"
+                class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title " data-toggle="tooltip" data-placement="top" [title]="vaccination.vaccineName">{{(vaccination.vaccineName.length > 25)? (vaccination.vaccineName | slice: 0: 20)+'...': (vaccination.vaccineName)}}</h5>
+              <p class="card-text">{{vaccination.startTime}} AM - {{vaccination.endTime}} PM</p>
+              <p class="card-text">Ngày {{vaccination.date | date: 'dd/MM/yyyy'}}</p>
+              <p class="card-text">Độ tuổi: {{vaccination.age}}</p>
+              <p class="card-text">Số lần: {{vaccination.times}} </p>
+              <!-- <p class="card-text">Giãn cách: {{vaccination.duration}}</p> -->
+              <a [routerLink]="['/periodical-vaccination/register/' + vaccination.vaccinationId]" class="btn btn-success">Đăng ký</a>
+              <!-- <button *ngIf="v.quantity > 0" [routerLink]="'/vaccination-by-request/create/'+v.vaccineId"  class="btn btn-success btn_register">Đăng ký tiêm</button>
+              <button *ngIf="v.quantity <= 0"  class="btn btn-danger btn_register" disabled>Đã hết</button> -->
+            </div>
           </div>
         </div>
       </div>
 
-      <pagination-controls
+      <pagination-controls   style="margin-right: 60px;"
       previousLabel="Trước"
       nextLabel="Sau"
       class="float-right" (pageChange)="p = $event">
@@ -75,38 +65,6 @@
       </div>
 
     </ng-template>
-
-    <!-- <div class="card-deck justify-content-center">
-      <h2 class="text-center text-danger" *ngIf="!registrableVaccinationList ">Không có kết quả được tìm thấy</h2>
-      <div class="card border-primary mb-3"   style="max-width: 18rem; min-width: 14rem" *ngFor="let vaccination of registrableVaccinationList |  paginate: { itemsPerPage: 8, currentPage: p }">
-        <img class="card-img-top" [src]="vaccination.image" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title" data-toggle="tooltip" data-placement="top" [title]="vaccination.vaccineName">{{(vaccination.vaccineName.length > 25)? (vaccination.vaccineName | slice: 0: 20)+'...': (vaccination.vaccineName)}}</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{vaccination.description}}</li>
-        </ul>
-        <div class="card-body">
-          <p class="card-text">{{vaccination.startTime}} - {{vaccination.endTime}}</p>
-          <p class="card-text">Ngày {{vaccination.date | date: 'dd/MM/yyyy'}}</p>
-          <p class="card-text">Độ tuổi: {{vaccination.age}}</p>
-          <p class="card-text">Số lần: {{vaccination.times}}</p>
-          <p class="card-text">Giãn cách: {{vaccination.duration}}</p>
-        </div>
-        <div class="card-footer text-center">
-          <a [routerLink]="['/periodical-vaccination/register/' + vaccination.vaccinationId]" class="btn btn-success">Đăng ký</a>
-        </div>
-      </div>
-    </div> -->
-
-
-
-      <!-- <pagination-controls
-        previousLabel="Trước"
-        nextLabel="Sau"
-        class="float-right" (pageChange)="p = $event">
-      >
-      </pagination-controls> -->
 
   </div>
 </div>

@@ -9,7 +9,9 @@ import {AuthGuard} from "../security/auth.guard";
 
 const routes: Routes = [
   {path: 'periodical-vaccination-manager', redirectTo: 'periodical-vaccination-manager/list', pathMatch: 'full'},
-  {path: 'periodical-vaccination-manager/list', component: PeriodicalVaccinationManagerListComponent,canActivate: [AuthGuard],
+  {path: 'periodical-vaccination-manager/list',
+   component: PeriodicalVaccinationManagerListComponent,
+   canActivate: [AuthGuard],
     data: {
       roles: ['ROLE_ADMIN']
     }},

@@ -1,5 +1,5 @@
 export interface IVaccineDTO {
-  id: string;
+  id: number;
   name: string;
   vaccineType: string;
   dayReceive: string;

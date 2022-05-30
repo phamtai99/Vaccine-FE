@@ -74,6 +74,7 @@ export class EmployeeEditComponent implements OnInit {
     });
 
     this.activatedRoute.paramMap.subscribe((data :ParamMap) => {
+      console.log("Thoong tin data : ",data);
       this.employeeId = data.get('id');
       this.employeeService.findById(this.employeeId).subscribe(data => {
         this.employee = data;
