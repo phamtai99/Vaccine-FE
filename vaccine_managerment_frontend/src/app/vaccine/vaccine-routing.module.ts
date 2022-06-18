@@ -11,11 +11,11 @@ import {AuthGuard} from "../security/auth.guard";
 const routes:Routes=[
   {path:'vaccine-list',component: VaccineListComponent,canActivate: [AuthGuard],
     data: {
-      roles: ['ROLE_ADMIN']
+      roles: ['ROLE_ADMIN','ROLE_YTA']
     }},
   {path:'vaccine-create',component: VaccineCreateComponent,canActivate: [AuthGuard],
     data: {
-      roles: ['ROLE_ADMIN']
+      roles: ['ROLE_ADMIN','ROLE_YTA']
     }},
 
     {
@@ -23,7 +23,7 @@ const routes:Routes=[
       component: VaccineEditComponent,
       canActivate: [AuthGuard],
       data: {
-        roles: ['ROLE_ADMIN']
+        roles: ['ROLE_ADMIN','ROLE_YTA']
       }
     },
 ];

@@ -83,7 +83,13 @@ export class PeriodicalVaccinationRegisterComponent implements OnInit {
         console.log('Gia tri select time: ',data);
         this.timeMessage = (data.timeIsValid) ? "": "Khung giờ này đã đầy";
         this.quantityMessage = (data.quantityIsValid) ? "": "Loại vắc xin này đã được đăng ký tiêm hết, mong quý khách thông cảm";
+        if(this.quantityMessage != ""){
+          this.showMessage.showMessageErrors('Loại vắc xin này đã được đăng ký tiêm hết, mong quý khách thông cảm');
+        }
         this.alreadyRegister = data.alreadyRegister;
+        if(this.alreadyRegister){
+          this.showMessage.showMessageErrors('Bạn đã từng đăng ký tiêm loại vắc xin này');
+        }
         if(this.timeMessage == "" && this.quantityMessage == "" && !this.alreadyRegister){
           this.validRegister = true;
         }

@@ -34,22 +34,22 @@ export class VaccineEditComponent implements OnInit {
     this.formEditVaccine = new FormGroup({
       vaccineId:  new FormControl(''),
       name: new FormControl('', [Validators.required,Validators.minLength(4)]),
-      // vaccineType: new FormControl('', [Validators.required,Validators.minLength(4)]),
+      vaccineType: new FormControl('', [Validators.required,Validators.minLength(4)]),
       licenseCode: new FormControl('', [Validators.required, Validators.min(1)]),
       origin: new FormControl('', [Validators.required,
         Validators.minLength(1)]),
       dosage: new FormControl('', [Validators.required,Validators.min(0)]),
-      // price: new FormControl('', [Validators.required,
-      //   Validators.min(0)]),
+      price: new FormControl('', [Validators.required,
+        Validators.min(0)]),
       expired: new FormControl('', [Validators.required]),
       maintenance: new FormControl('', [Validators.required]),
       age: new FormControl('', [Validators.required]),
-      // quantity: new FormControl('', [Validators.required,
-      //   Validators.min(0)]),
+      quantity: new FormControl('', [Validators.required,
+        Validators.min(0)]),
 
       times: new FormControl('', [Validators.required]),
       duration: new FormControl('', [Validators.required]),
-      // vaccineTypeId: new FormControl(''),
+      vaccineTypeId: new FormControl(''),
     });
 
     this.route.paramMap.subscribe((data :ParamMap) => {

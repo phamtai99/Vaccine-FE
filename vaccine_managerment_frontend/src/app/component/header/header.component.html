@@ -20,7 +20,7 @@
               <a class="dropdown-item" routerLink="/vaccination-by-request/list">Đăng ký tiêm yêu cầu</a>
             </div>
           </li>
-          <li class="nav-item dropdown active" *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1">
+          <li class="nav-item dropdown active" *ngIf="['ROLE_ADMIN'].indexOf(role)!==-1 || ['ROLE_YTA'].indexOf(role)!==-1">
             <a class="nav-link dropdown-toggle" href="#" id="navbarManager" role="button"
                data-toggle="dropdown" aria-expanded="false">
               Quản lý

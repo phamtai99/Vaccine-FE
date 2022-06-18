@@ -30,4 +30,8 @@ export class ShowMessage {
   showMessageRegisterError() {
     this.toastr.error('Đăng ký thất bại', 'Đăng ký');
   }
+
+  showMessageErrors(message){
+    this.toastr.error(message, "Thông báo:")
+  }
 }

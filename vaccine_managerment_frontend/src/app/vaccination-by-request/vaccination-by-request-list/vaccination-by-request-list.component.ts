@@ -27,8 +27,6 @@ export class VaccinationByRequestListComponent implements OnInit {
               }
 
 
-
-
   ngOnInit(): void {
     this.getListVaccine();
   }

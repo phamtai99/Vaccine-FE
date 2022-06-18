@@ -13,15 +13,15 @@ const routes: Routes = [
    component: PeriodicalVaccinationManagerListComponent,
    canActivate: [AuthGuard],
     data: {
-      roles: ['ROLE_ADMIN']
+      roles: ['ROLE_ADMIN','ROLE_YTA']
     }},
   {path: 'periodical-vaccination-manager/create', component: PeriodicalVaccinationManagerCreateComponent,canActivate: [AuthGuard],
     data: {
-      roles: ['ROLE_ADMIN']
+      roles: ['ROLE_ADMIN','ROLE_YTA']
     }},
   {path: 'periodical-vaccination-manager/:idVaccinationManager/edit', component: PeriodicalVaccinationManagerEditComponent,canActivate: [AuthGuard],
     data: {
-      roles: ['ROLE_ADMIN']
+      roles: ['ROLE_ADMIN','ROLE_YTA']
     }},
 ];
 

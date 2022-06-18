@@ -1,8 +1,8 @@
 <div class="content">
   <div class="container">
     <h1 class="text-center mt-4 mb-4">Đăng ký tiêm phòng định kỳ theo lịch của trung tâm</h1>
-    <H2 class="text-danger text-center" *ngIf="quantityMessage">{{quantityMessage}}</H2>
-    <H2 class="text-danger text-center" *ngIf="alreadyRegister">Bạn đã từng đăng ký tiêm loại vắc xin này</H2>
+    <!-- <H2 class="text-danger text-center" *ngIf="quantityMessage">{{quantityMessage}}</H2> -->
+    <!-- <H2 class="text-danger text-center" *ngIf="alreadyRegister">Bạn đã từng đăng ký tiêm loại vắc xin này</H2> -->
     <br><br>
     <hr>
     <form [formGroup]="patientForm" (ngSubmit)="submitVaccinationRegister()" novalidate>
