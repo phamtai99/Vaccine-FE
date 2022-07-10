@@ -56,13 +56,14 @@
                         <tr class="bg-table-header">
                             <th style="width: 20px">STT</th>
                             <th style="width: 100px">Tên Vaccine</th>
-                            <th style="width: 80px">Loại Vaccine</th>
+
                             <th style="width: 70px">Số mũi tiêm</th>
                             <th style="width: 80px">Nước SX</th>
                             <th style="width: 50px">Số Lượng</th>
                             <th style="width: 70px">Hạn Sử Dụng</th>
                             <th style="width: 80px">ĐK Bảo Quản</th>
                             <th style="width: 80px">Tuổi Tiêm Chủng</th>
+                            <th style="width: 80px">Giá (VNĐ/mũi)</th>
                             <th style="width: 60px">Tình Trạng</th>
                             <th style="width: 120px">Chức Năng</th>
                         </tr>
@@ -71,13 +72,24 @@
                         <tr *ngFor="let vaccine of vaccines | paginate: { itemsPerPage: 10, currentPage: p },index as i">
                             <td class="text-center">{{i + 1}}</td>
                             <td style="text-align: left">{{vaccine.name}}</td>
-                            <td>{{vaccine.vaccineType}}</td>
                             <td class="text-center">{{vaccine.times }}</td>
                             <td>{{vaccine.origin}}</td>
                             <td class="text-center">{{vaccine.quantity}}</td>
                             <td>{{vaccine.expired | date:'dd-MM-yyyy'}}</td>
                             <td>{{vaccine.maintenance}}</td>
                             <td>{{vaccine.age}}</td>
+                            <td class="text-center">
+                              <div *ngIf="vaccine.price === 0; else elseBlocks">
+                                  <div >
+                                      <label>Miễn phí</label>
+                                  </div>
+                              </div>
+                              <ng-template #elseBlocks>
+                                  <div >
+                                      <label>{{vaccine.price}} VNĐ</label>
+                                  </div>
+                              </ng-template>
+                          </td>
                             <td class="text-center">
                                 <div *ngIf="vaccine.quantity === 0; else elseBlock">
                                     <div style="color: red">
