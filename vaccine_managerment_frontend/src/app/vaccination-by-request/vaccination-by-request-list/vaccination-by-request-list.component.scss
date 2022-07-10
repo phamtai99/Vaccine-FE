@@ -1,3 +1,61 @@
+// .topnav {
+//   overflow: hidden;
+
+//   margin-top: 30px;
+//   width: 100%;
+//   display: flex;
+//   justify-content: flex-end;
+//   margin-left: 15px;
+//   margin-right: 15px;
+
+// }
+
+
+// .form-control{
+//   border-color:#ced4da !important;
+//   box-shadow: 0 0 0 0.01rem  #ced4da !important;
+// }
+
+// #nameVaccine {
+
+//   width: 240px;
+//   padding: 6px;
+//   margin-right: 16px;
+//   font-size: 17px;
+// }
+
+
+// #provider{
+
+//   width: 180px;
+//   padding: 6px;
+//   margin-right: 16px;
+//   font-size: 17px;
+// }
+
+
+
+
+
+
+
+div .tab{
+  overflow-x: scroll;
+}
+.table{
+  // width: 2050px;
+  height: 100px;
+}
+.pageHeader{
+  margin-top: 45px;
+  margin-right: 45px;
+}
+.bg-table-header{
+  text-align: center;
+  background-color:rgb(158,207,251) !important;
+}
+
+
 .topnav {
   overflow: hidden;
 
@@ -10,7 +68,6 @@
 
 }
 
-
 .form-control{
   border-color:#ced4da !important;
   box-shadow: 0 0 0 0.01rem  #ced4da !important;
@@ -18,16 +75,13 @@
 
 #nameVaccine {
 
-  width: 240px;
+  width: 280px;
   padding: 6px;
   margin-right: 16px;
   font-size: 17px;
 }
-
-
 #provider{
-
-  width: 180px;
+  width: 200px;
   padding: 6px;
   margin-right: 16px;
   font-size: 17px;

@@ -23,7 +23,7 @@ export class VaccineListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(listDataVac);
+
     this.vaccineService.getAllVaccineNotPagination().subscribe((data: IVaccineDTO[]) => {
       console.log(data);
       if(data!=null){
@@ -32,9 +32,8 @@ export class VaccineListComponent implements OnInit {
        }else {
         this.listDataVac=false;
        }
-      // this.vaccines = data;
 
-    });
+    }, error => console.log(error));
 
     this.searchVaccine = new FormGroup({
       nameVaccine: new FormControl(''),
@@ -47,12 +46,9 @@ export class VaccineListComponent implements OnInit {
   }
 
   search() {
-
-
     console.log(' tham số search : ',this.searchVaccine.value);
     this.vaccineService.search(this.searchVaccine.value.nameVaccine, this.searchVaccine.value.typeVaccine, this.searchVaccine.value.originVaccine,
       this.searchVaccine.value.statusVaccine).subscribe((data: IVaccineDTO[]) => {
-      // return this.vaccines = data
       if(data!=null){
         this.vaccines = data;
         this.listDataVac=true;

@@ -27,7 +27,6 @@
                             <button class="btn btn-warning mt-xl-2" (keydown.enter)="resetSearch()" (click)="resetSearch()">
                                   <i class="fas fa-sync-alt"></i>
                             </button>
-
                         </div>
                         <div style="margin-top: 25px; margin-right: 15px;">
                             <button class="btn btn-success mt-xl-2"><i class="fa fa-search"></i>Tìm Kiếm</button>
@@ -56,7 +55,6 @@
                         <tr class="bg-table-header">
                             <th style="width: 20px">STT</th>
                             <th style="width: 100px">Tên Vaccine</th>
-
                             <th style="width: 70px">Số mũi tiêm</th>
                             <th style="width: 80px">Nước SX</th>
                             <th style="width: 50px">Số Lượng</th>
@@ -105,10 +103,7 @@
                             <td class="text-center">
 
                               <a class="btn btn-warning mr-3"   [routerLink]="['/vaccine-edit',vaccine.id]"><i class="fa fa-edit"></i></a>
-                              <!-- <button type="button" class="btn btn-warning mr-3"
-                              [routerLink]="['/vaccine-edit',vaccine.id]">
-                                <i class="fa fa-edit"></i>
-                              </button> -->
+
                                 <button class="btn btn-success" [disabled]="vaccine.quantity === 0" [routerLink]="['/import-and-export/' + vaccine.id ]">Xuất Kho
                                 </button>
 
