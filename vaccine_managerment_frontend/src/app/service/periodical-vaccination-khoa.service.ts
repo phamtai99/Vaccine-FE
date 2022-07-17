@@ -7,11 +7,15 @@ import {
   TimeStamp
 } from "../periodical-vaccination/periodical-vaccination-list/periodical-vaccination-list.component";
 
+import {environment} from '../../environments/environment';
+
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class PeriodicalVaccinationKhoaService {
-  private apiServer = 'http://localhost:8666/api/public/vaccination/';
+  private apiServer = environment.API_URL+'api/public/vaccination/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

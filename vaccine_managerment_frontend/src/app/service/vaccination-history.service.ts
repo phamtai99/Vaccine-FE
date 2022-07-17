@@ -4,19 +4,20 @@ import {Observable, throwError} from "rxjs";
 import {IVaccinationHistoryFeedbackDTO} from '../dto/IVaccinationHistoryFeedbackDTO';
 import {IVaccinationHistorySendFeedbackDTO} from "../dto/IVaccinationHistorySendFeedbackDTO";
 import {IVaccinationHistoryRegisteredDTO} from "../dto/IVaccinationHistoryRegisteredDTO";
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class VaccinationHistoryService {
-  private url = "http://localhost:8666/api/public";
+  private url = environment.API_URL+'api/public';
   private header: any;
   constructor(private http: HttpClient) {
     this.header = new Headers( {'Content-Type' : 'application/context'})
   }
 
-  private baseURL = 'http://localhost:8666/api/public';
+  private baseURL = environment.API_URL+'api/public';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

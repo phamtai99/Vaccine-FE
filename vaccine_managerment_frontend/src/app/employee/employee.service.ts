@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IEmployeeDTO} from "../entity/IEmployeeDTO";
 import {IEmployeeRoleDTO} from "../entity/IEmployeeRoleDTO";
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +11,7 @@ export class EmployeeService {
   /*
   * Hien thi, sua, xoa Employee
    */
-  private API_EMPLOYEE = 'http://localhost:8666/api/public';
+  private API_EMPLOYEE = environment.API_URL+'api/public';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

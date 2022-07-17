@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  API_URL: 'http://localhost:8666/',
   firebaseConfig: {
     apiKey: "AIzaSyDgAaDCU0ruCkZj_s94itJDBdCkWFCZ4no",
     authDomain: "vaccine-dd39a.firebaseapp.com",

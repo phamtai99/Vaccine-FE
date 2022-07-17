@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
@@ -11,7 +12,7 @@ import { IVaccineFindDTO } from '../entity/IVaccineFindDTO';
   providedIn: 'root'
 })
 export class VaccineService {
-  public API: string = "http://localhost:8666/api/public/";
+  private API = environment.API_URL+ 'api/public/';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
