@@ -16,6 +16,7 @@ export class VerificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
+      console.log("code : ",params['code']);
       let code = params['code'];
     if(code == null){
       this.isSendMail=false;

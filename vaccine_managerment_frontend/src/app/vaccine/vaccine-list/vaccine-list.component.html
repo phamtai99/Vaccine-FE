@@ -1,115 +1,126 @@
-<div class="content" >
-  <div class="container-fluid">
-    <div>
-      <h2 style="text-align: center">Quản Lý Kho Vắc-Xin</h2>
-    </div>
-
-    <form [formGroup]="searchVaccine" (ngSubmit)="search()">
-      <div class=" search row d-flex justify-content-md-end mb-4 text-right float-right">
-        <div class="col-xl-2 col-md-3 form-group" style="text-align: center">
-          <label for="nameVaccine">Tên vắc-xin</label>
-          <input id="nameVaccine" class="form-control" type="text" formControlName="nameVaccine">
-        </div>
-        <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
-          <div style="text-align: center">
-            <label for="typeVaccine">Loại Vắc-xin</label>
-          </div>
-          <div>
-            <input type="text" id="typeVaccine" class="form-control" formControlName="typeVaccine">
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
-          <div style="text-align: center">
-            <label for="provider">Nước Sản Xuất</label>
-          </div>
-          <div>
-            <input type="text" id="provider" class="form-control" formControlName="originVaccine">
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-3 form-group" style="text-align: right">
-          <label for="status">Tình trạng vắc-xin</label>
-          <select id="status" class="form-control" formControlName="statusVaccine">
-            <option [value]="'con'">Còn</option>
-            <option [value]="'het'">Hết</option>
-          </select>
-        </div>
-        <div class="col-xl-2 col-4" style="text-align: right">
-          <br>
-          <button class="btn btn-success mt-xl-2"><i class="fa fa-search"></i>Tìm Kiếm</button>
-        </div>
-      </div>
-    </form>
-
-    <div class="container mt-0">
-      <button class="btn btn-success mt-2 mb-md-3" routerLink="/vaccine-create"><i class="fa fa-plus"></i> Nhập Vắc-Xin
-      </button>
-    </div>
-
-
-    <div class="content" >
-      <div >
-        <h2 class="text-center">Danh Sách Vaccine</h2>
-      </div>
-      <div class="table-responsive-sm">
-        <table class="table table-hover table-striped table-bordered">
-          <thead>
-          <tr class="bg-table-header">
-            <th style="width: 20px">STT</th>
-            <th style="width: 100px" >Tên Vắc-Xin</th>
-            <th style="width: 80px">Loại Vắc-Xin</th>
-            <th style="width: 70px" >Ngày Nhận</th>
-
-            <th style="width: 80px">Nước SX</th>
-            <th style="width: 50px">Số Lượng</th>
-            <th style="width: 70px">Hạn Sử Dụng</th>
-            <th style="width: 80px">ĐK Bảo Quản</th>
-            <th style="width: 80px">Tuổi Tiêm Chủng</th>
-            <th style="width: 80px">Tình Trạng</th>
-            <th style="width: 80px">Chức Năng</th>
-          </tr>
-          </thead>
-          <tbody >
-          <tr *ngFor="let vaccine of vaccines | paginate: { itemsPerPage: 10, currentPage: p },index as i">
-            <td class="text-center">{{i + 1}}</td>
-            <td style="text-align: left">{{vaccine.name}}</td>
-            <td>{{vaccine.vaccineType}}</td>
-            <td>{{vaccine.dayReceive | date:'dd-MM-yyyy'}}</td>
-
-            <td>{{vaccine.origin}}</td>
-            <td class="text-center">{{vaccine.quantity}}</td>
-            <td>{{vaccine.expired | date:'dd-MM-yyyy'}}</td>
-            <td>{{vaccine.maintenance}}</td>
-            <td>{{vaccine.age}}</td>
-            <td class="text-center">
-              <div *ngIf="vaccine.quantity === 0; else elseBlock">
-                <div style="color: red">
-                  <label>Hết</label>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <h2 style="text-align: center">Quản Lý Kho Vaccine</h2>
                 </div>
-              </div>
-              <ng-template #elseBlock>
-                <div style="color: green">
-                  <label>Còn</label>
+                <form [formGroup]="searchVaccine" (ngSubmit)="search()">
+                    <div class="topnav">
+                        <div>
+                            <label for="nameVaccine">Tên Vaccine</label>
+                            <input id="nameVaccine" class="form-control" type="text" placeholder="Tên Vaccine" formControlName="nameVaccine">
+                        </div>
+                        <div>
+                            <label for="nameVaccine">Nước Sản Xuất</label>
+                            <input type="text" id="provider" class="form-control" placeholder="Nước sản xuất" formControlName="originVaccine">
+                        </div>
+                        <div style="margin-right: 20px;">
+                            <label for="status">Tình trạng </label>
+                            <select id="status" class="form-control" formControlName="statusVaccine">
+                              <option value="">Lựa chọn...</option>
+                              <option [value]="'con'">Còn</option>
+                              <option [value]="'het'">Hết</option>
+                            </select>
+                        </div>
+                        <div style="margin-top: 25px; margin-right: 20px;">
+                            <button class="btn btn-warning mt-xl-2" (keydown.enter)="resetSearch()" (click)="resetSearch()">
+                                  <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                        <div style="margin-top: 25px; margin-right: 15px;">
+                            <button class="btn btn-success mt-xl-2"><i class="fa fa-search"></i>Tìm Kiếm</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-4" style="margin-top: 60px">
+                <button class="btn btn-success mt-2 mb-md-3" routerLink="/vaccine-create">
+                    <i class="fa fa-plus"></i> Nhập Vaccine
+                </button>
+                <h2 style="text-align: center">Danh Sách Vaccine</h2>
+            </div>
+        </div>
+        <div *ngIf="listDataVac then listData else notData">
+
+        </div>
+        <ng-template #listData>
+            <div class="content">
+                <table class="table table-hover  table-bordered">
+                    <thead>
+                        <tr class="bg-table-header">
+                            <th style="width: 20px">STT</th>
+                            <th style="width: 100px">Tên Vaccine</th>
+                            <th style="width: 70px">Số mũi tiêm</th>
+                            <th style="width: 80px">Nước SX</th>
+                            <th style="width: 50px">Số Lượng</th>
+                            <th style="width: 70px">Hạn Sử Dụng</th>
+                            <th style="width: 80px">ĐK Bảo Quản</th>
+                            <th style="width: 80px">Tuổi Tiêm Chủng</th>
+                            <th style="width: 80px">Giá (VNĐ/mũi)</th>
+                            <th style="width: 60px">Tình Trạng</th>
+                            <th style="width: 120px">Chức Năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let vaccine of vaccines | paginate: { itemsPerPage: 10, currentPage: p },index as i">
+                            <td class="text-center">{{i + 1}}</td>
+                            <td style="text-align: left">{{vaccine.name}}</td>
+                            <td class="text-center">{{vaccine.times }}</td>
+                            <td>{{vaccine.origin}}</td>
+                            <td class="text-center">{{vaccine.quantity}}</td>
+                            <td>{{vaccine.expired | date:'dd-MM-yyyy'}}</td>
+                            <td>{{vaccine.maintenance}}</td>
+                            <td>{{vaccine.age}}</td>
+                            <td class="text-center">
+                              <div *ngIf="vaccine.price === 0; else elseBlocks">
+                                  <div >
+                                      <label>Miễn phí</label>
+                                  </div>
+                              </div>
+                              <ng-template #elseBlocks>
+                                  <div >
+                                      <label>{{vaccine.price}} VNĐ</label>
+                                  </div>
+                              </ng-template>
+                          </td>
+                            <td class="text-center">
+                                <div *ngIf="vaccine.quantity === 0; else elseBlock">
+                                    <div style="color: red">
+                                        <label>Hết</label>
+                                    </div>
+                                </div>
+                                <ng-template #elseBlock>
+                                    <div style="color: green">
+                                        <label>Còn</label>
+                                    </div>
+                                </ng-template>
+                            </td>
+                            <td class="text-center">
+
+                              <a class="btn btn-warning mr-3"   [routerLink]="['/vaccine-edit',vaccine.id]"><i class="fa fa-edit"></i></a>
+
+                                <button class="btn btn-success" [disabled]="vaccine.quantity === 0" [routerLink]="['/import-and-export/' + vaccine.id ]">Xuất Kho
+                                </button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageHeader">
+                    <pagination-controls previousLabel="Trước" nextLabel="Sau" class="float-right" (pageChange)="p=$event">
+                    </pagination-controls>
                 </div>
-              </ng-template>
-            </td>
-            <td class="text-center">
-              <button class="btn btn-success" [disabled]="vaccine.quantity === 0"
-                      [routerLink]="['/import-and-export/' + vaccine.id ]">Xuất Kho
-              </button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-
-    <div class="pageHeader">
-        <pagination-controls
-          previousLabel="Trước"
-          nextLabel="Sau"
-          class="float-right" (pageChange)="p=$event">
-        </pagination-controls>
+            </div>
+        </ng-template>
+        <ng-template #notData>
+            <div class="card-deck justify-content-center">
+                <h2 class="text-center text-danger">Không có kết quả được tìm thấy</h2>
+            </div>
+        </ng-template>
     </div>
-  </div>
-
-</div>
 </div>

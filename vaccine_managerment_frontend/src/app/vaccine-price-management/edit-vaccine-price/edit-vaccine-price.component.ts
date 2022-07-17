@@ -34,7 +34,7 @@ export class EditVaccinePriceComponent implements OnInit {
 
   ngOnInit(): void {
     /**
-     * Made by Khanh lấy id , validate
+     *  lấy id , validate
      */
     this.activatedRoute.params.subscribe(data => {
       this.exportId = Number(data.id)
@@ -48,7 +48,7 @@ export class EditVaccinePriceComponent implements OnInit {
     })
   }
   /**
-   * Made by Khanh sửa giá
+   *  sửa giá
    */
   submit() {
     this.importAndExportService.editPrice(this.exports.importAndExportId, this.formGroup.value.price).subscribe(data => {
@@ -57,7 +57,7 @@ export class EditVaccinePriceComponent implements OnInit {
     })
   }
   /**
-   * Made by Khanh thông báo hủy
+   *  thông báo hủy
    */
   getMessageCancel() {
     this.toastrService.warning('Bạn đã chọn hủy và giá văc xin không được cập nhật', 'Thông báo hủy.');

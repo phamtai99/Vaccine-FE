@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  private url = "http://localhost:8666/api/public";
+  private url =environment.API_URL+ 'api/public';
 
   constructor(private http: HttpClient) { }
 

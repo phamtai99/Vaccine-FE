@@ -1,6 +1,4 @@
-div.table{
-  overflow-x:scroll;
-}
+
 table{
   height:100px;
 
@@ -22,4 +20,10 @@ table{
   .map{
     width: 650px;
   }
+}
+
+
+.form-control{
+  border-color:#ced4da !important;
+  box-shadow: 0 0 0 0.01rem  #ced4da !important;
 }

@@ -4,13 +4,14 @@ import {IPatient} from "../entity/IPatient";
 import {Observable, throwError} from "rxjs";
 import {PatientDTO} from "../dto/PatientDTO";
 import {catchError} from "rxjs/operators";
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientService {
 
-  private url = "http://localhost:8666/api/public";
+  private url = environment.API_URL+'api/public';
 
   httpOptions = {
     headers: new HttpHeaders({

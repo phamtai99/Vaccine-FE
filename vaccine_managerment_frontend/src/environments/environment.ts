@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  // API_URL: 'http://localhost:8666/',
+  API_URL:'https://java-vaccine-systerm.herokuapp.com/',
   firebaseConfig: {
     apiKey: "AIzaSyDgAaDCU0ruCkZj_s94itJDBdCkWFCZ4no",
     authDomain: "vaccine-dd39a.firebaseapp.com",
@@ -15,11 +17,3 @@ export const environment = {
   }
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

@@ -1,24 +1,26 @@
 <div class="content">
-  <div class="container">
-    <h1 class="text-center mt-4 mb-4">Vắc-xin khuyến cáo cho bạn</h1>
-    <div  class="row justify-content-center">
-    <div class="mr-3 ml-3 mb-5" *ngFor="let v of vaccineList">
-      <div class="card" style="width: 18rem; height: 550px" >
-        <img src="https://vinmec-prod.s3.amazonaws.com/images/20191126_131524_007404_vac-xin.max-1800x1800.jpg"
-             class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{v.name}}</h5>
-          <p>Loại vắc-xin: {{v.vaccineType.name}}</p>
-          <p>Xuất xứ: {{v.origin}}</p>
-          <p>Độ tuổi: {{v.age}}</p>
-          <p>Lộ trình: {{v.duration * v.times}} ngày</p>
-          <p>Số lần: {{v.times}}</p>
-          <button *ngIf="v.quantity > 0" [routerLink]="'/vaccination-by-request/create/'+v.vaccineId"  class="btn btn-primary">Đăng ký tiêm</button>
-          <button *ngIf="v.quantity <= 0"  class="btn btn-danger" disabled>Đã hết</button>
+  <div class="container col-12">
+    <h1 class="text-center mt-4 mb-4">Vaccine khuyến cáo cho bạn</h1>
+    <div  class="row justify-content-center"   style=" margin-top: 60px;">
+      <div class="mr-3 ml-3 mb-5" *ngFor="let v of vaccineList">
+        <div class="card"  >
+          <img   [src]="v.image"
+              class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{v.name}}</h5>
+            <p>Xuất xứ: {{v.origin}}</p>
+            <p>Độ tuổi: {{v.age}}</p>
+            <p>Lộ trình: {{v.duration * v.times}} ngày</p>
+            <!-- <p>Số lần: {{v.times}}</p> -->
+            <button *ngIf="v.quantity > 0" [routerLink]="'/vaccination-by-request/create/'+v.vaccineId"  class="btn btn-success btn_register">Đăng ký tiêm</button>
+            <button *ngIf="v.quantity <= 0"  class="btn btn-danger btn_register" disabled>Đã hết</button>
+          </div>
         </div>
       </div>
     </div>
+    <div  class="form-group col-12 col-md-12 col-xl-12  headersss">
+      <button routerLink="/vaccination-by-request/list" class="btn btn-primary chile_footer " >Xem thêm</button>
     </div>
-    <button routerLink="/vaccination-by-request/list" class="btn btn-primary" style="margin-left: 500px">Xem thêm</button>
+
   </div>
 </div>

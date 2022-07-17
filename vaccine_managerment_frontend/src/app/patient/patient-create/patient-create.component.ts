@@ -57,7 +57,6 @@ export class PatientCreateComponent implements OnInit {
     ],
     email: [
       {type: 'required', message: 'Vui lòng nhập email'},
-      {type: 'pattern', message: 'Vui lòng nhập email đúng định dạng abcabc@abc.abc'}
     ],
     password:[
       {type: 'required', message: 'Vui lòng nhập mật khẩu'}
@@ -69,19 +68,23 @@ export class PatientCreateComponent implements OnInit {
     this.patientForm = new FormGroup(
       {
         book_id:new FormControl('',[Validators.required]),
-        name: new FormControl('', [Validators.required, Validators.maxLength(40), Validators.minLength(6), Validators.pattern("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+(\\s[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*$")]),
+        name: new FormControl('', [Validators.required, Validators.maxLength(40), Validators.minLength(6)]),
         dateOfBirth: new FormControl('', [Validators.required, checkDateOfBirth]),
         gender: new FormControl('', [Validators.required]),
-        guardian: new FormControl('', [Validators.maxLength(40),Validators.minLength(6), Validators.pattern("^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+(\\s[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*$")]),
+        guardian: new FormControl('', [Validators.maxLength(40),Validators.minLength(6) ]),
         phone: new FormControl('', [Validators.required, Validators.pattern("^(0|\\(\\+84\\))\\d{9}$")]),
         address: new FormControl('', [Validators.maxLength(200)]),
-        email: new FormControl('', [Validators.required, Validators.pattern("^\\w{5,}.?\\w+(@\\w{3,8})(.\\w{3,8})+$")]),
+        email: new FormControl('', [Validators.required]),
         password:new FormControl('',[Validators.required])
       },{validators: checkGuardian}
       );
   }
 
   onSubmit() {
+    console.log("Gia trị form  đăng kí gửi đi: ",this.patientForm.value)
+
+
+
     if(this.patientForm.invalid){
       console.log(this.patientForm.value)
       this.toastr.warning("Form phải được điền đúng định dạng","Warning:",{

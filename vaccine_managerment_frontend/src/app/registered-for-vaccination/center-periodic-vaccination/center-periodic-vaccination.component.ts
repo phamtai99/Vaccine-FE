@@ -17,22 +17,34 @@ export class CenterPeriodicVaccinationComponent implements OnInit {
   public page = 0;
   public pageable : any;
   public formGroup : FormGroup;
+  p:any;
 
-  config;any;
+  config:any;
+
+
 
 
 
   constructor(private vaccinationHistoryService: VaccinationHistoryService ) { }
 
+  // getListPeriodicVaccination(){
+  //   this.vaccinationHistoryService.getListPeriodicVaccination(this.page).subscribe(data => {
+  //     this.vaccinationHistoryList = data.content;
+  //     this.pageable = data;
+  //     this.config = {
+  //       itemsPerPage: data.size,
+  //       currentPage: this.page,
+  //       totalItems: data.totalElements
+  //     };
+  //     console.log(" Danh sách bệnh nhân đăng kí tiêm chủng định kì trung tâm :",data);
+  //   }, error =>
+  //     this.vaccinationHistoryList = []
+  //   );
+  // }
+
   getListPeriodicVaccination(){
-    this.vaccinationHistoryService.getListPeriodicVaccination(this.page).subscribe(data => {
-      this.vaccinationHistoryList = data.content;
-      this.pageable = data;
-      this.config = {
-        itemsPerPage: data.size,
-        currentPage: this.page,
-        totalItems: data.totalElements
-      };
+    this.vaccinationHistoryService.getAllListPeriodicVaccination().subscribe(data => {
+      this.vaccinationHistoryList = data;
       console.log(" Danh sách bệnh nhân đăng kí tiêm chủng định kì trung tâm :",data);
     }, error =>
       this.vaccinationHistoryList = []
@@ -56,11 +68,25 @@ export class CenterPeriodicVaccinationComponent implements OnInit {
       this.vaccinationHistoryList = []
     );
   }
+
+
+  // Tìm kiếm có phân trang
+  // searchPeriodicVaccination(){
+  //   this.vaccinationHistoryService.searchPeriodicVaccination(this.page,this.name,this.status).subscribe(data => {
+  //     this.vaccinationHistoryList = data.content;
+  //     this.pageable = data;
+  //     console.log(data);
+  //   }, error =>
+  //   this.vaccinationHistoryList = []
+  //   );
+  // }
+
+// Tìm kiếm ko phân trang
   searchPeriodicVaccination(){
-    this.vaccinationHistoryService.searchPeriodicVaccination(this.page,this.name,this.status).subscribe(data => {
-      this.vaccinationHistoryList = data.content;
-      this.pageable = data;
-      console.log(data);
+    this.vaccinationHistoryService.searchPeriodicVaccinationRegister(this.name,this.status).subscribe(data => {
+      this.vaccinationHistoryList = data;
+      // this.pageable = data;
+      console.log("Dữ liệu tìm kiếm :",data);
     }, error =>
     this.vaccinationHistoryList = []
     );
@@ -81,6 +107,13 @@ export class CenterPeriodicVaccinationComponent implements OnInit {
 
       }
     )
+  }
+
+
+  resetSearch(){
+    this.name='';
+    this.status='';
+    this.ngOnInit();
   }
 
 }

@@ -3,13 +3,15 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {EmployeeDto} from "../dto/EmployeeDto";
 import {catchError} from "rxjs/operators";
+import {environment} from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  private API_EMPLOYEE: string = 'http://localhost:8666/api/public';
+  private API_EMPLOYEE= environment.API_URL+'api/public';
   constructor(private httpClient: HttpClient) {
   }
   httpOptions = {

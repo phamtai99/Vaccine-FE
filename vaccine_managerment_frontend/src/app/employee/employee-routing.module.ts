@@ -9,21 +9,21 @@ import {AuthGuard} from "../security/auth.guard";
 const routes: Routes = [
   {path: 'employee', component: EmployeeListComponent,canActivate: [AuthGuard],
   data: {
-  roles: ['ROLE_ADMIN']
+  roles: ['ROLE_ADMIN','ROLE_YTA']
   }},
 
   {path: 'employee/edit-employee/:id', component: EmployeeEditComponent,canActivate: [AuthGuard],
     data: {
-      roles: ['ROLE_ADMIN']
+      roles: ['ROLE_ADMIN','ROLE_YTA']
     }},
 
   {path: 'employee/edit', component: EmployeeEditComponent,canActivate: [AuthGuard],
     data: {
-      roles: ['ROLE_ADMIN']
+      roles: ['ROLE_ADMIN','ROLE_YTA']
     }},
   {path: 'employee/create', component: EmployeeCreateComponent,canActivate: [AuthGuard],
     data: {
-      roles: ['ROLE_ADMIN']
+      roles: ['ROLE_ADMIN','ROLE_YTA']
     }}
 
 ];

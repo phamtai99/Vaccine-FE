@@ -27,6 +27,7 @@ export interface IVaccinationHistoryRegisteredDTO {
   vaccinationHistoryStatus : boolean;
 
   endTime : string;
+  startTime:string;
 
   dosage : string;
 

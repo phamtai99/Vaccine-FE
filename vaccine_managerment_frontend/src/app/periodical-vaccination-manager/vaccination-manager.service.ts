@@ -5,7 +5,7 @@ import {IVaccination} from '../entity/IVaccination';
 import {catchError} from 'rxjs/operators';
 import {ILocation} from '../entity/ILocation';
 import {IVaccine} from '../entity/IVaccine';
-
+import {environment} from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,9 +16,9 @@ export class VaccinationManagerService {
     }),
     'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
   };
-  private apiVaccinationManagerUrl = 'http://localhost:8666/api/public/vaccination-manager';
-  private apiLocationUrl = 'http://localhost:8666/api/public/vaccination-manager/locations';
-  private apiVaccineUrl = 'http://localhost:8666/api/public/vaccination-manager/vaccines';
+  private apiVaccinationManagerUrl = environment.API_URL+'api/public/vaccination-manager';
+  private apiLocationUrl = environment.API_URL+'api/public/vaccination-manager/locations';
+  private apiVaccineUrl = environment.API_URL+'api/public/vaccination-manager/vaccines';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -30,8 +30,9 @@ export class VaccinationManagerService {
       );
   }
 
-  searchDateAndNameOrStatus(startDate: any, endDate: any, name: any, status: any, pageable, type): Observable<any> {
-    return this.httpClient.get<any>(this.apiVaccinationManagerUrl + '/search?startDate=' + startDate + '&endDate=' + endDate
+  searchDateAndNameOrStatus(startDate: any, name: any, status: any, pageable, type:any): Observable<any> {
+
+    return this.httpClient.get<any>(this.apiVaccinationManagerUrl + '/search?startDate=' + startDate
       + '&name=' + name + '&status=' + status + '&pageable=' + pageable + '&type=' + type)
       .pipe(
         catchError(this.errorHandler)

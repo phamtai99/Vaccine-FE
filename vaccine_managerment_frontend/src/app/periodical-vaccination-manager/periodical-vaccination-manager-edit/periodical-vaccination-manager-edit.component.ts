@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
+import {ILocationVaccination} from '../../entity/ILocationVaccination';
 import {IVaccination} from '../../entity/IVaccination';
 import {IVaccine} from '../../entity/IVaccine';
 import {ILocation} from '../../entity/ILocation';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {VaccinationManagerService} from '../vaccination-manager.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, ParamMap, Route, Router} from "@angular/router";
 import {DateValidator} from '../commons/validatorDate.validator';
 import {ValidatorFormGroup} from '../commons/validatorTime.validator';
 import {MessageManager} from "../commons/message-manager";
@@ -17,7 +18,7 @@ import {MessageManager} from "../commons/message-manager";
 export class PeriodicalVaccinationManagerEditComponent implements OnInit {
 
   idVaccination: number;
-  vaccinations: IVaccination;
+  vaccinations: ILocationVaccination;
   vaccineList: IVaccine[] = [];
   locationList: ILocation[] = [];
 
@@ -30,7 +31,7 @@ export class PeriodicalVaccinationManagerEditComponent implements OnInit {
   formGroup: FormGroup;
   defaultValue = false;
 
-  /**TrungTQ Code: Thông báo validate*/
+  /** Thông báo validate*/
   statusString: string = 'Chưa thực hiện';
   messageTime: string = 'Thời gian kết thúc phải sau thời gian bắt đầu!';
   timeDurationOne: string = 'Số mũi tiêm nếu bằng có 1 thì ngày tiếp mũi tiếp tiếp theo phải bằng 0';
@@ -50,9 +51,7 @@ export class PeriodicalVaccinationManagerEditComponent implements OnInit {
     'vaccineId': [
       {type: 'required', message: 'Trường này không được để trống!'}
     ],
-    // 'locationId': [
-    //   {type: 'required', message: 'Trường này không được để trống!'}
-    // ],
+
     'description': [
       {type: 'required', message: 'Ghi chú không được để trống!'},
       {type: 'maxlength', message: 'Không nhập ghi chú quá dài!'},
@@ -64,6 +63,7 @@ export class PeriodicalVaccinationManagerEditComponent implements OnInit {
   constructor(public formBuilder: FormBuilder,
               public vaccinationManagerService: VaccinationManagerService,
               public route: ActivatedRoute,
+
               public router: Router,
               public messageManager: MessageManager) {
   }
@@ -72,54 +72,77 @@ export class PeriodicalVaccinationManagerEditComponent implements OnInit {
     this.getAllLocation();
     this.getAllVaccine();
     this.idVaccination = this.route.snapshot.params['idVaccinationManager'];
-    this.vaccinationManagerService.findByIdVaccination(this.idVaccination).subscribe((data: IVaccination) => {
+
+    this.formGroup = this.formBuilder.group({
+      vaccinationId: [''],
+      startTime: [''],
+      endTime: [''],
+      date: [''],
+      description: ['', [Validators.required]],
+      locationId: [''],
+      status: [''],
+      times: [''],
+      age:[''],
+      name:['', [Validators.required]],
+      type:['', [Validators.required]]
+    });
+
+    // alert(" mã caccine ID : "+ this.idVaccination );
+    this.vaccinationManagerService.findByIdVaccination(this.idVaccination).subscribe((data: ILocationVaccination) => {
       this.vaccinations = data;
-      console.log(data);
-      this.formGroup = this.formBuilder.group({
-        vaccinationId: [this.vaccinations.vaccinationId],
-        date: [this.vaccinations.date, [Validators.required, DateValidator]],
-        vaccineId: [this.vaccinations.vaccine.vaccineId, [Validators.required]],
-        // locationId: [this.vaccinations.location.locationId, [Validators.required]],
-        startTime: [this.vaccinations.startTime, [Validators.required]],
-        endTime: [this.vaccinations.endTime, [Validators.required]],
-        description: [this.vaccinations.description, [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
-      }, {validators: ValidatorFormGroup});
+      console.log(" Thong tin tiem chung: ",data);
+      this.formGroup.patchValue(data);
+      // this.formGroup = this.formBuilder.group({
+      //   vaccinationId: [this.vaccinations.vaccinationId],
+      //   date: [this.vaccinations.date, [Validators.required, DateValidator]],
+      //   vaccineId: [this.vaccinations.vaccine.vaccineId, [Validators.required]],
+      //   // locationId: [this.vaccinations.location.locationId, [Validators.required]],
+      //   startTime: [this.vaccinations.startTime, [Validators.required]],
+      //   endTime: [this.vaccinations.endTime, [Validators.required]],
+      //   description: [this.vaccinations.description, [Validators.required, Validators.maxLength(50), Validators.minLength(5)]],
+      // }, {validators: ValidatorFormGroup});
       this.defaultValue = true;
     });
+
+
+
   }
 
-  /**TrungTQ Code: Lấy dữ liệu khi có sự kiện*/
-  getValue(vaccineId: any) {
-    for (let i = 0; i < this.vaccineList.length; i++) {
-      if (this.vaccineList[i].vaccineId == parseInt(vaccineId)) {
-        this.valueAge = this.vaccineList[i].age;
-        this.valueNameVaccine = this.vaccineList[i].vaccineType.name;
-        this.valueTimes = this.vaccineList[i].times;
-        this.valueDuration =this.vaccineList[i].duration;
-      }
-    }
-  }
+  /** Lấy dữ liệu khi có sự kiện*/
+  // getValue(vaccineId: any) {
+  //   for (let i = 0; i < this.vaccineList.length; i++) {
+  //     if (this.vaccineList[i].vaccineId == parseInt(vaccineId)) {
+  //       this.valueAge = this.vaccineList[i].age;
+  //       this.valueNameVaccine = this.vaccineList[i].vaccineType.name;
+  //       this.valueTimes = this.vaccineList[i].times;
+  //       this.valueDuration =this.vaccineList[i].duration;
+  //     }
+  //   }
+  // }
 
-  /**TrungTQ Code: Lấy danh sách địa điểm*/
+  /** Lấy danh sách địa điểm*/
   getAllLocation() {
     this.vaccinationManagerService.getAllLocation().subscribe((data: ILocation[]) => {
       this.locationList = data;
+      console.log(" Danh sach đia diem : ",data);
     });
   };
 
-  /**TrungTQ Code: Lấy danh sách vaccine*/
+  /** Lấy danh sách vaccine*/
   getAllVaccine() {
     this.vaccinationManagerService.getAllVaccine().subscribe((data: IVaccine[]) => {
       this.vaccineList = data;
     });
   };
 
-  /**TrungTQ Code: Xong thì quay lại trang chủ*/
+  /** Xong thì quay lại trang chủ*/
   submitForm() {
     if (this.formGroup.invalid) {
       this.messageManager.showMessageCreateNotRole();
       return;
     } else {
+
+      console.log(" Mã lịch tiêm : "+ this.idVaccination + " tham số "+ this.formGroup.value);
       this.vaccinationManagerService.updateVaccinationManager(this.idVaccination, this.formGroup.value).subscribe(data => {
         if (data === null) {
           this.messageError = data[0].defaultMessage;

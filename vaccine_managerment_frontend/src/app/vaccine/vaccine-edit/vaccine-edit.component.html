@@ -1,0 +1,106 @@
+<div class="container">
+  <h2 style="text-align: center;font-weight: bold; margin-top: 5%;"> Chỉnh sửa Thông Tin Vaccine </h2>
+  <form  [formGroup]="formEditVaccine" (ngSubmit)="save()"   style="margin-top: 8%;">
+
+    <div class="row">
+
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="tenvac-xin" class="mr-3">Tên Vaccine <span style="color: red">*</span></label>
+        <input type="text" id="tenvac-xin" class="form-control" formControlName="name" placeholder="Tên vaccine"  >
+        <small class="text-danger" *ngIf="formEditVaccine.controls.name.errors?.required && formEditVaccine.controls.name.touched">
+          Không được để trống!
+        </small>
+        <small class="text-danger"
+               *ngIf="formEditVaccine.controls.name.errors?.pattern && formEditVaccine.controls.name.touched"
+               class="text-danger">
+          Tên không được là số hoặc ký tự đặc biệt!
+        </small>
+        <small class="text-danger"
+               *ngIf="formEditVaccine.get('name').hasError('maxlength') && formEditVaccine.controls.name.touched"
+               class="text-danger">
+          Tên không được dài hơn 40 ký tự!
+        </small>
+      </div>
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="loaivac-xin" class="mr-3">Loại Vaccine <span style="color: red">*</span></label>
+        <input type="text" id="loaivac-xin" class="form-control" formControlName="vaccineType" placeholder="Loại vaccine">
+        <small class="text-danger" *ngIf="formEditVaccine.controls.vaccineType.errors?.required && formEditVaccine.controls.vaccineType.touched">
+          Không được để trống!
+        </small>
+      </div>
+
+
+
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+         <label for="sogiayphep" class="mr-3">Số Giấy Phép <span style="color: red">*</span></label>
+         <input type="text" min="0" id="sogiayphep" class="form-control" formControlName="licenseCode" placeholder="Số giấy phép">
+         <small class="text-danger" *ngIf="formEditVaccine.controls.licenseCode.errors?.required && formEditVaccine.controls.licenseCode.touched">
+          Không được để trống!
+        </small>
+      </div>
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="nuocsx" class="mr-3">Nước Sản Xuất <span style="color: red">*</span></label>
+        <input type="text" id="nuocsx" class="form-control" formControlName="origin"  placeholder="Nước sản xuất">
+
+      </div>
+
+
+
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="dongia" class="mr-3">Đơn Giá <span style="color: red">*</span></label>
+        <input type="number" min="0" id="dongia" class="form-control" formControlName="price" placeholder="Giá">
+
+      </div>
+
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="hamluong" class="mr-3">Hàm Lượng (ml)<span style="color: red">*</span></label>
+        <input type="text" id="hamluong" class="form-control" formControlName="dosage" placeholder="Hàm lượng">
+
+      </div>
+
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="solo" class="mr-3">Số Lượng <span style="color: red">*</span></label>
+        <input type="number" min="0" id="solo" class="form-control" formControlName="quantity" placeholder="Số lượng">
+
+      </div>
+
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="hansudung" class="mr-3">Hạn Sử Dụng <span style="color: red">*</span></label>
+            <input type="date" id="hansudung" class="form-control" formControlName="expired" placeholder="Hạn sử dụng">
+        
+      </div>
+
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="dkbaoquan">Điều Kiện Bảo Quản<span style="color: red">*</span></label>
+          <input type="text" id="dkbaoquan" class="form-control" formControlName="maintenance"  placeholder="Điều kiện bảo quản">
+
+      </div>
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="dotuoi" class="mr-3">Độ Tuổi Tiêm Chủng<span
+          style="color: red">*</span></label>
+        <input type="text" id="dotuoi" class="form-control" formControlName="age" placeholder="Độ tuổi tiêm ">
+
+      </div>
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="times" class="mr-3">Số Lần Tiêm <span style="color: red">*</span></label>
+        <input type="number" min="0" id="times" class="form-control" formControlName="times" placeholder="Số lần tiêm">
+
+      </div>
+
+      <div  class="form-group col-12 col-md-4 col-xl-4">
+        <label for="duration" class="mr-3">Khoảng Cách Tiêm(Ngày) <span style="color: red">*</span></label>
+          <input type="number" min="0" id="duration" class="form-control" formControlName="duration" placeholder="Khoảng cách tiêm">
+
+      </div>
+
+
+    </div>
+    <div class="d-flex justify-content-end mt-3">
+      <button  class="btn btn-primary mr-5" type="submit">
+        Cập nhật
+      </button>
+      <button class="btn btn-dark" [routerLink]="['/vaccine-list']"  style="width: 8%;">Hủy</button>
+    </div>
+  </form>
+</div>
+

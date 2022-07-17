@@ -3,16 +3,14 @@
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5">
         <div class="card-body">
-          <h5 class="card-title text-isLoggedIncenter"> Đăng Nhập</h5>
+          <h5 class="card-title text-isLoggedIncenter  text-center"> Đăng Nhập</h5>
           <form class="form-signin" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
             <div class="form-label-group">
-              <!--                            <label for="inputEmail">Tên tài khoản:</label>-->
-              <input autofocus formControlName="username" type="text" id="inputEmail" class="form-control"
+              <input  formControlName="username" type="text" id="inputEmail" class="form-control"
                      placeholder="Tên tài khoản">
             </div>
-
             <div class="form-label-group">
-              <!--                            <label for="inputPassword">Mật khẩu:</label>-->
+
               <input formControlName="password" type="password" id="inputPassword" class="form-control"
                      placeholder="Mật khẩu"
                      required>

@@ -19,6 +19,8 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
   public page = 0;
   config;any;
 
+  p:any;
+
   formGroup: FormGroup;
   str = 'Ngày';
   public startDate = '';
@@ -38,51 +40,6 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
 
   }
 
-  validate_message = {
-    'startDateInput': [
-      {type: 'required', message: 'Trường này không được để trống!'},
-    ],
-    'endDateInput': [
-      {type: 'required', message: 'Trường này không được để trống!'},
-    ],
-    'nameInput': [
-      {type: 'maxlength', message: 'Số ký tự tối đa không quá 10 ký tự!'},
-    ]
-  };
-
-  pageChanged(event){
-    this.config.currentPage = event;
-    // this.searchDateAndNameOrStatus(event-1, 1);
-    if (this.startDate === '' && this.endDate === '' && this.name === '' && this.status === '') {
-      this.startDate = '';
-      this.endDate = '';
-      this.name = '';
-      this.status = '';
-      this.vaccinationManagerService.getAllVaccination(event-1, 1).subscribe(data => {
-        this.listVaccination = data;
-        this.config = {
-          itemsPerPage: data.size,
-          currentPage: event,
-          totalItems: data.totalElements
-        };
-        console.log("Danh sách lịch tiêm chủng định kỳ trung tâm phần quản trị :",data);
-      }, error => console.log(error));
-    } else {
-      this.vaccinationManagerService.searchDateAndNameOrStatus(this.startDate, this.endDate, this.name, this.status, event-1, 1).subscribe(data => {
-        if (data === null) {
-          this.messageManager.showSearchWarning();
-          this.getAllVaccinationManager(event-1, 1);
-        } else {
-          this.config = {
-            itemsPerPage: data.size,
-            currentPage: event,
-            totalItems: data.totalElements
-          };
-          this.listVaccination = data;
-        }
-      });
-    }
-  }
 
 
 
@@ -93,51 +50,50 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
       nameInput: ['', Validators.maxLength(10)],
       statusInput: [''],
     }, {validators: DateSearchValidator});
-    this.getAllVaccinationManager(0, 1);
+    this.searchVaccinationManager(0, 1);
   }
 
   /** Tìm kiếm và phân trang*/
   searchDateAndNameOrStatus(pageable, type) {
-    if (this.startDate === '' && this.endDate === '' && this.name === '' && this.status === '') {
-      this.getAllVaccinationManager(pageable, type)
-    } else {
+
       this.searchVaccinationManager(pageable, type);
-    }
+
   }
 
-  /** Hiện danh sách và phân trang*/
-  getAllVaccinationManager(pageable, type) {
+
+  ResetsearchVaccinationManager(){
     this.startDate = '';
-    this.endDate = '';
     this.name = '';
     this.status = '';
-    this.vaccinationManagerService.getAllVaccination(pageable, type).subscribe(data => {
-      this.listVaccination = data;
-      this.config = {
-        itemsPerPage: data.size,
-        currentPage: this.page,
-        totalItems: data.totalElements
-      };
-      console.log("Danh sách lịch tiêm chủng định kỳ trung tâm phần quản trị :",data);
-    }, error => console.log(error));
+    this.ngOnInit();
   }
 
   /** Hiện danh sách tìm kiếm*/
   searchVaccinationManager(pageable, type) {
-    this.vaccinationManagerService.searchDateAndNameOrStatus(this.startDate, this.endDate, this.name, this.status, pageable, type).subscribe(data => {
+
+    this.vaccinationManagerService.searchDateAndNameOrStatus(this.startDate, this.name, this.status, pageable, type).subscribe(data => {
       if (data === null) {
         this.messageManager.showSearchWarning();
-        this.getAllVaccinationManager(pageable, type);
+      
       } else {
-        this.config = {
-          itemsPerPage: data.size,
-          currentPage: this.page,
-          totalItems: data.totalElements
-        };
+
         this.listVaccination = data;
+        console.log("Danh sanh tim kiem : ",     this.listVaccination)
       }
-    });
+    },error => console.log(error));
   }
+
+
+
+
+
+
+
+
+
+
+
+
 
   /** Xóa theo biến flag*/
   deleteVaccinationManager() {
@@ -159,8 +115,8 @@ export class PeriodicalVaccinationManagerListComponent implements OnInit {
   getContentVaccination(id: number, date: string, location: string, vaccineType: string, vaccine: string) {
     this.vaccinationId = id;
     this.locationName = location;
-    this.vaccineTypeName = vaccineType;
-    this.vaccineName = vaccine;
+    this.vaccineTypeName = vaccine;
+    this.vaccineName = vaccineType;
     this.dateVaccination = date;
   }
 

@@ -18,6 +18,8 @@ export class VaccinationHistoryFeedbackComponent implements OnInit {
   vaccinationHistoryId;
   accountEmail: string;
   isSubmited = false;
+
+  time:string;
   constructor(
     private vaccinationHistoryService: VaccinationHistoryService,
     private activatedRoute: ActivatedRoute,
@@ -31,7 +33,7 @@ export class VaccinationHistoryFeedbackComponent implements OnInit {
   ngOnInit(): void {
     this.getAccountEmail();
     this.formGroup = this.formBuilder.group({
-      afterStatus: ['', [Validators.required, Validators.maxLength(40),
+      afterStatus: ['', [Validators.required, Validators.maxLength(140),
         Validators.pattern('^[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ,;-]+(\\s[a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ,;-]+)*$'),
 
       ]]
@@ -40,6 +42,8 @@ export class VaccinationHistoryFeedbackComponent implements OnInit {
       this.vaccinationHistoryService.findByIdVaccinationHistory(paramMap.get('id')).subscribe((data: IVaccinationHistoryFeedbackDTO) => {
         this.vaccinationHistoryId = paramMap.get('id');
         this.vaccinationHistoryFeedback = data;
+
+        this.time=this.vaccinationHistoryFeedback.startTime + ' - '+ this.vaccinationHistoryFeedback.endTime
         console.log("Dữ liệu phản ánh :", data);
       });
       this.vaccinationHistoryService.findByAfterStatus(paramMap.get('id')).subscribe((data: IVaccinationHistorySendFeedbackDTO) => {
@@ -59,6 +63,7 @@ export class VaccinationHistoryFeedbackComponent implements OnInit {
     if (this.formGroup.invalid){
       this.toast.error("Vui lòng nhập thông tin!");
     }else{
+      console.log("Dữ liệu form gửi đi  :", this.formGroup.value);
       this.isSubmited = true;
       this.vaccinationHistoryService.updateFeedback(this.vaccinationHistoryId, this.formGroup.value).subscribe( data => {
         this.vaccinationHistoryService.sendMailFeedbackForAdmin(this.formGroup.value.afterStatus, this.accountEmail).subscribe(data =>{

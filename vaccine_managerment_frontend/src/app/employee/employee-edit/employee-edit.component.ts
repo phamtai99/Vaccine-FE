@@ -29,6 +29,7 @@ export class EmployeeEditComponent implements OnInit {
   accountList: IAccount[];
   roleList: IRole[];
   employee: IEmployeeRoleDTO;
+
   constructor(
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,
@@ -42,7 +43,7 @@ export class EmployeeEditComponent implements OnInit {
   ) {
     this.positionService.findAll().subscribe(data => {
       this.positionList = data;
-      console.log(data);
+      console.log("Vi tri ",data);
     });
     this.accountService.findAll().subscribe(data => {
       this.accountList = data;
@@ -56,20 +57,7 @@ export class EmployeeEditComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.employeeService.getAllEmployee().subscribe(data => {
-    //   this.employeeFormEdit = this.formBuilder.group({
-    //     employeeId: [''],
-    //     name: ['', [Validators.required, Validators.pattern('^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡù' +
-    //       'úụủũưừứựửữỳýỵỷỹđ]+(\\\\s[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*$')]],
-    //     dateOfBirth: ['', [Validators.required, birthdayValidator()]],
-    //     idCard: [''],
-    //     address: [''],
-    //     phone: [''],
-    //     position: [''],
-    //     account: [''],
-    //     role: ['']
-    //   });
-    // });
+
     this.employeeFormEdit = this.formBuilder.group({
       employeeId: [''],
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợở' +
@@ -81,13 +69,16 @@ export class EmployeeEditComponent implements OnInit {
       phone: ['', [Validators.required, Validators.pattern('^(090|091|\\(84\\)\\+90|\\(84\\)\\+91)\\d{7}$')]],
       position: [''],
       account: [''],
-      role: ['']
+      role: [''],
+      email:['']
     });
 
     this.activatedRoute.paramMap.subscribe((data :ParamMap) => {
+      console.log("Thoong tin data : ",data);
       this.employeeId = data.get('id');
       this.employeeService.findById(this.employeeId).subscribe(data => {
         this.employee = data;
+        console.log("Thoong tin nhan vien : ",this.employee);
         this.employeeFormEdit.patchValue(data);
 
       });
@@ -103,7 +94,7 @@ export class EmployeeEditComponent implements OnInit {
 
     this.employeeService.editEmployee(this.employeeFormEdit.value).subscribe(
       () => {
-        console.log(this.employeeFormEdit.value);
+        console.log("edit nhanh :",this.employeeFormEdit.value);
         this.router.navigateByUrl('/employee').then(r => this.alertService.showAlertSuccess('Chỉnh sửa thành công!'));
       }
     );

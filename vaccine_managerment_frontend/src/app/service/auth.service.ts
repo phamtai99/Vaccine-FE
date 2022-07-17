@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 
-const AUTH_API = 'http://localhost:8666/api/public/';
+const AUTH_API = environment.API_URL+'api/public/';
 
 
 @Injectable({
@@ -46,6 +47,8 @@ export class AuthService {
 
   verify(code:string): Observable<any> {
     console.log(code);
+
+   
     return this.http.post(AUTH_API + 'verify', {
       code: code
     }, this.httpOptions);

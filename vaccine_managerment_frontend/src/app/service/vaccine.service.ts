@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class VaccineService {
 
-  private url = "http://localhost:8666/api/public";
+  private url = environment.API_URL+'api/public';
 
   private header: any;
 
@@ -24,7 +24,7 @@ export class VaccineService {
     return this.http.get<any>(this.url + '/vaccination/get-vaccine/' + vaccineId);
   }
 
-  getAllVaccine(): Observable<any> {
-    return this.http.get<any>(this.url + '/get-list-vaccine')
+  getAllVaccine(name: string): Observable<any> {
+    return this.http.get<any>(this.url + '/get-list-vaccine?name='+name)
   }
 }

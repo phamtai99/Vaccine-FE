@@ -48,6 +48,8 @@ export class PeriodicalVaccinationListComponent implements OnInit {
   patient: object;
   p:any;
 
+  lenghtListData:any;
+
   public page = 0;
   config:any;
 
@@ -64,7 +66,6 @@ export class PeriodicalVaccinationListComponent implements OnInit {
   pageChanged(event){
     console.log(" event : ", event)
     this.config.currentPage = event;
-
   }
   searchPeriodicalVaccination() {
     this.searchData.date='';
@@ -78,17 +79,27 @@ export class PeriodicalVaccinationListComponent implements OnInit {
       this.searchData.date += '-' + this.changeNumberFormat(this.selectedDay,2)
     }
     console.log(" Tham số searchData: ",this.searchData);
-    this.vaccinationService.findTotalPage(this.searchData).subscribe((data: number) => {
-      this.searchData.maxPage = data;
-    }, error => console.log(error));
+    // this.vaccinationService.findTotalPage(this.searchData).subscribe((data: number) => {
+    //   this.searchData.maxPage = data;
+    // }, error => console.log(error));
     this.vaccinationService.findCustomVaccination(this.searchData).subscribe( (data: IPeriodicalVaccinationDTO[]) => {
-      this.registrableVaccinationList = data;
-      console.log(" danh sách vaccine tiêm chủng định kỳ :",data)
+      if(data!=null){
+        this.registrableVaccinationList = data;
+        // if(this.registrableVaccinationList.length>0){
+        //   this.lenghtListData=true;
+        // }else{
+        //   this.lenghtListData=false;
+        // }
+        this.lenghtListData=true;
+        
+        console.log(" danh sách vaccine tiêm chủng định kỳ :",this.registrableVaccinationList)
+      }else {
+        this.lenghtListData=false;
+        console.log(" danh sách vaccine :",data);
+      }
+     
     }, error => console.log(error))
   }
-
-
-
 
   getAgeList(): void {
     this.vaccinationService.getAgeList().subscribe( data => {
@@ -111,37 +122,6 @@ export class PeriodicalVaccinationListComponent implements OnInit {
     this.getAgeList();
     this.getTimeList();
     this.ngOnInit();
-  }
-
-  goFirstPage() {
-    this.searchData.currentPage = 1;
-    this.searchPeriodicalVaccination();
-  }
-
-  goPreviousPage() {
-    this.searchData.currentPage--;
-    this.searchPeriodicalVaccination();
-  }
-
-  goNextPage() {
-    this.searchData.currentPage++;
-    this.searchPeriodicalVaccination();
-  }
-
-  goLastPage() {
-    this.searchData.currentPage = this.searchData.maxPage;
-    this.searchPeriodicalVaccination();
-  }
-
-  goCustomPage() {
-    console.log(this.searchData.currentPage);
-    if (this.searchData.currentPage > this.searchData.maxPage){
-      this.searchData.currentPage = this.searchData.maxPage
-    }
-    if (this.searchData.currentPage < 1) {
-      this.searchData.currentPage = 1
-    }
-    this.searchPeriodicalVaccination();
   }
 
   clearSearch() {
@@ -171,6 +151,7 @@ export class PeriodicalVaccinationListComponent implements OnInit {
       this.patient = this.tokenStorageService.getUser().patient;
     }
   }
+
   changeNumberFormat(num: string, formatNum: number): string {
     let outPut: string = '';
     for (let i = 0; i < formatNum - num.toString().length; i++ ) {

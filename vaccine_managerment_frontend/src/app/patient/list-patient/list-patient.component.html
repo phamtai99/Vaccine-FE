@@ -1,13 +1,13 @@
 <div class="content">
   <div class="container col-10">
     <h1 class="text-center mt-4 mb-4">Danh Sách Bệnh Nhân</h1>
-    <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 text-center">
+    <div class="search row d-flex justify-content-xl-end justify-content-center mb-4 ">
       <div class="col-xl-2 col-md-3">
         <label for="vaccineType">Mã Bệnh Nhân</label>
         <input (keydown.enter)="getSearch(0)" [(ngModel)]="patientId" id="vaccineType" class="form-control" type="text"
                placeholder="Mã Bệnh Nhân">
       </div>
-      <div class="col-xl-2 col-md-3">
+      <div class="col-xl-2 col-md-3" style="margin-right: -60px;">
         <label for="provider">Họ Và Tên</label>
         <input (keydown.enter)="getSearch(0)" [(ngModel)]="name" id="provider" class="form-control" type="text"
                placeholder="Họ Và Tên">

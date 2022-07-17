@@ -4,19 +4,20 @@ import {Observable, throwError} from "rxjs";
 import {IVaccinationHistoryFeedbackDTO} from '../dto/IVaccinationHistoryFeedbackDTO';
 import {IVaccinationHistorySendFeedbackDTO} from "../dto/IVaccinationHistorySendFeedbackDTO";
 import {IVaccinationHistoryRegisteredDTO} from "../dto/IVaccinationHistoryRegisteredDTO";
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class VaccinationHistoryService {
-  private url = "http://localhost:8666/api/public";
+  private url = environment.API_URL+'api/public';
   private header: any;
   constructor(private http: HttpClient) {
     this.header = new Headers( {'Content-Type' : 'application/context'})
   }
 
-  private baseURL = 'http://localhost:8666/api/public';
+  private baseURL = environment.API_URL+'api/public';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -53,6 +54,12 @@ export class VaccinationHistoryService {
     return this.http.get<any>(this.url + '/periodic-vaccination/search?name='+ name + '&status='+status + '&page=' + page);
   }
 
+  searchPeriodicVaccinationRegister( name: string, status: string) {
+    return this.http.get<any>(this.url + '/periodic-vaccination/searchPatientRegistered?name='+ name + '&status='+status );
+  }
+
+
+
   /**
    * @param page
    * @param name
@@ -61,16 +68,34 @@ export class VaccinationHistoryService {
     return this.http.get<any>(this.url + '/periodic-vaccination/list?page=' + page);
   }
 
-  getAllRegisteredRequired(page: number, id: number, name: string) {
-    return this.http.get<any>(this.url + '/registered-for-vaccination/list?name='+ name + '&id=' + id + '&page=' + page);
+
+  getAllListPeriodicVaccination() {
+    return this.http.get<any>(this.url + '/periodic-vaccination/listPatientRegistered' );
+  }
+
+
+
+  // getAllRegisteredRequired(page: number, id: number, name: string) {
+  //   return this.http.get<any>(this.url + '/registered-for-vaccination/list?name='+ name + '&id=' + id + '&page=' + page);
+  // }
+
+
+  getAllRegisteredRequired() {
+    return this.http.get<any>(this.url + '/registered-for-vaccination/AllRegisteredVaccinationHisTry');
   }
 
   /**
    * search and paging
    */
-  searchRegisteredRequired(page: number,id: number, name: string, status: string) {
-    return this.http.get<any>(this.url + '/registered-for-vaccination/search?name='+ name + '&id='+id + '&status='+status + '&page=' + page);
+  // searchRegisteredRequired(page: number,id: number, name: string, status: string) {
+  //   return this.http.get<any>(this.url + '/registered-for-vaccination/search?name='+ name + '&id='+id + '&status='+status + '&page=' + page);
+  // }
+
+
+  searchRegisteredRequired( name: string, status: string) {
+    return this.http.get<any>(this.url + '/registered-for-vaccination/searchRegisteredVaccination?name='+ name +  '&status='+status );
   }
+
 
   /**
    * find by Id

@@ -17,15 +17,23 @@ export class VaccineListComponent implements OnInit {
   listVaccineNotPagination: IVaccineDTO[] = [];
   p: any ;
 
+  listDataVac:any;
+
   constructor(private vaccineService: VaccineService) {
   }
 
   ngOnInit(): void {
+
     this.vaccineService.getAllVaccineNotPagination().subscribe((data: IVaccineDTO[]) => {
       console.log(data);
-      this.vaccines = data;
+      if(data!=null){
+        this.vaccines = data;
+        this.listDataVac=true;
+       }else {
+        this.listDataVac=false;
+       }
 
-    });
+    }, error => console.log(error));
 
     this.searchVaccine = new FormGroup({
       nameVaccine: new FormControl(''),
@@ -34,64 +42,29 @@ export class VaccineListComponent implements OnInit {
       statusVaccine: new FormControl('')
     });
 
-    // this.vaccineService.getAllVaccineNotPagination().subscribe((data: IVaccineDTO[]) => {
 
-    //   this.listVaccineNotPagination = data;
-
-      // if ((this.listVaccineNotPagination.length % 5) != 0) {
-      //   this.totalPagination = (Math.round(this.listVaccineNotPagination.length / 5)) + 1;
-      // }
-    // })
   }
 
   search() {
+    console.log(' tham số search : ',this.searchVaccine.value);
     this.vaccineService.search(this.searchVaccine.value.nameVaccine, this.searchVaccine.value.typeVaccine, this.searchVaccine.value.originVaccine,
       this.searchVaccine.value.statusVaccine).subscribe((data: IVaccineDTO[]) => {
-      return this.vaccines = data
-    });
+      if(data!=null){
+        this.vaccines = data;
+        this.listDataVac=true;
+       }else {
+        this.listDataVac=false;
+       }
+    }, error => console.log(error));
   }
 
-  // findPaginnation() {
-  //   this.vaccineService.getAllVaccine((this.indexPagination * 5) - 5).subscribe((data: IVaccineDTO[]) => {
-  //     this.vaccines = data;
-  //   })
-  // }
 
-  // indexPaginationChage(value: number) {
-  //   this.indexPagination = value;
-  // }
+  resetSearch(){
+    this.searchVaccine.value.nameVaccine='';
+    this.searchVaccine.value.typeVaccine='';
+    this.searchVaccine.value.originVaccine='';
+    this.searchVaccine.value.statusVaccine='';
+    this.ngOnInit();
+  }
 
-  // firtPage() {
-  //   this.indexPagination = 1;
-  //   this.ngOnInit();
-  // }
-
-  // nextPage() {
-  //   this.indexPagination = this.indexPagination + 1;
-  //   if (this.indexPagination > this.totalPagination) {
-  //     this.indexPagination = this.indexPagination - 1;
-  //   }
-  //   this.vaccineService.getAllVaccine((this.indexPagination * 5) - 5).subscribe((data: IVaccineDTO[]) => {
-  //     this.vaccines = data;
-  //   })
-  // }
-
-  // prviousPage() {
-  //   this.indexPagination = this.indexPagination - 1;
-  //   if (this.indexPagination == 0) {
-  //     this.indexPagination = 1;
-  //     this.ngOnInit();
-  //   } else {
-  //     this.vaccineService.getAllVaccine((this.indexPagination * 5) - 5).subscribe((data: IVaccineDTO[]) => {
-  //       this.vaccines = data;
-  //     })
-  //   }
-  // }
-
-  // lastPage() {
-  //   this.indexPagination = this.listVaccineNotPagination.length / 5;
-  //   this.vaccineService.getAllVaccine((this.indexPagination * 5) - 5).subscribe((data: IVaccineDTO[]) => {
-  //     this.vaccines = data;
-  //   })
-  // }
 }

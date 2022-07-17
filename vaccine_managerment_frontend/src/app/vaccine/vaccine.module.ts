@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import {VaccineListComponent} from "./vaccine-list/vaccine-list.component";
+import {VaccineEditComponent} from "./vaccine-edit/vaccine-edit.component";
+
 import {VaccineCreateComponent} from "./vaccine-create/vaccine-create.component";
 import {VaccineRoutingModule} from "./vaccine-routing.module";
 import {CommonModule} from "@angular/common";
@@ -13,7 +15,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
-  declarations: [VaccineListComponent, VaccineCreateComponent],
+  declarations: [VaccineListComponent, VaccineCreateComponent,VaccineEditComponent],
   imports: [
     CommonModule,
     NgxPaginationModule,

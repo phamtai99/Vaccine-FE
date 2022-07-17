@@ -6,20 +6,13 @@
     <div class="row  mt-5">
       <div class="col-md-6">
         <div class="container">
-          <div class="row mb-3">
-            <div class="col-4">
-              <label class="col-form-label">Mã nhân viên</label>
-            </div>
-            <div class="col-8">
-              <input class="form-control" type="text" readonly>
-            </div>
-          </div>
+
           <div class="row mb-3">
             <div class="col-4">
               <label class="col-form-label">Họ và tên (<label style="color:red">*</label>)</label>
             </div>
             <div class="col-8">
-              <input class="form-control" type="text" formControlName="name">
+              <input class="form-control" type="text" formControlName="name" placeholder="Họ và tên" >
               <div class="text-danger" *ngFor="let validation of validation_messages.name">
                 <div class="error-message"
                      *ngIf="employeeForm.get('name').hasError(validation.type) && (employeeForm.get('name').dirty || employeeForm.get('name').touched)">
@@ -29,10 +22,20 @@
           </div>
           <div class="row mb-3">
             <div class="col-4">
+              <label class="col-form-label">Email (<label style="color:red">*</label>)</label>
+            </div>
+            <div class="col-8">
+              <input class="form-control" type="text" formControlName="email" placeholder="Email">
+
+
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-4">
               <label class="col-form-label">Ngày sinh (<label style="color:red">*</label>)</label>
             </div>
             <div class="col-8">
-              <input style="width: 170px;" class="form-control" type="date" formControlName="dateOfBirth">
+              <input  class="form-control" type="date" formControlName="dateOfBirth" placeholder="">
               <div class="text-danger" *ngFor="let validation of validation_messages.dateOfBirth">
                 <div class="error-message"
                      *ngIf="employeeForm.get('dateOfBirth').hasError(validation.type) && (employeeForm.get('dateOfBirth').dirty || employeeForm.get('dateOfBirth').touched)">
@@ -45,7 +48,7 @@
               <label class="col-form-label">CMND (<label style="color:red">*</label>)</label>
             </div>
             <div class="col-8">
-              <input class="form-control" type="text" formControlName="idCard">
+              <input class="form-control" type="text" formControlName="idCard" placeholder="CMND">
 
               <div class="text-danger" *ngFor="let validation of validation_messages.idCard">
                 <div class="error-message"
@@ -63,7 +66,7 @@
               <label class="col-form-label">Địa chỉ (<label style="color:red">*</label>)</label>
             </div>
             <div class="col-8">
-              <input class="form-control" type="text" formControlName="address">
+              <input class="form-control" type="text" formControlName="address" placeholder="Nhập Địa chỉ">
               <div class="text-danger" *ngFor="let validation of validation_messages.address">
                 <div class="error-message"
                      *ngIf="employeeForm.get('address').hasError(validation.type) && (employeeForm.get('address').dirty || employeeForm.get('address').touched)">
@@ -76,7 +79,7 @@
               <label class="col-form-label">Số điện thoại (<label style="color:red">*</label>)</label>
             </div>
             <div class="col-8">
-              <input class="form-control" type="text" formControlName="phone">
+              <input class="form-control" type="text" formControlName="phone" placeholder="Điện thoại">
               <div class="text-danger" *ngFor="let validation of validation_messages.phone">
                 <div class="error-message"
                      *ngIf="employeeForm.get('phone').hasError(validation.type) && (employeeForm.get('phone').dirty || employeeForm.get('phone').touched)">
@@ -90,6 +93,9 @@
             </div>
             <div class="col-8">
               <select class="form-control" formControlName="position">
+                <option value="">
+                  Lựa chọn...
+                </option>
                 <option *ngFor="let position of positionList" [value]="position.positionId">{{position.name}}</option>
               </select>
               <div class="text-danger" *ngFor="let validation of validation_messages.position">
@@ -104,7 +110,11 @@
               <label class="col-form-label">Quyền truy cập (<label style="color:red">*</label>)</label>
             </div>
             <div class="col-8">
+
               <select class="form-control" formControlName="account">
+                <option value="">
+                  Lựa chọn...
+                </option>
                 <option *ngFor="let account of roleList" [value]="account.roleId">{{account.name}}</option>
               </select>
               <div class="text-danger" *ngFor="let validation of validation_messages.account">
@@ -116,7 +126,7 @@
           </div>
           <div class="d-flex justify-content-end">
             <div>
-              <button type="submit" [disabled]="employeeForm.invalid" style="width: 80px" class="btn btn-primary mr-2">Lưu</button>
+              <button type="submit"  style="width: 80px" class="btn btn-primary mr-2">Lưu</button>
               <button class="btn btn-dark" routerLink="/employee" style="width: 80px">Hủy</button>
             </div>
           </div>

@@ -20,7 +20,7 @@ export class VaccineTransactionManagementComponent implements OnInit {
   keyword2 = '';
   keyword3 = '';
   listVaccineType: any;
-  listTypeVaccine:any
+  listTypeVaccine=[];
   p: any;
   config:any;
 
@@ -56,16 +56,13 @@ export class VaccineTransactionManagementComponent implements OnInit {
     }, error => console.log(error))
     this.exportService.getListVaccineType().subscribe(data => {
       this.listVaccineType = data;
-      // this.listTypeVaccine.forEach(element => {
-      //   if(!this.listVaccineType.includes(element.name)){
-      //     this.listVaccineType.push(element.name)
-      //   }
-
-      // });
-
-      console.log("danh sách loại vacccine ", data)
+      this.listVaccineType.forEach(element => {
+        if(!this.listTypeVaccine.includes(element.name)){
+          this.listTypeVaccine.push(element.name)
+        }
+      });
+      console.log("danh sách loại vacccine ",  this.listTypeVaccine)
     }, error => console.log(error))
-
   }
 
 

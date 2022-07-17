@@ -13,7 +13,7 @@ import {ShowMessage} from "../../common/show-message";
   templateUrl: './employee-create.component.html',
   styleUrls: ['./employee-create.component.scss']
 })
-/** LuyenNT code
+/**  code
  */
 export class EmployeeCreateComponent implements OnInit {
   public positionList: IPosition[];
@@ -32,9 +32,8 @@ export class EmployeeCreateComponent implements OnInit {
   validation_messages = {
     name: [
       {type: 'required', message: 'Vui lòng nhập tên'},
-      {type: 'maxlength', message: 'Vui lòng nhập tên > 40.'},
-      {type: 'pattern', message: 'Không được nhập ký tự đặt biệt hoặc số'}
     ],
+    email: [''],
     dateOfBirth: [
       {type: 'required', message: 'Vui lòng nhập ngày sinh'},
       {type: 'checkAge', message: 'Tuổi phải từ 18 đến 50'}
@@ -48,10 +47,7 @@ export class EmployeeCreateComponent implements OnInit {
     ],
     phone: [
       {type: 'required', message: 'Vui lòng nhập số điện thoại'},
-      {
-        type: 'pattern',
-        message: 'Vui lòng nhập số địa thoại đúng định dạng 090xxxxxxx or 091xxxxxxx or (84) + 90xxxxxxx or (84) + 91xxxxxxx'
-      }
+
     ],
     address: [
       {type: 'required', message: 'Vui lòng nhập địa chỉ'}
@@ -62,6 +58,7 @@ export class EmployeeCreateComponent implements OnInit {
     account: [
       {type: 'required', message: 'Vui lòng nhập quyền truy cập'},
     ],
+
   };
 
 
@@ -75,7 +72,8 @@ export class EmployeeCreateComponent implements OnInit {
         address: new FormControl('', [Validators.required, Validators.maxLength(40)]),
         phone: new FormControl('', [Validators.required, Validators.pattern('^(090|091|\\(\\+84\\)90|\\(\\+84\\)91)\\d{7}$')]),
         position: new FormControl('', Validators.required),
-        account: new FormControl('', Validators.required)
+        account: new FormControl('', Validators.required),
+        email:new FormControl(''),
       }
     )
   }
@@ -90,7 +88,8 @@ export class EmployeeCreateComponent implements OnInit {
   }
 
   create() {
-    if (this.employeeForm.invalid) {
+    console.log(this.employeeForm.value);
+    if (this.employeeForm.value==null) {
       this.check = true;
       this.showMessage.showMessageCreateError();
       return;
@@ -101,7 +100,7 @@ export class EmployeeCreateComponent implements OnInit {
           this.error = data[0].defaultMessage;
           this.toastrService.error(this.error, 'Message');
         } else {
-          console.log("thành côbng");
+          console.log("thành công");
           this.toastrService.success('Thêm thành công!', 'Message');
           this.router.navigateByUrl('employee');
 
