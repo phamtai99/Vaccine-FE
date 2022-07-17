@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   API_URL: 'http://localhost:8666/',
+  // API_URL:'https://java-vaccine-systerm.herokuapp.com/',
   firebaseConfig: {
     apiKey: "AIzaSyDgAaDCU0ruCkZj_s94itJDBdCkWFCZ4no",
     authDomain: "vaccine-dd39a.firebaseapp.com",
